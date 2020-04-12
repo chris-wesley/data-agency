@@ -1,0 +1,54 @@
+ body {
+            overscroll-behaviour: contain;
+        }
+        #board {
+            display: table;
+            margin: 0;
+            padding: 0;
+            border-spacing: 10px;
+        }
+        .section {
+            display: table-cell;
+            margin: 0;
+            border: 1px solid #666;
+            padding: 5px;
+            width: 25vw;
+            height: 60vh;
+        }
+        .section.droppable {
+            border: 1px dashed #666;
+        }
+        .card {
+            display: block;
+            vertical-align: top;
+            width: auto;
+            height: auto;
+            padding: 15px;
+            margin: 5px;
+            color: black;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            cursor: move;
+        }
+        h1 {
+            padding: 10px;
+        }
+        h2 {
+            padding: 10px;
+        }
+        #warning-message { display: none; }
+        @media only screen and (max-width:767px) and (orientation:portrait){
+        #wrapper { display:none; }
+        #warning-message { display:block; }
+        }
+        @media only screen and (orientation:landscape){
+        #warning-message { display:none; }
+    }
+    .right {
+        float:right;
+    }
+
+    .left {
+     float:left;
+    }
