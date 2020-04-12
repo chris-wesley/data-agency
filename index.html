@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Data Broker Simulator</title>
     <style>
+        body {
+            overscroll-behaviour: contain;
+        }
         #board {
             display: table;
             margin: 0;
@@ -18,7 +21,6 @@
             width: 25vw;
             height: 60vh;
         }
-
         .section.droppable {
             border: 1px dashed #666;
         }
@@ -38,35 +40,127 @@
         h1 {
             padding: 10px;
         }
-
         h2 {
             padding: 10px;
         }
+        #warning-message { display: none; }
+        @media only screen and (max-width:767px) and (orientation:portrait){
+        #wrapper { display:none; }
+        #warning-message { display:block; }
+        }
+        @media only screen and (orientation:landscape){
+        #warning-message { display:none; }
+    }
+    .right {
+        float:right;
+    }
+
+    .left {
+     float:left;
+    }
     </style>
 </head>
 <body>
+    <div id="wrapper">
     <h1>Data Broker Simulator</h1>
-    
     <div id="board">
         <div id="sources" class="section">
             <h2>Sources</h2>
-            <div id="c1" class="card">Voter records</div>
-            <div id="c2" class="card">Credit card history</div>
+
+            <div id="s1" class="card">
+                <span class="left">Voter records</span>​<span class="right">FREE</span>
+            </div>
+
+            <div id="s2" class="card">
+                <span class="left">Online retailer</span>​<span class="right">$200</span>
+            </div>
+
+            <div id="s3" class="card">
+                <span class="left">Census data</span>​<span class="right">FREE</span>
+            </div>
+
+            <div id="s4" class="card">
+                <span class="left">Credit card history</span>​<span class="right">$170</span>
+            </div>
+
+            <div id="s5" class="card">
+                <span class="left">Magazine subscription</span>​<span class="right">$60</span>
+            </div>
+
         </div>
+            
         <div id="users" class="section">
             <h2>Users</h2>
-            <div id="c3" class="card">#2469705</div>
+
+            <div id="u1" class="card">
+                <span class="left">#234920</span>​<span class="right"></span>
+            </div>
+
+            <div id="u2" class="card">
+                <span class="left">#234987</span>​<span class="right"></span>
+            </div>
+            
+            <div id="u3" class="card">
+                <span class="left">#245908</span>​<span class="right"></span>
+            </div>
+
+            <div id="u4" class="card">
+                <span class="left">#223499</span>​<span class="right"></span>
+            </div>
+
+            <div id="u5" class="card">
+                <span class="left">#234393</span>​<span class="right"></span>
+            </div>
+
+            <div id="u6" class="card">
+                <span class="left">#223134</span>​<span class="right"></span>
+            </div>
+
+            <div id="u7" class="card">
+                <span class="left">#254346</span>​<span class="right"></span>
+            </div>
+
+            <div id="u8" class="card">
+                <span class="left">#250392</span>​<span class="right"></span>
+            </div>
         </div>
+
         <div id="segments" class="section">
             <h2>Segments</h2>
-            <div id="c4" class="card">Donates to charity</div>
+
+            <div id="s1" class="card">
+                <span class="left">Buying a home</span>​<span class="right"></span>
+            </div>
+
+            <div id="s2" class="card">
+                <span class="left">Fantasy novels</span>​<span class="right"></span>
+            </div>
+
+            <div id="s2" class="card">
+                <span class="left">Donates to charity</span>​<span class="right"></span>
+            </div>
+           
         </div>
         <div id="clients" class="section">
             <h2>Clients</h2>
-                <div id="c4" class="card">Non-profits</div>
+
+            <div id="c1" class="card">
+                <span class="left">Donates to charity</span>​<span class="right"></span>
+            </div>
+
+            <div id="c2" class="card">
+                <span class="left">Banks</span>​<span class="right"></span>
+            </div>
+
+            <div id="c3" class="card">
+                <span class="left">Retailers</span>​<span class="right"></span>
+            </div>
         </div>
     </div>
-
+    </div>
+    <div id="warning-message">
+        Please tilt your device landscape to play.
+    </div>
     <script>
         var cards = document.querySelectorAll('.card');
 
@@ -164,6 +258,6 @@
             return null;
         }
     </script>
-    <script src="mobile-drag-drop.js"></script>
+    <script src="js/mobile-drag-drop.js"></script>
 </body>
 </html>
