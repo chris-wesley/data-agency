@@ -39,6 +39,10 @@ for (let j = 0; j < sections.length; j ++) {
 	section.addEventListener('dragover', function (event) {
 		event.preventDefault();
 	});
+
+	section.addEventListener('dragexit', function (event) {
+		event.preventDefault();
+	});
 		
 	// Change the background color when card enters a section	
 	section.addEventListener('dragenter', function (event) {
@@ -47,13 +51,26 @@ for (let j = 0; j < sections.length; j ++) {
 
 	// Change the background color when card leaves a section
 	section.addEventListener('dragleave', function (event) {
-		this.style.backgroundColor = '#ffbcbc';
+		event.preventDefault();
 	});
 
 	// Send the card data to new section
 	section.addEventListener('drop', function (event) {
-		console.log('drop');
-		this.append(draggedCard);
-		this.style.backgroundColor = '#bafcac';
+		cardRules('source', 'users');
+		cardRules('user', 'segments');
+		cardRules('segment', 'clients');
+		cardRules('client', '');
+		console.log('Tried to be dropped in the wrong section');
 	});
+
+function cardRules(cardName, sectionName) {
+	if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
+		console.log('Dropped in correct section');
+		section.append(draggedCard);
+		section.style.backgroundColor = '#bafcac';
+	}
+	else {
+		return 0;
+	}
+}
 }
