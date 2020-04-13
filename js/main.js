@@ -13,6 +13,7 @@ for (let i = 0; i < cards.length; i++) {
     // Event listener for the start of drag
 	card.addEventListener('dragstart', function (event) {
 		draggedCard = card;
+		draggedCard.style.cursor = 'grabbing';
 		// Hide card from initial section
 		requestAnimationFrame(function () {
 			card.style.display = 'none';
@@ -21,6 +22,7 @@ for (let i = 0; i < cards.length; i++) {
 
 	// Event listener for the end of drag
 	card.addEventListener('dragend', function (event) {
+		draggedCard.style.cursor = 'default';
 		// Still show the card while being dragged
 		requestAnimationFrame(function () {
 			draggedCard.style.display = 'block';
@@ -41,18 +43,17 @@ for (let j = 0; j < sections.length; j ++) {
 	// Change the background color when card enters a section	
 	section.addEventListener('dragenter', function (event) {
 		event.preventDefault();
-		this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
 	});
 
 	// Change the background color when card leaves a section
 	section.addEventListener('dragleave', function (event) {
-		this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+		this.style.backgroundColor = '#ffbcbc';
 	});
 
 	// Send the card data to new section
 	section.addEventListener('drop', function (event) {
 		console.log('drop');
 		this.append(draggedCard);
-		this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+		this.style.backgroundColor = '#bafcac';
 	});
 }
