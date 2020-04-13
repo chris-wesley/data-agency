@@ -1,23 +1,4 @@
-let dragged; 
-
-var section = document.querySelector('#users');
-var cards = document.querySelectorAll('.card');
-for (var i = 0, n = cards.length; i < n; i++) {
-    var card = cards[i];
-    card.draggable = true;
-};
-
-
-function onDragStart(event) {
-  let target = event.target;
-  if (target == 'card') { // If target is an image
-      dragged = target;
-      event.dataTransfer.setData('text', target.id);
-      event.dataTransfer.dropEffect = 'move';
-      // Make it half transparent
-      event.target.style.opacity = '';
-  }
-}
+let dragged; // Keeps track of what's being dragged - we'll use this later!
 
 function onDragOver(event) {
   // Prevent default to allow drop
@@ -38,14 +19,6 @@ function onDragEnter(event) {
   }
 }
 
-function onDragEnd(event) {
-  if (event.target == card) {
-      // Reset the transparency
-      event.target.style.opacity = ''; // reset opacity when drag ends 
-      dragged = null; 
-  }
-}
-
 function onDrop(event) {
   const target = event.target;
   if (target && dragged) {
@@ -58,9 +31,38 @@ function onDrop(event) {
   }
 }
 
-// Adding event listeners
+function onDragStart(event) {
+  let target = event.target;
+  if (target && target.classList == 'card') { // If target is an image
+    dragged = target;
+    event.dataTransfer.setData('text', target.id);
+    event.dataTransfer.dropEffect = 'move';
+    // Make it half transparent when it's being dragged
+    event.target.style.opacity = .3;
+  }
+}
+
+function onDragEnd(event) {
+  if (event.target && event.target.className == 'card') {
+    // Reset the transparency
+    event.target.style.opacity = ''; // Reset opacity when dragging ends 
+    dragged = null; 
+  }
+}
+
+// Allow all cards to be draggable
+var cards = document.querySelectorAll('.card');
+for (var i = 0, n = cards.length; i < n; i++) {
+    var card = cards[i];
+    card.draggable = true;
+};
 card.addEventListener('dragstart', onDragStart);
 card.addEventListener('dragend', onDragEnd);
+
+
+
+
+var section = document.querySelector('#users');
 section.addEventListener('drop', onDrop);
 section.addEventListener('dragenter', onDragEnter);
 section.addEventListener('dragleave', onDragLeave);
