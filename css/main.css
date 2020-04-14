@@ -46,6 +46,6 @@
         @media only screen and (orientation:landscape){
         #warning-message { display:none; }
     }
-    .price {
+    .sourcePrice {
         float:right;
     }

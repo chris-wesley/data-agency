@@ -5,7 +5,10 @@ const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
 
 // Load the data
-getData();
+getSources();
+getUsers();
+getSegments();
+getClients();
 
 // Nothing being dragged initially
 let draggedCard = null;
@@ -80,14 +83,15 @@ function cardRules(cardName, sectionName) {
 }
 
 // Fetch the data files
-async function getData() {
+async function getSources() {
 	const response = await fetch('../data/sources.csv');
 	const data = await response.text();
 	// Sort the data into arrays
 	let rows = data.split('\n').slice(1);
-	let nameAll = document.querySelectorAll('.name');
-	let priceAll = document.querySelectorAll('.price');
-		for (i = 0; i < nameAll.length; i++) {
+	let sourceNames = document.querySelectorAll('.sourceName');
+	let sourcePrices = document.querySelectorAll('.sourcePrice');
+		// Loop through cards 
+		for (i = 0; i < sourceNames.length; i++) {
 			let columns = rows[i].split(',');
 			let name = columns[0];
 			let price = columns[1];
@@ -98,8 +102,61 @@ async function getData() {
 				else {
 					price = "$" + price;
 				}
-		nameAll[i].textContent = name;
-		priceAll[i].textContent = price;
-		console.log(columns);
+		sourceNames[i].textContent = name;
+		sourcePrices[i].textContent = price;
+		}
+}
+
+// Fetch the data files
+async function getUsers() {
+	const response = await fetch('../data/users.csv');
+	const data = await response.text();
+	// Sort the data into arrays
+	let rows = data.split('\n').slice(1);
+	let userId = document.querySelectorAll('.userId');
+		// Loop through cards 
+		for (i = 0; i < userId.length; i++) {
+			let columns = rows[i].split(',');
+			let Id = columns[0];
+			let name = columns[1];
+			let gender = columns[2];
+				
+		userId[i].textContent = id;
+		}
+}
+
+// Fetch the data files
+async function getSegments() {
+	const response = await fetch('../data/segments.csv');
+	const data = await response.text();
+	// Sort the data into arrays
+	let rows = data.split('\n').slice(1);
+	let segmentNames = document.querySelectorAll('.segmentName');
+		// Loop through cards 
+		for (i = 0; i < segmentNames.length; i++) {
+			let columns = rows[i].split(',');
+			let name = columns[0];
+			let ethics = columns[1];
+	
+		segmentNames[i].textContent = name;
+		}
+}
+
+// Fetch the data files
+async function getClients() {
+	const response = await fetch('../data/clients.csv');
+	const data = await response.text();
+	// Sort the data into arrays
+	let rows = data.split('\n').slice(1);
+	let clientNames = document.querySelectorAll('.clientName');
+	let clientPrices = document.querySelectorAll('.clientPrice');
+		// Loop through cards 
+		for (i = 0; i < clientNames.length; i++) {
+			let columns = rows[i].split(',');
+			let name = columns[0];
+			let type = columns[1];
+			let ethics = columns[2];
+	
+		clientNames[i].textContent = name;
 		}
 }
