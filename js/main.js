@@ -1,9 +1,11 @@
-// Load the data
-getData();
+const source = document.querySelector('.source');
 
 // Grab all the interactive items
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
+
+// Load the data
+getData();
 
 // Nothing being dragged initially
 let draggedCard = null;
@@ -74,9 +76,6 @@ function cardRules(cardName, sectionName) {
 		section.append(draggedCard);
 		section.style.backgroundColor = '#bafcac';
 	}
-	else {
-		return 0;
-	}
 }
 }
 
@@ -85,12 +84,22 @@ async function getData() {
 	const response = await fetch('../data/sources.csv');
 	const data = await response.text();
 	// Sort the data into arrays
-	const table = data.split('\n').slice(1);
-	table.forEach(row => {
-		const columns = row.split(',');
-		const name = columns[0];
-		const price = columns[1];
-		const type = columns[2];
-		console.log(name, price);
-	});
+	let rows = data.split('\n').slice(1);
+	let nameAll = document.querySelectorAll('.name');
+	let priceAll = document.querySelectorAll('.price');
+		for (i = 0; i < nameAll.length; i++) {
+			let columns = rows[i].split(',');
+			let name = columns[0];
+			let price = columns[1];
+			let type = columns[2];
+				if (price == 0) {
+					price = "FREE";
+				}
+				else {
+					price = "$" + price;
+				}
+		nameAll[i].textContent = name;
+		priceAll[i].textContent = price;
+		console.log(columns);
+		}
 }

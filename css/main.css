@@ -1,5 +1,6 @@
  body {
             overscroll-behaviour: contain;
+            user-select: none;
         }
         #board {
             display: table;
@@ -45,10 +46,6 @@
         @media only screen and (orientation:landscape){
         #warning-message { display:none; }
     }
-    .right {
+    .price {
         float:right;
-    }
-
-    .left {
-     float:left;
     }
