@@ -90,20 +90,26 @@ async function getSources() {
 	let rows = data.split('\n').slice(1);
 	let sourceNames = document.querySelectorAll('.sourceName');
 	let sourcePrices = document.querySelectorAll('.sourcePrice');
-		// Loop through cards 
+
+		// Loop through cards and randomise without repeats
 		for (i = 0; i < sourceNames.length; i++) {
-			let columns = rows[i].split(',');
-			let name = columns[0];
-			let price = columns[1];
-			let type = columns[2];
-				if (price == 0) {
-					price = "FREE";
+			let randomise = rows[Math.floor(Math.random() * rows.length)];
+			let randomSplit = randomise.split(',');
+			let randomName = randomSplit[0];
+			let randomPrice = randomSplit[1];
+			let randomType = randomSplit[2];
+			if (randomPrice == 0) {
+					randomPrice = "FREE";
 				}
 				else {
-					price = "$" + price;
+					randomPrice = "$" + randomPrice;
 				}
-		sourceNames[i].textContent = name;
-		sourcePrices[i].textContent = price;
+			sourceNames[i].textContent = randomName;
+			sourcePrices[i].textContent = randomPrice;
+
+			rows = rows.filter(function(str){
+				return str.indexOf(randomName) === -1;
+			});
 		}
 }
 
@@ -117,11 +123,9 @@ async function getUsers() {
 		// Loop through cards 
 		for (i = 0; i < userId.length; i++) {
 			let columns = rows[i].split(',');
-			let Id = columns[0];
-			let name = columns[1];
-			let gender = columns[2];
+			let id = columns[0];
 				
-		userId[i].textContent = id;
+		userId[i].textContent = "#" + (Math.round(Math.random() * 200000) + 400000);
 		}
 }
 
@@ -132,13 +136,16 @@ async function getSegments() {
 	// Sort the data into arrays
 	let rows = data.split('\n').slice(1);
 	let segmentNames = document.querySelectorAll('.segmentName');
-		// Loop through cards 
+
+		// Loop through cards and randomise without repeats
 		for (i = 0; i < segmentNames.length; i++) {
-			let columns = rows[i].split(',');
-			let name = columns[0];
-			let ethics = columns[1];
-	
-		segmentNames[i].textContent = name;
+			let randomise = rows[Math.floor(Math.random() * rows.length)];
+			let randomSplit = randomise.split(',');
+			let randomName = randomSplit[0];
+			segmentNames[i].textContent = randomName;
+			rows = rows.filter(function(str){
+				return str.indexOf(randomName) === -1;
+			});
 		}
 }
 
@@ -150,13 +157,17 @@ async function getClients() {
 	let rows = data.split('\n').slice(1);
 	let clientNames = document.querySelectorAll('.clientName');
 	let clientPrices = document.querySelectorAll('.clientPrice');
-		// Loop through cards 
+		// Loop through cards and randomise without repeats
 		for (i = 0; i < clientNames.length; i++) {
-			let columns = rows[i].split(',');
-			let name = columns[0];
-			let type = columns[1];
-			let ethics = columns[2];
-	
-		clientNames[i].textContent = name;
-		}
+			let randomise = rows[Math.floor(Math.random() * rows.length)];
+			let randomSplit = randomise.split(',');
+			let randomName = randomSplit[0];
+			let randomType = randomSplit[1];
+			let randomEthics = randomSplit[2];
+
+			clientNames[i].textContent = randomName;
+			rows = rows.filter(function(str){
+				return str.indexOf(randomName) === -1;
+			});
+		}		
 }
