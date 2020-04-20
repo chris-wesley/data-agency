@@ -68,13 +68,12 @@ for (let j = 0; j < sections.length; j ++) {
 		cardRules('user', 'segments');
 		cardRules('segment', 'clients');
 		cardRules('client', '');
-		console.log('Tried to be dropped in the wrong section');
 	});
 
 // Check the card is dropping in the right section
 function cardRules(cardName, sectionName) {
 	if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
-		console.log('Dropped in correct section');
+		//console.log('Dropped in correct section');
 		// Send the card data to new section
 		section.append(draggedCard);
 		section.style.backgroundColor = '#bafcac';
@@ -171,3 +170,30 @@ async function getClients() {
 			});
 		}		
 }
+
+// 60 second countdown
+function countdown() {
+    var seconds = 60;
+    function tick() {
+        var counter = document.getElementById("timer");
+        seconds--;
+        counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+        if( seconds > 0 ) {
+            setTimeout(tick, 1000);
+        } else {
+            console.log("Game over");
+        }
+    }
+    tick();
+}
+
+// Start the countdown
+countdown();
+
+
+// Toggle music and sound
+function togglePlay(audio) {
+	var music = document.getElementById("music");
+	var effects = document.getElementById("effects")
+	return (audio).paused ? (audio).play() : (audio).pause();
+};
