@@ -7,9 +7,14 @@
 </head>
 <body>
     <div id="wrapper">
-    <div id="top">
-    <h1>Data Broker Simulator</h1>
-    </div>
+        <div id="header">
+            <div id="corporation" class="header">
+                <h2>Data Broker Simulator</h2>
+            </div>
+            <div id="level" class="header">
+                <h2>Intern</h2>
+            </div>
+        </div>
     <div id="board">
         <div id="sources" class="section sources">
             <h2>Sources</h2>
@@ -104,19 +109,29 @@
             </div>
         </div>
     </div>
-    <div id="bottom">
-        <div id="score">
-            $2580
+    <div id="footer">
+        <div id="stats" class="footerSmall">
+            <div id="score">
+                $2580
+            </div>
+            <div id="timer"></div>
         </div>
-        <div id="timer">
-            01:00
+        <div id="messageWrapper" class="footerLarge">
+            <div id="messageHeader">
+                <span id="messageHead"></span>
+                <span id="messageName"></span>
+                <span id="messageSubject"></span>
+            </div>
+            <div id="messageContent">
+                <p id="messageContents"></p>
+            </div>
         </div>
-        <div id="sound">
+        <div id="sound" class="footerSmall">
             <div id="musicWrapper">
                 <audio id="music" src="/data/8bit-surf.mp3" preload="auto"></audio>
                 <a onClick="togglePlay(music)">Music</a>
             </div>
-            <div id="soundWrapper">
+            <div id="effectsWrapper">
                 <audio id="effects" src="/data/cash.mp3" preload="auto"></audio>
                 <a onClick="togglePlay(effects)">Effects</a>
             </div>

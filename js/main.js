@@ -177,7 +177,7 @@ function countdown() {
     function tick() {
         var counter = document.getElementById("timer");
         seconds--;
-        counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+        counter.innerHTML = "00:" + (seconds < 10 ? "0" : "") + String(seconds);
         if( seconds > 0 ) {
             setTimeout(tick, 1000);
         } else {
@@ -197,3 +197,26 @@ function togglePlay(audio) {
 	var effects = document.getElementById("effects")
 	return (audio).paused ? (audio).play() : (audio).pause();
 };
+
+messageDisplay();
+
+// Message
+function messageDisplay() {
+	var messageHeader = document.getElementById("messageHeader");
+	var messageHead = document.getElementById("messageHead");
+	var messageName = document.getElementById("messageName");
+	var messageSubject = document.getElementById("messageSubject");
+	var messageContent = document.getElementById("messageContent");
+	var text1 = "Intern Manager";
+	var text2 = "Getting Started";
+	var text3 = "This is the message contents";
+
+	// Hide message contents
+	if (x = 0) {
+		messageContent.style.display = "none";
+	}
+	// Change message contents
+	messageName.textContent = text1;
+	messageSubject.textContent = text2;
+	messageContent.textContent = text3;
+}

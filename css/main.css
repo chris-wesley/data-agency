@@ -32,12 +32,55 @@
             background: #FFFFFF;
             cursor: grab;
         }
+        #header {
+            display: table;
+            margin: 0;
+            padding: 0;
+            border-spacing: 10px;
+        }
+        .header {
+            display: table-cell;
+            margin: 0;
+            border: 1px solid #666;
+            padding: 5px;
+            width: 50vw;
+            height: 20vh;
+        }
+        #footer {
+            display: table;
+            margin: 0;
+            padding: 0;
+            border-spacing: 10px;
+        }
+        .footerSmall {
+            display: table-cell;
+            margin: 0;
+            border: 1px solid #666;
+            padding: 5px;
+            width: 25vw;
+            height: 20vh;
+        }
+        .footerLarge {
+            display: table-cell;
+            margin: 0;
+            border: 1px solid #666;
+            padding: 5px;
+            width: 50vw;
+            height: 20vh;
+        }
         h1 {
             padding: 10px;
         }
         h2 {
             padding: 10px;
         }
+
+        .sourcePrice {
+        float:right;
+        }
+        
+        
+
         #warning-message { display: none; }
         @media only screen and (max-width:767px) and (orientation:portrait){
         #wrapper { display:none; }
@@ -45,7 +88,4 @@
         }
         @media only screen and (orientation:landscape){
         #warning-message { display:none; }
-    }
-    .sourcePrice {
-        float:right;
     }
