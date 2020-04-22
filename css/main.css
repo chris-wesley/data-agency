@@ -1,91 +1,153 @@
- body {
-            overscroll-behaviour: contain;
-            user-select: none;
-        }
-        #board {
-            display: table;
-            margin: 0;
-            padding: 0;
-            border-spacing: 10px;
-        }
-        .section {
-            display: table-cell;
-            margin: 0;
-            border: 1px solid #666;
-            padding: 5px;
-            width: 25vw;
-            height: 60vh;
-        }
-        .section.droppable {
-            border: 1px dashed #666;
-        }
-        .card {
-            display: block;
-            vertical-align: top;
-            width: auto;
-            height: auto;
-            padding: 15px;
-            margin: 5px;
-            color: black;
-            border: 1px solid black;
-            box-sizing: border-box;
-            background: #FFFFFF;
-            cursor: grab;
-        }
-        #header {
-            display: table;
-            margin: 0;
-            padding: 0;
-            border-spacing: 10px;
-        }
-        .header {
-            display: table-cell;
-            margin: 0;
-            border: 1px solid #666;
-            padding: 5px;
-            width: 50vw;
-            height: 20vh;
-        }
-        #footer {
-            display: table;
-            margin: 0;
-            padding: 0;
-            border-spacing: 10px;
-        }
-        .footerSmall {
-            display: table-cell;
-            margin: 0;
-            border: 1px solid #666;
-            padding: 5px;
-            width: 25vw;
-            height: 20vh;
-        }
-        .footerLarge {
-            display: table-cell;
-            margin: 0;
-            border: 1px solid #666;
-            padding: 5px;
-            width: 50vw;
-            height: 20vh;
-        }
-        h1 {
-            padding: 10px;
-        }
-        h2 {
-            padding: 10px;
-        }
+@import url("https://rsms.me/inter/inter.css");
 
-        .sourcePrice {
-        float:right;
-        }
-        
-        
+html {
+    overflow-y: hidden;
+}
+body
+{
+    margin: 0;
+    padding: 40px;
+    user-select: none;
+    scroll-behavior: smooth;
+}
 
-        #warning-message { display: none; }
-        @media only screen and (max-width:767px) and (orientation:portrait){
-        #wrapper { display:none; }
-        #warning-message { display:block; }
-        }
-        @media only screen and (orientation:landscape){
-        #warning-message { display:none; }
+*,*:before,*:after { -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; }
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 10vh 70vh 20vh;
+    grid-gap: 2rem;
+    grid-template-areas: 
+        "headerLeft headerLeft headerRight headerRight"
+        "sectionOne sectionTwo sectionThree sectionFour"
+        "footerLeft footerMiddle footerMiddle footerRight";
+}
+.headerLeft {
+    grid-area: headerLeft;
+}
+.headerRight {
+    grid-area: headerRight;
+}
+.sectionOne {
+    grid-area: sectionOne;
+}
+.sectionTwo {
+    grid-area: sectionTwo;
+}
+.sectionThree {
+    grid-area: sectionThree;
+}
+.sectionFour {
+    grid-area: sectionFour;
+}
+.footerLeft {
+    grid-area: footerLeft;
+}
+.footerMiddle {
+    grid-area: footerMiddle;
+}
+.footerRight {
+    grid-area: footerRight;
+}
+
+.section.droppable
+{
+    border: 1px dashed #666;
+}
+.card
+{
+    display: block;
+    box-sizing: border-box;
+    width: auto;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 6%;
+    cursor: grab;
+    vertical-align: top;
+    color: black;
+    border: 1px solid black;
+    background: #fff;
+    border-radius: 2px;
+}
+
+:root {
+    font-family: 'Inter', sans-serif;
+}
+
+h1
+{
+    margin: 0;
+    padding: 0;
+}
+
+h2
+{
+    font-weight: 600;
+}
+
+.section h2
+{
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+#messageHeader h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+
+.sourcePrice
+{
+    float: right;
+}
+
+.right {
+    float: right;
+}
+
+#sound {
+    font-size: 1.2em;
+    font-weight: 500;
+    text-align: right;
+}
+
+#stats {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+#messageWrapper {
+    border-radius: 2px;
+}
+
+#warning-message
+{
+    display: none;
+}
+@media only screen and (max-width:767px) and (orientation:portrait)
+{
+    #wrapper
+    {
+        display: none;
     }
+    #warning-message
+    {
+        display: block;
+    }
+}
+@media only screen and (orientation:landscape)
+{
+    #warning-message
+    {
+        display: none;
+    }
+}

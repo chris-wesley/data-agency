@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Data Broker Simulator</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-    <div id="wrapper">
-        <div id="header">
-            <div id="corporation" class="header">
+    <div class="container">
+            <div class="headerLeft" id="corporation">
                 <h2>Data Broker Simulator</h2>
             </div>
-            <div id="level" class="header">
-                <h2>Intern</h2>
+            <div class="headerRight" id="level">
+                <h2 class="right">Intern</h2>
             </div>
-        </div>
-    <div id="board">
-        <div id="sources" class="section sources">
-            <h2>Sources</h2>
 
+        <div class="sectionOne section sources" id="sources">
+            <h2>Sources</h2>
             <div id="s1" class="card source">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
@@ -38,10 +35,9 @@
             <div id="s5" class="card source">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
-
         </div>
             
-        <div id="users" class="section users">
+        <div id="users" class="sectionTwo section users">
             <h2>Users</h2>
 
             <div id="u1" class="card user">
@@ -77,23 +73,24 @@
             </div>
         </div>
 
-        <div id="segments" class="section segments">
+        <div id="segments" class="sectionThree section segments">
             <h2>Segments</h2>
 
-            <div id="s1" class="card segment">
+            <div id="se1" class="card segment">
                 <span class="segmentName"></span>​<span class="right"></span>
             </div>
 
-            <div id="s2" class="card segment">
+            <div id="se2" class="card segment">
                 <span class="segmentName"></span>​<span class="right"></span>
             </div>
 
-            <div id="s2" class="card segment">
+            <div id="se3" class="card segment">
                 <span class="segmentName"></span>​<span class="right"></span>
             </div>
            
         </div>
-        <div id="clients" class="section clients">
+
+        <div id="clients" class="sectionFour section clients">
             <h2>Clients</h2>
 
             <div id="c1" class="card client">
@@ -108,35 +105,36 @@
                 <span class="clientName"></span>​<span class="clientPrice"></span>
             </div>
         </div>
-    </div>
-    <div id="footer">
-        <div id="stats" class="footerSmall">
+
+        <div id="stats" class="footerLeft">
             <div id="score">
                 $2580
             </div>
             <div id="timer"></div>
         </div>
-        <div id="messageWrapper" class="footerLarge">
+        <div id="messageWrapper" class="footerMiddle">
             <div id="messageHeader">
-                <span id="messageHead"></span>
-                <span id="messageName"></span>
-                <span id="messageSubject"></span>
+                <h3>
+                    <span id="messageHead"></span>
+                    <span id="messageName"></span>
+                    <span id="messageSubject"></span>
+                </h3>
             </div>
             <div id="messageContent">
                 <p id="messageContents"></p>
             </div>
         </div>
-        <div id="sound" class="footerSmall">
+        <div id="sound" class="footerRight">
             <div id="musicWrapper">
                 <audio id="music" src="/data/8bit-surf.mp3" preload="auto"></audio>
-                <a onClick="togglePlay(music)">Music</a>
+                <a class="right" onClick="togglePlay(music)">Music</a>
             </div>
+            <br>
             <div id="effectsWrapper">
                 <audio id="effects" src="/data/cash.mp3" preload="auto"></audio>
-                <a onClick="togglePlay(effects)">Effects</a>
+                <a class="right" onClick="togglePlay(effects)">Effects</a>
             </div>
         </div>
-    </div>
     </div>
     <div id="warning-message">
         Please tilt your device landscape to play.
