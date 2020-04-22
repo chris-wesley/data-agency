@@ -77,32 +77,32 @@ body
 
 h1
 {
-    margin: 0;
-    padding: 0;
+    font-size: 1.3em;
+    font-weight: 700;
 }
 
 h2
 {
+    font-size: 1.2em;
     font-weight: 600;
+}
+
+h3 {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+#levelPeep {
+    display: inline;
+    position: relative;
+    vertical-align: middle;
+    padding-right: 50px;
 }
 
 .section h2
 {
-    font-size: 1.2em;
     margin-bottom: 20px;
-    padding: 0;
     text-transform: uppercase;
-}
-
-h3 {
-    margin: 0;
-    padding: 0;
-}
-
-#messageHeader h3 {
-    font-size: 1.2em;
-    font-weight: 600;
-    padding-bottom: 20px;
 }
 
 .sourcePrice
@@ -126,16 +126,59 @@ h3 {
 }
 
 #messageWrapper {
+    border: solid 1px black;
     border-radius: 2px;
+    padding: 20px;
+}
+
+#messageHeader {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+#messagePeep {
+    display: inline;
+    position: relative;
+    vertical-align: middle;
+}
+
+#messageHead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#messageFace {
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    right: 0;
+}
+
+#messageHeaderText h3 {
+    display: inline;
+}
+
+#messageName {
+    padding-left: 50px;
+}
+
+#messageSubject {
+    padding-left: 10px;
+}
+
+#messageContent {
+    padding-left: 50px;
 }
 
 #warning-message
 {
     display: none;
 }
-@media only screen and (max-width:767px) and (orientation:portrait)
+@media only screen and (max-width:900px) and (orientation:portrait)
 {
-    #wrapper
+    .container
     {
         display: none;
     }
