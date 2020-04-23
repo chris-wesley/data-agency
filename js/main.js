@@ -225,6 +225,7 @@ function messageDisplay() {
 function messageToggle() {
 	if (messageWrapper.style.marginBottom === "-150px") {
 		messageWrapper.style.marginBottom = "0px";
+		messageWrapper.style.transition = "all 0.5s"
 	}
 	else {
 		messageWrapper.style.marginBottom = "-150px";
