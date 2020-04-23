@@ -24,7 +24,6 @@ for (let i = 0; i < cards.length; i++) {
 		draggedCard.style.cursor = 'grabbing';
 		// Hide card from initial section
 		requestAnimationFrame(function () {
-			card.style.display = 'none';
 		}, 0)
 	});
 
@@ -76,7 +75,8 @@ function cardRules(cardName, sectionName) {
 		//console.log('Dropped in correct section');
 		// Send the card data to new section
 		section.append(draggedCard);
-		section.style.backgroundColor = '#bafcac';
+		draggedCard.childNodes[3].textContent = "SOLD";
+
 	}
 }
 }
@@ -202,6 +202,7 @@ messageDisplay();
 
 // Message
 function messageDisplay() {
+	var messageWrapper = document.getElementById("messageWrapper");
 	var messageHeader = document.getElementById("messageHeader");
 	var messageHead = document.getElementById("messageHead");
 	var messageName = document.getElementById("messageName");
@@ -209,7 +210,7 @@ function messageDisplay() {
 	var messageContent = document.getElementById("messageContent");
 	var text1 = "Intern Manager";
 	var text2 = "Getting Started";
-	var text3 = "This is the message contents";
+	var text3 = "Great, this is the dashboard you’ll be working from. Buy one of the data sources on the left by dragging it into the users column to begin.";
 
 	// Hide message contents
 	if (x = 0) {
@@ -219,4 +220,13 @@ function messageDisplay() {
 	messageName.textContent = text1;
 	messageSubject.textContent = text2;
 	messageContent.textContent = text3;
+}
+
+function messageToggle() {
+	if (messageWrapper.style.marginBottom === "-150px") {
+		messageWrapper.style.marginBottom = "0px";
+	}
+	else {
+		messageWrapper.style.marginBottom = "-150px";
+	}
 }

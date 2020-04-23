@@ -8,7 +8,7 @@
 <body>
     <div class="container">
             <div class="headerLeft" id="corporation">
-                <h2>Data Broker Simulator</h2>
+                <h1>Data Broker Simulator</h1>
             </div>
             <div class="headerRight" id="level">
                 <h2 class="right">Intern</h2>
@@ -116,20 +116,21 @@
             </div>
             <div id="timer"></div>
         </div>
-        <div id="messageWrapper" class="footerMiddle">
-            <div id="messageHeader">  
-                <div id="messagePeep">
-                    <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
-                    <img id="messageFace" src="/data/open-peeps/face/Driven.svg" width="24px">
+
+        <div id="messageWrapper" class="footerMiddle" onClick="messageToggle()" style="margin-bottom: -150px;">
+                <div id="messageHeader">
+                    <div id="messagePeep">
+                        <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
+                        <img id="messageFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
+                    </div>
+                    <div id="messageHeaderText">
+                        <h3 id="messageName"></h3>
+                        <h3 id="messageSubject"></h3>
+                    </div> 
                 </div>
-                <div id="messageHeaderText">
-                    <h3 id="messageName"></h3>
-                    <h3 id="messageSubject"></h3>
+                <div id="messageContent">
+                    <p id="messageContents"></p>
                 </div>
-            </div>
-            <div id="messageContent">
-                <p id="messageContents"></p>
-            </div>
         </div>
         <div id="sound" class="footerRight">
             <div id="musicWrapper">
