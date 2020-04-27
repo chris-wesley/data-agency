@@ -1,3 +1,48 @@
+.draggable, .droppable.draggable-dropzone--occupied {
+    background-color: orange;
+}
+.draggable--is-dragging {
+   color: blue;
+}
+.draggable-container--is-dragging {
+    background-color: red;
+}
+.draggable-container--placed {
+    background-color: yellow;
+}
+.draggable-container--over {
+    background-color: black;
+}
+.droppable-card--is-dragging {
+text-align: right;}
+.draggable-source--placed {
+    background-color: green;
+}
+.draggable--over {
+    background-color: blue;
+}
+.draggable--original {
+    background-color: green;
+}
+.draggable-mirror .card {
+height: 100%;}
+.draggable-dropzone--active {
+    background-color:red;
+}
+
+.draggable-container--active {
+
+}
+
+.draggable-mirror {
+    background-color:red;
+}
+
+.mirrorCard {
+    background-color :red;
+}
+
+
 @import url("https://rsms.me/inter/inter.css");
 
 html {
@@ -60,7 +105,7 @@ body
     display: block;
     box-sizing: border-box;
     width: auto;
-    height: auto;
+    height: 40px;
     margin-bottom: 15px;
     padding: 6% 5% 6% 5%;
     cursor: grab;

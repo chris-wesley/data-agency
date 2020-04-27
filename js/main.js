@@ -1,6 +1,17 @@
 // Grab all the interactive items
+const containerSelector = document.querySelectorAll('.section .card')
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
+
+
+const droppable = new Draggable.Droppable(document.querySelectorAll('.section'), {
+  draggable: '.card',
+  dropzone: '.section',
+  mirror: {
+    constrainDimensions: true
+  }
+});
+
 
 // Load the data
 getSources();
@@ -8,68 +19,6 @@ getUsers();
 getSegments();
 getClients();
 
-// Nothing being dragged initially
-let draggedCard = null;
-
-// Loop through and find the current card
-for (let i = 0; i < cards.length; i++) {
-	const card = cards[i];
-    card.draggable = true;
-
-    // Event listener for the start of drag
-	card.addEventListener('dragstart', function (event) {
-		draggedCard = card;
-		draggedCard.style.cursor = 'grabbing';
-		draggedCard.style.opacity = '1.0';
-		// Hide card from initial section
-		requestAnimationFrame(function () {
-			card.style.backgroundColor = '#F0F1EE';
-			card.style.color = '#F0F1EE';
-			card.style.border = 'solid 1px #F0F1EE'
-		}, 0)
-	});
-
-	// Event listener for the end of drag
-	card.addEventListener('dragend', function (event) {
-		draggedCard.style.cursor = 'default';
-		// Still show the card while being dragged
-		requestAnimationFrame(function () {
-			draggedCard.style.display = 'block';
-			draggedCard = null;
-		}, 0);
-	})
-}
-
-// Loop through and find the current section
-for (let j = 0; j < sections.length; j ++) {
-	const section = sections[j];
-
-	// Stop the card from cancelling while dragging over
-	section.addEventListener('dragover', function (event) {
-		event.preventDefault();
-	});
-
-	section.addEventListener('dragexit', function (event) {
-		event.preventDefault();
-	});
-		
-	// Change the background color when card enters a section	
-	section.addEventListener('dragenter', function (event) {
-		event.preventDefault();
-	});
-
-	// Change the background color when card leaves a section
-	section.addEventListener('dragleave', function (event) {
-		event.preventDefault();
-	});
-
-	// On drop check the combo meets the rules
-	section.addEventListener('drop', function (event) {
-		cardRules('source', 'users');
-		cardRules('user', 'segments');
-		cardRules('segment', 'clients');
-		cardRules('client', '');
-	});
 
 // Check the card is dropping in the right section
 function cardRules(cardName, sectionName) {
@@ -80,7 +29,6 @@ function cardRules(cardName, sectionName) {
 		draggedCard.childNodes[3].textContent = "SOLD";
 
 	}
-}
 }
 
 // Fetch the data files
