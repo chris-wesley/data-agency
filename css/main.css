@@ -1,44 +1,39 @@
 .draggable, .droppable.draggable-dropzone--occupied {
     background-color: orange;
 }
-.draggable--is-dragging {
+.draggable-container--is-dragging {
    color: blue;
 }
-.draggable-container--is-dragging {
+.draggable-section--is-dragging {
     background-color: red;
 }
 .draggable-container--placed {
     background-color: yellow;
 }
 .draggable-container--over {
-    background-color: black;
+    background-color: grey;
 }
 .droppable-card--is-dragging {
     text-align: right;
 }
-.draggable-source--placed {
+.draggable-card--placed {
     background-color: green;
 }
 .draggable--over {
     background-color: blue;
 }
-.draggable--original {
+.draggable-card--original {
     background-color: green;
 }
 .draggable-mirror {
 }
-.draggable-dropzone--active {
+.droppable-dropzone--active {
     background-color:red;
 }
 
-.draggable-container--active {
+.droppable-container--active {
 
 }
-
-.draggable-mirror {
-
-}
-
 
 @import url("https://rsms.me/inter/inter.css");
 

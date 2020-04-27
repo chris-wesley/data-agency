@@ -2,32 +2,42 @@
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
 
+function uniqueDropzone() {
+	const containers = document.querySelectorAll('.section');
 
-const droppable = new Draggable.Droppable(document.querySelectorAll('.section'), {
+if (containers.length === 0) {
+	return false;
+}
+
+}
+
+const droppable = new Draggable.Droppable(document.querySelectorAll('.container'), {
   draggable: '.card',
   dropzone: '.section',
   mirror: {
   	appendTo: 'body',
     constrainDimensions: true,
-  }});
+  }
+});
+
+  let droppableOrigin;
+
+  // Cards can only be dragged to the right section
+  droppable.on('drag:start', (event) => {
+    droppableOrigin = event.originalSource.dataset.dropzone;
+  });
+
+  droppable.on('droppable:dropped', (event) => {
+    if (droppableOrigin !== event.dropzone.dataset.dropzone) {
+      event.cancel();
+    }
+  });
 
 // Load the data
 getSources();
 getUsers();
 getSegments();
 getClients();
-
-
-// Check the card is dropping in the right section
-function cardRules(cardName, sectionName) {
-	if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
-		//console.log('Dropped in correct section');
-		// Send the card data to new section
-		section.append(draggedCard);
-		draggedCard.childNodes[3].textContent = "SOLD";
-
-	}
-}
 
 // Fetch the data files
 async function getSources() {
