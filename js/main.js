@@ -1,5 +1,3 @@
-const source = document.querySelector('.source');
-
 // Grab all the interactive items
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
@@ -22,8 +20,12 @@ for (let i = 0; i < cards.length; i++) {
 	card.addEventListener('dragstart', function (event) {
 		draggedCard = card;
 		draggedCard.style.cursor = 'grabbing';
+		draggedCard.style.opacity = '1.0';
 		// Hide card from initial section
 		requestAnimationFrame(function () {
+			card.style.backgroundColor = '#F0F1EE';
+			card.style.color = '#F0F1EE';
+			card.style.border = 'solid 1px #F0F1EE'
 		}, 0)
 	});
 
