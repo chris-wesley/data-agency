@@ -14,7 +14,8 @@
     background-color: black;
 }
 .droppable-card--is-dragging {
-text-align: right;}
+    text-align: right;
+}
 .draggable-source--placed {
     background-color: green;
 }
@@ -24,8 +25,8 @@ text-align: right;}
 .draggable--original {
     background-color: green;
 }
-.draggable-mirror .card {
-height: 100%;}
+.draggable-mirror {
+}
 .draggable-dropzone--active {
     background-color:red;
 }
@@ -35,11 +36,7 @@ height: 100%;}
 }
 
 .draggable-mirror {
-    background-color:red;
-}
 
-.mirrorCard {
-    background-color :red;
 }
 
 
@@ -104,10 +101,10 @@ body
 {
     display: block;
     box-sizing: border-box;
-    width: auto;
-    height: 40px;
+    width: 100%;
+    height: auto;
     margin-bottom: 15px;
-    padding: 6% 5% 6% 5%;
+    padding: 20px 15px 20px 15px;
     cursor: grab;
     vertical-align: top;
     color: black;

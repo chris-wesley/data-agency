@@ -1,5 +1,4 @@
 // Grab all the interactive items
-const containerSelector = document.querySelectorAll('.section .card')
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
 
@@ -8,10 +7,9 @@ const droppable = new Draggable.Droppable(document.querySelectorAll('.section'),
   draggable: '.card',
   dropzone: '.section',
   mirror: {
-    constrainDimensions: true
-  }
-});
-
+  	appendTo: 'body',
+    constrainDimensions: true,
+  }});
 
 // Load the data
 getSources();
