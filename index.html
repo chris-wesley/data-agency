@@ -1,137 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Data Broker Simulator</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
+
 <body>
     <div class="container">
-            <div class="headerLeft" id="corporation">
-                <h1>Data Broker Simulator</h1>
+        <div class="headerLeft" id="corporation">
+            <h1>Data Broker Simulator</h1>
+        </div>
+        <div class="headerRight" id="level">
+            <h2 class="right">Intern</h2>
+            <div id="levelPeep" class="right">
+                <img id="messageHead" src="/data/open-peeps/head/hat-beanie.svg" width="40px">
+                <img id="messageFace" src="/data/open-peeps/face/Cute.svg" width="24px">
             </div>
-            <div class="headerRight" id="level">
-                <h2 class="right">Intern</h2>
-                <div id="levelPeep" class="right">
-                    <img id="messageHead" src="/data/open-peeps/head/hat-beanie.svg" width="40px">
-                    <img id="messageFace" src="/data/open-peeps/face/Cute.svg" width="24px">
-                </div>
-            </div>
-
+        </div>
         <div class="sectionOne section sources" id="sources">
             <h2>Sources</h2>
             <div id="s1" class="card source" data-dropzone="1">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
-
             <div id="s2" class="card source" data-dropzone="1">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
-
             <div id="s3" class="card source" data-dropzone="1">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
-
             <div id="s4" class="card source" data-dropzone="1">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
-
             <div id="s5" class="card source" data-dropzone="1">
                 <span class="sourceName"></span>​<span class="sourcePrice"></span>
             </div>
         </div>
-            
-        <div id="users" class="sectionTwo section users"  data-dropzone="1">
+        <div id="users" class="sectionTwo section users" data-dropzone="1">
             <h2>Users</h2>
-
             <div id="u1" class="card user" data-dropzone="2">
                 <span class="userId">#234920</span>​<span class="right"></span>
             </div>
-
             <div id="u2" class="card user" data-dropzone="2">
                 <span class="userId">#234987</span>​<span class="right"></span>
             </div>
-            
             <div id="u3" class="card user" data-dropzone="2">
                 <span class="userId">#245908</span>​<span class="right"></span>
             </div>
-
             <div id="u4" class="card user" data-dropzone="2">
                 <span class="userId">#223499</span>​<span class="right"></span>
             </div>
-
             <div id="u5" class="card user" data-dropzone="2">
                 <span class="userId">#234393</span>​<span class="right"></span>
             </div>
-
             <div id="u6" class="card user" data-dropzone="2">
                 <span class="userId">#223134</span>​<span class="right"></span>
             </div>
-
             <div id="u7" class="card user" data-dropzone="2">
                 <span class="userId">#254346</span>​<span class="right"></span>
             </div>
-
             <div id="u8" class="card user" data-dropzone="2">
                 <span class="userId">#250392</span>​<span class="right"></span>
             </div>
         </div>
-
         <div id="segments" class="sectionThree section segments" data-dropzone="2">
             <h2>Segments</h2>
-
             <div id="se1" class="card segment" data-dropzone="3">
                 <span class="segmentName"></span>​<span class="right"></span>
             </div>
-
             <div id="se2" class="card segment" data-dropzone="3">
                 <span class="segmentName"></span>​<span class="right"></span>
             </div>
-
             <div id="se3" class="card segment" data-dropzone="3">
                 <span class="segmentName"></span>​<span class="right"></span>
             </div>
-           
         </div>
-
         <div id="clients" class="sectionFour section clients" data-dropzone="3">
             <h2>Clients</h2>
-
             <div id="c1" class="card client" data-dropzone="4">
                 <span class="clientName"></span>​<span class="clientPrice"></span>
             </div>
-
             <div id="c2" class="card client" data-dropzone="4">
                 <span class="clientName"></span>​<span class="clientPrice"></span>
             </div>
-
             <div id="c3" class="card client" data-dropzone="4">
                 <span class="clientName"></span>​<span class="clientPrice"></span>
             </div>
         </div>
-
         <div id="stats" class="footerLeft">
             <div id="score">
                 $2580
             </div>
             <div id="timer"></div>
         </div>
-
         <div id="messageWrapper" class="footerMiddle" onClick="messageToggle()" style="margin-bottom: -150px;">
-                <div id="messageHeader">
-                    <div id="messagePeep">
-                        <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
-                        <img id="messageFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
-                    </div>
-                    <div id="messageHeaderText">
-                        <h3 id="messageName"></h3>
-                        <h3 id="messageSubject"></h3>
-                    </div> 
+            <div id="messageHeader">
+                <div id="messagePeep">
+                    <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
+                    <img id="messageFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
                 </div>
-                <div id="messageContent">
-                    <p id="messageContents"></p>
+                <div id="messageHeaderText">
+                    <h3 id="messageName"></h3>
+                    <h3 id="messageSubject"></h3>
                 </div>
+            </div>
+            <div id="messageContent">
+                <p id="messageContents"></p>
+            </div>
         </div>
         <div id="sound" class="footerRight">
             <div id="musicWrapper">
@@ -151,4 +128,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -1,53 +1,52 @@
-.draggable, .droppable.draggable-dropzone--occupied {
-    background-color: orange;
-}
+.draggable,
+.droppable.draggable-dropzone--occupied {}
+
 .draggable-container--is-dragging {
-   background-color: blue;
+    cursor: grabbing;
 }
-.draggable-section--is-dragging {
-    background-color: red;
+
+.draggable-section--is-dragging {}
+
+.draggable-container--placed {}
+
+.draggable-container--over {}
+
+.droppable-card--is-dragging {}
+
+.draggable-source--placed {
 }
-.draggable-container--placed {
-    background-color: yellow;
-}
-.draggable-container--over {
-    background-color: grey;
-}
-.droppable-card--is-dragging {
-    text-align: right;
-}
-.draggable-card--placed {
-    background-color: green;
-}
+
 .draggable--over {
-    background-color: blue;
-}
-.draggable-card--original {
-    background-color: green;
-}
-.draggable-mirror {
-}
-.droppable-dropzone--active {
-    background-color:red;
+    cursor: grabbing !important;
 }
 
-.droppable-container--active {
+.draggable-card--original {}
 
-}
+.draggable-mirror {}
+
+.droppable-dropzone--active {}
+
+.droppable-container--active {}
 
 @import url("https://rsms.me/inter/inter.css");
 
 html {
     overflow-y: hidden;
 }
-body
-{
+
+body {
     margin: 0;
     user-select: none;
     scroll-behavior: smooth;
 }
 
-*,*:before,*:after { -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; }
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 .container {
     display: grid;
@@ -56,44 +55,52 @@ body
     grid-column-gap: 2vw;
     grid-row-gap: 0;
     padding: 3vh 3vw 3vh 3vw;
-    grid-template-areas: 
+    grid-template-areas:
         "headerLeft headerLeft headerRight headerRight"
         "sectionOne sectionTwo sectionThree sectionFour"
         "footerLeft footerMiddle footerMiddle footerRight";
 }
+
 .headerLeft {
     grid-area: headerLeft;
 }
+
 .headerRight {
     grid-area: headerRight;
 }
+
 .sectionOne {
     grid-area: sectionOne;
 }
+
 .sectionTwo {
     grid-area: sectionTwo;
 }
+
 .sectionThree {
     grid-area: sectionThree;
 }
+
 .sectionFour {
     grid-area: sectionFour;
 }
+
 .footerLeft {
     grid-area: footerLeft;
     align-self: flex-end;
 }
+
 .footerMiddle {
     grid-area: footerMiddle;
     align-self: flex-end;
 }
+
 .footerRight {
     grid-area: footerRight;
     align-self: flex-end;
 }
 
-.card
-{
+.card {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -116,14 +123,12 @@ body
     font-family: 'Inter', sans-serif;
 }
 
-h1
-{
+h1 {
     font-size: 1.5em;
     font-weight: 700;
 }
 
-h2
-{
+h2 {
     font-size: 1.2em;
     font-weight: 600;
 }
@@ -141,18 +146,14 @@ h3 {
     margin-top: 5px;
 }
 
-#headerRight h2 {
-}
+#headerRight h2 {}
 
-.section h2
-
-{
+.section h2 {
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-.sourcePrice
-{
+.sourcePrice {
     float: right;
 }
 
@@ -176,6 +177,7 @@ h3 {
     border: solid 1.5px black;
     border-radius: 2px;
     background-color: white;
+    cursor: pointer;
 }
 
 #messageHeader {
@@ -222,26 +224,22 @@ h3 {
     padding: 20px 30px 20px 30px;
 }
 
-#warning-message
-{
+#warning-message {
     display: none;
 }
 
-@media only screen and (max-width:1100px) and (orientation:portrait)
-{
-    .container
-    {
+@media only screen and (max-width:1100px) and (orientation:portrait) {
+    .container {
         display: none;
     }
-    #warning-message
-    {
+
+    #warning-message {
         display: block;
     }
 }
-@media only screen and (orientation:landscape)
-{
-    #warning-message
-    {
+
+@media only screen and (orientation:landscape) {
+    #warning-message {
         display: none;
     }
 }
