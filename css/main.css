@@ -2,7 +2,7 @@
     background-color: orange;
 }
 .draggable-container--is-dragging {
-   color: blue;
+   background-color: blue;
 }
 .draggable-section--is-dragging {
     background-color: red;

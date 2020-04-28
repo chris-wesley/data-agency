@@ -31,6 +31,9 @@ const droppable = new Draggable.Droppable(document.querySelectorAll('.container'
     if (droppableOrigin !== event.dropzone.dataset.dropzone) {
       event.cancel();
     }
+    else {
+   		event.dropzone.childNode.textContent = "red";
+    }
   });
 
 // Load the data
