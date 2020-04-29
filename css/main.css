@@ -8,7 +8,6 @@
 
 /* When card is initially placed */
 .draggable-source--placed {
-    visibility: hidden;
 }
 
 /* When mirror is dragging over any element */
@@ -77,11 +76,13 @@
 /* Dragging mirror over container */
 .draggable-container--over {
     cursor: progress;
+    border: dashed 1px black;
 }
 
 /* Original card while mirror is dragging */
 .draggable-source--is-dragging {
-    visibility: hidden;
+    color: white !important;
+    border: dashed 1px black !important;
 }
 
 .hidden {
