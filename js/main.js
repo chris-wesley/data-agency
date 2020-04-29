@@ -2,71 +2,26 @@
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
 
-function uniqueDropzone() {
-    const containers = document.querySelectorAll('.section');
-
-    if (containers.length === 0) {
-        return false;
-    }
-
-}
-
-const droppable = new Draggable.Droppable(document.querySelectorAll('.container'), {
+const draggable = new Draggable.default(document.querySelectorAll('.container'), {
     draggable: '.card',
-    dropzone: '.section',
     mirror: {
         appendTo: 'body',
         constrainDimensions: true,
     }
 });
 
-let droppableOrigin;
+draggable.on('drag:start', () => console.log('drag:start'));
+draggable.on('drag:move', () => console.log('drag:move'));
+draggable.on('drag:stop', () => console.log('drag:stop'));
 
-// Cards can only be dragged to the right section
-droppable.on('drag:start', (event) => {
-    droppableOrigin = event.originalSource.dataset.dropzone;
-    console.log('drag:start');
-});
-
-droppable.on('drag:move', (event) => {
-    console.log('drag:move');
-});
-
-droppable.on('drag:stop', (event) => {
-    console.log('drag:stop');
-    	// Allow sections to exceed capacity
-        var occupiedCollection = document.getElementsByClassName('draggable-dropzone--occupied');
-    	var occupied = occupiedCollection[0];
-    	occupied.classList.remove('draggable-dropzone--occupied');
-});
-
-
-droppable.on('drag:over', (event) => {
-    console.log('drag:over');
-});
-
-droppable.on('drag:over:container', (event) => {
-    console.log('drag:over:container');
-});
-
-droppable.on('droppable:start', (event) => {
-    console.log('droppable:start')
-});
-droppable.on('droppable:dropped', (event) => {
-    if (droppableOrigin !== event.dropzone.dataset.dropzone) {
-        event.cancel();
-    } else {
-
+// Check the card is dropping in the right section
+function cardRules() {
+    var source = document.getElementsByClassName('source');
+    var sources = document.getElementById('sources');
+    if (source.parent !== sources) {
+        sources.appendChild(source[0]);
     }
-});
-
-droppable.on('droppable:returned', (event) => {
-    console.log('droppable:returned')
-});
-
-droppable.on('droppable:stop', (event) => {
-    console.log('droppable:stop')
-});
+}
 
 // Load the data
 getSources();
