@@ -1,36 +1,102 @@
 .draggable,
 .droppable.draggable-dropzone--occupied {}
 
+/* When mirror is dragged over non-interactive elements */
 .draggable-container--is-dragging {
+    cursor: no-drop !important;
+}
+
+/* When card is initially placed */
+.draggable-container--placed {}
+
+/* When card is initially placed */
+.draggable-source--placed {
+    visibility: hidden;
+}
+
+/* When mirror is dragging over any element */
+.draggable--over {
+    cursor: no-drop;
+}
+
+/* When mirror is dragging over any sources */
+.source.draggable--over {
     cursor: grabbing;
 }
 
-.draggable-section--is-dragging {}
-
-.draggable-container--placed {}
-
-.draggable-container--over {}
-
-.droppable-card--is-dragging {}
-
-.draggable-source--placed {
+/* When mirror is dragging over any users */
+.user.draggable--over {
+    cursor: copy;
 }
 
-.draggable--over {
+/* When mirror is dragging over any segments */
+.segment.draggable--over {
+    cursor: no-drop;
+}
+
+/* When mirror is dragging over any clients */
+.client.draggable--over {
+    cursor: no-drop;
+}
+
+/* Original card before mirror moves*/
+.draggable--original {
+    display: block;
+}
+
+/* Mirror when dragging */
+.draggable-mirror span {
+    color: orange;
+}
+
+/* Section card can be dropped */
+.draggable-dropzone--occupied {
+    cursor: copy !important;
+}
+
+/* When mirror is dragging over dropzone */
+.draggable-source--over {
+    cursor: no-drop !important;
+}
+
+/* Sections while mirror is dragging */
+.draggable-dropzone--active {
+
+}
+
+.draggable-container--active {
+    cursor: no-drop;
+}
+
+.sources.draggable-dropzone--active {
     cursor: grabbing !important;
 }
 
-.draggable-card--original {}
+/* Body while mirror is dragging */
+.draggable-container--is-dragging {
+    color: red;
+}
 
-.draggable-mirror {}
+/* Dragging mirror over container */
+.draggable-container--over {
+    cursor: progress;
+}
 
-.droppable-dropzone--active {}
+/* Original card while mirror is dragging */
+.draggable-source--is-dragging {
+    visibility: hidden;
+}
 
-.droppable-container--active {}
+.hidden {
+    visibility: hidden;
+}
 
 @import url("https://rsms.me/inter/inter.css");
 
 html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
     overflow-y: hidden;
 }
 

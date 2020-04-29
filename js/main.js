@@ -34,6 +34,10 @@ droppable.on('drag:move', (event) => {
 
 droppable.on('drag:stop', (event) => {
     console.log('drag:stop');
+    	// Allow sections to exceed capacity
+        var occupiedCollection = document.getElementsByClassName('draggable-dropzone--occupied');
+    	var occupied = occupiedCollection[0];
+    	occupied.classList.remove('draggable-dropzone--occupied');
 });
 
 
@@ -52,7 +56,7 @@ droppable.on('droppable:dropped', (event) => {
     if (droppableOrigin !== event.dropzone.dataset.dropzone) {
         event.cancel();
     } else {
-    document.querySelectorAll('dragged-mirror').style.display = "none";
+
     }
 });
 
