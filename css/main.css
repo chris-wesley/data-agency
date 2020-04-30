@@ -7,8 +7,7 @@
 .draggable-container--placed {}
 
 /* When card is initially placed */
-.draggable-source--placed {
-}
+.draggable-source--placed {}
 
 /* When mirror is dragging over any element */
 .draggable--over {
@@ -41,9 +40,7 @@
 }
 
 /* Mirror when dragging */
-.draggable-mirror span {
-    color: orange;
-}
+.draggable-mirror span {}
 
 /* Section card can be dropped */
 .draggable-dropzone--occupied {
@@ -56,9 +53,7 @@
 }
 
 /* Sections while mirror is dragging */
-.draggable-dropzone--active {
-
-}
+.draggable-dropzone--active {}
 
 .draggable-container--active {
     cursor: no-drop;
@@ -69,19 +64,15 @@
 }
 
 /* Body while mirror is dragging */
-.draggable-container--is-dragging {
-    color: red;
-}
+.draggable-container--is-dragging {}
 
 /* Dragging mirror over container */
 .draggable-container--over {
     cursor: progress;
-    border: dashed 1px black;
 }
 
 /* Original card while mirror is dragging */
 .draggable-source--is-dragging {
-    color: white !important;
     border: dashed 1px black !important;
 }
 
@@ -181,6 +172,38 @@ body {
 
 .card span {
     font-size: 1.1rem;
+}
+
+.card:hover {
+    background-color: whitesmoke;
+}
+
+.user.card {
+    margin-bottom: 0;
+}
+
+.userWrapper {}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.content {
+    margin-top: -1px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    margin-bottom: 15px;
+    border-top: none;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.content p {
+    border-bottom: 1px solid black;
+    padding: 10px 20px 10px 20px;
+    margin: 0;
 }
 
 :root {

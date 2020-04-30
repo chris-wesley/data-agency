@@ -13,6 +13,7 @@ const draggableSource = new Draggable.default(document.querySelectorAll('.source
 draggableSource.on('drag:start', (event) => {
     draggableSourceOrigin = event.originalSource.dataset.dropzone;
     originalSource = event.originalSource;
+    draggedPrice = (originalSource.getElementsByClassName("sourcePrice")[0].textContent);
     console.log('drag:start');
 });
 
@@ -23,26 +24,28 @@ draggableSource.on('drag:over', () => console.log('drag:over'));
 draggableSource.on('drag:over:container', () => console.log('drag:over:container'));
 
 draggableSource.on('drag:out:container', () => {
-	console.log('drag:out:container');
-	}
-);
+    console.log('drag:out:container');
+    buySource(originalSource);
+});
 
 draggableSource.on('drag:stop', () => {
-	console.log('drag:stop');
-		buySource(originalSource);
-
-    }
-);
+    console.log('drag:stop');
+});
 
 draggableSource.on('mirror:create', () => console.log('mirror:create'));
 
 draggableSource.on('mirror:created', () => console.log('mirror:created'));
 
-draggableSource.on('mirror:attached', () => console.log('mirror:attached'));
+draggableSource.on('mirror:attached', (event) => {
+    console.log('mirror:attached');
+});
 
 draggableSource.on('mirror:move', () => console.log('mirror:move'));
 
-draggableSource.on('mirror:destroy', () => console.log('mirror:destroy'));
+draggableSource.on('mirror:destroy', (event) => {
+    console.log('mirror:destroy');
+    reduceScore(event.mirror);
+});
 
 
 // Check the card is dropping in the right section
@@ -60,7 +63,7 @@ getUsers();
 getSegments();
 getClients();
 
-// Fetch the data files
+// Fetch the source data files
 async function getSources() {
     const response = await fetch('../data/sources.csv');
     const data = await response.text();
@@ -90,7 +93,7 @@ async function getSources() {
     }
 }
 
-// Fetch the data files
+// Fetch the user data files
 async function getUsers() {
     const response = await fetch('../data/users.csv');
     const data = await response.text();
@@ -104,9 +107,41 @@ async function getUsers() {
 
         userId[i].textContent = "#" + (Math.round(Math.random() * 200000) + 400000);
     }
+    var userName = document.getElementById("userName");
+    var userGender = document.getElementById("userGender");
+    var userDOB = document.getElementById("userDOB");
+    var userEmail = document.getElementById("userEmail");
+    var userPhone = document.getElementById("userPhone");
+    var userPostcode = document.getElementById("userPostcode");
+    var userOccupation = document.getElementById("userOccupation");
+    var userPurchase = document.getElementById("userPurchase");
+    var userInterests = document.getElementById("userInterests");
+    var userIncome = document.getElementById("userIncome");
+    var userMarital = document.getElementById("userMarital");
+    var userHome = document.getElementById("userHome");
+    placeholderUsers(userName);
+    placeholderUsers(userGender);
+    placeholderUsers(userEmail);
+    placeholderUsers(userPhone);
+    placeholderUsers(userPostcode);
+    placeholderUsers(userOccupation);
+    placeholderUsers(userPurchase);
+    placeholderUsers(userInterests);
+    placeholderUsers(userIncome);
+    placeholderUsers(userMarital);
+    placeholderUsers(userHome);
 }
 
-// Fetch the data files
+// Populate empty user fields with placeholders
+function placeholderUsers(element) {
+    if ((element).textContent === "") {
+        (element).textContent = (element).id.substring(4);
+        (element).style.color = "lightgrey";
+    }
+
+}
+
+// Fetch the segment data files
 async function getSegments() {
     const response = await fetch('../data/segments.csv');
     const data = await response.text();
@@ -126,7 +161,7 @@ async function getSegments() {
     }
 }
 
-// Fetch the data files
+// Fetch client the data files
 async function getClients() {
     const response = await fetch('../data/clients.csv');
     const data = await response.text();
@@ -150,21 +185,36 @@ async function getClients() {
 }
 
 function buySource(element) {
-	console.log((element).textContent);
-	var price = (element).textContent;
-	reduceScore(price);
-	(element).textContent = "SOLD";
-	(element).style.backgroundColor = "black";
-	(element).style.color = "white";
+    console.log((element).textContent);
+    (element).style.backgroundColor = "black";
+    (element).style.color = "white";
 }
 
-function reduceScore(price) {
-	var scoreElement = document.getElementById("score");
-	var scoreString = scoreElement.textContent.replace("$", "");
-	var scoreInt = parseInt(scoreString);
-	var priceString = (price).replace ( /[^0-9]/g, '' );
-	var priceInt = parseInt(priceString);
-	scoreElement.textContent = ("$" + (scoreString - priceString));
+function reduceScore(element) {
+    var price = (element).textContent;
+    var scoreElement = document.getElementById("score");
+    var scoreString = scoreElement.textContent.replace("$", "");
+    var scoreInt = parseInt(scoreString);
+    var priceString = (price).replace(/[^0-9]/g, '');
+    var priceInt = parseInt(priceString);
+    scoreElement.textContent = ("$" + (scoreString - priceString));
+}
+
+
+// Collapsible user cards
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
 }
 
 // 60 second countdown
