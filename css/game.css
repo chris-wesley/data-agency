@@ -316,18 +316,18 @@ h3 {
 }
 
 #warning-message h1 {
-    font-size: 3.4em;
+    font-size: 3em;
     font-weight: 700;
     line-height: 1em;
 }
 
 #warning-message p {
-    font-size: 1.6em;
+    font-size: 1.3em;
     margin: 0;
 }
 
 #warning-message img {
-    width: 400px;
+    width: 300px;
 }
 
 @media only screen and (max-width:1100px) and (orientation:portrait) {
