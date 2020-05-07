@@ -315,13 +315,35 @@ h3 {
     display: none;
 }
 
+#warning-message h1 {
+    font-size: 3.4em;
+    font-weight: 700;
+    line-height: 1em;
+}
+
+#warning-message p {
+    font-size: 1.6em;
+    margin: 0;
+}
+
+#warning-message img {
+    width: 400px;
+}
+
 @media only screen and (max-width:1100px) and (orientation:portrait) {
     .container {
         display: none;
     }
 
     #warning-message {
-        display: block;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 }
 

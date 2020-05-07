@@ -53,9 +53,7 @@ body {
 }
 
 .footer {
-    position: fixed;
     line-height: 2em;
-    bottom: 40px;
     font-weight: 500;
 }
 
@@ -112,7 +110,7 @@ a:hover {
 }
 
 @media only screen and (max-height: 850px) {
-    .footer button, a:last-of-type {
+    .footer button, .footer a:last-of-type {
         display: none;
     }
     .footer {
