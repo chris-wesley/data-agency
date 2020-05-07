@@ -1,3 +1,8 @@
+let currentLevel = 'Intern';
+
+const levelDisplay = document.querySelector('#levelDisplay');
+levelDisplay.textContent = currentLevel;
+
 // Grab all the interactive items
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
