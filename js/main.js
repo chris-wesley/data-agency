@@ -1,3 +1,130 @@
+const grid = document.querySelector('.grid');
+const sections = document.querySelectorAll('.section');
+const sources = document.querySelector('#sources');
+const users = document.querySelector('#users');
+const segments = document.querySelector('#segments');
+const clients = document.querySelector('#clients');
+
+const cards = [];
+
+const cardTypes = [
+    'source',
+    'user',
+    'segment',
+    'client'
+];
+
+// Create source cards
+function createSources() {
+    for (let i = 0; i < 9; i++){
+        const source = document.createElement('div');
+        const sourceName = document.createElement('p');
+        const sourcePrice = document.createElement('p');
+        source.setAttribute('draggable', true);
+        source.setAttribute('id', i);
+        source.classList.add("card", "source");
+        source.appendChild(sourceName, sourcePrice);
+        sources.appendChild(source);
+        cards.push(source);
+    }
+}
+
+// Create user cards
+function createUsers() {
+    for (let i = 0; i < 9; i++){
+        const user = document.createElement('div');
+        const userName = document.createElement('p');
+        const userDOB = document.createElement('p');
+        user.setAttribute('draggable', true);
+        user.setAttribute('id', i);
+        user.classList.add("card", "user");
+        user.appendChild(userName, userDOB);
+        users.appendChild(user);
+        cards.push(user);
+    }
+}
+
+// Create segment cards
+function createSegments() {
+    for (let i = 0; i < 9; i++){
+        const segment = document.createElement('div');
+        const segmentName = document.createElement('p');
+        const segmentPrice = document.createElement('p');
+        segment.setAttribute('draggable', true);
+        segment.setAttribute('id', i);
+        segment.classList.add("card", "segment");
+        segment.appendChild(segmentName, segmentPrice);
+        segments.appendChild(segment);
+        cards.push(segment);
+    }
+}
+
+// Create client cards
+function createClients() {
+    for (let i = 0; i < 9; i++){
+        const client = document.createElement('div');
+        const clientName = document.createElement('p');
+        const clientPrice = document.createElement('p');
+        client.setAttribute('draggable', true);
+        client.setAttribute('id', i);
+        client.classList.add("card", "client");
+        client.appendChild(clientName, clientPrice);
+        clients.appendChild(client);
+        cards.push(client);
+    }
+}
+
+createSources();
+createUsers();
+createSegments();
+createClients();
+
+// Drag the cards
+
+let typeBeingDragged;
+let typeBeingDropped;
+let cardIdBeingDragged;
+let cardSectionBeingDropped;
+
+cards.forEach(card => card.addEventListener('dragstart', dragStart));
+cards.forEach(card => card.addEventListener('dragend', dragEnd));
+cards.forEach(card => card.addEventListener('dragover', dragOver));
+cards.forEach(card => card.addEventListener('dragenter', dragEnter));
+cards.forEach(card => card.addEventListener('dragleave', dragLeave));
+cards.forEach(card => card.addEventListener('drop', dragDrop));
+
+function dragStart() {
+    typeBeingDragged = this.classList[1];
+    cardIdBeingDragged = parseInt(this.id);
+    console.log(typeBeingDragged);
+    console.log(this.id, 'dragStart');
+}
+
+function dragEnd(event) {
+    event.preventDefault();
+    console.log(this.id, 'dragEnd');
+}
+
+function dragOver(event) {
+    event.preventDefault();
+    console.log(this.id, 'dragOver');
+}
+
+function dragEnter(event) {
+    event.preventDefault();
+    console.log(this.id, 'dragEnter');
+}
+
+function dragLeave(event) {
+    event.preventDefault();    
+    console.log(this.id, 'dragLeave');
+}
+
+function dragDrop() {
+    console.log(this.id, 'dragDrop');
+    this.style.backgroundColor = "black";
+}
+/*
 let currentLevel = 'Intern';
 
 const levelDisplay = document.querySelector('#levelDisplay');
@@ -5,53 +132,6 @@ levelDisplay.textContent = currentLevel;
 
 // Grab all the interactive items
 const sections = document.querySelectorAll('.section');
-const cards = document.querySelectorAll('.card');
-
-const draggableSource = new Draggable.default(document.querySelectorAll('.sources'), {
-    draggable: '.source',
-    mirror: {
-        appendTo: 'body',
-        constrainDimensions: true,
-    }
-});
-
-draggableSource.on('drag:start', (event) => {
-    draggableSourceOrigin = event.originalSource.dataset.dropzone;
-    originalSource = event.originalSource;
-    draggedPrice = (originalSource.getElementsByClassName("sourcePrice")[0].textContent);
-    console.log('drag:start');
-});
-
-draggableSource.on('drag:move', () => console.log('drag:move'));
-
-draggableSource.on('drag:over', () => console.log('drag:over'));
-
-draggableSource.on('drag:over:container', () => console.log('drag:over:container'));
-
-draggableSource.on('drag:out:container', () => {
-    console.log('drag:out:container');
-    buySource(originalSource);
-});
-
-draggableSource.on('drag:stop', () => {
-    console.log('drag:stop');
-});
-
-draggableSource.on('mirror:create', () => console.log('mirror:create'));
-
-draggableSource.on('mirror:created', () => console.log('mirror:created'));
-
-draggableSource.on('mirror:attached', (event) => {
-    console.log('mirror:attached');
-});
-
-draggableSource.on('mirror:move', () => console.log('mirror:move'));
-
-draggableSource.on('mirror:destroy', (event) => {
-    console.log('mirror:destroy');
-    reduceScore(event.mirror);
-});
-
 
 // Check the card is dropping in the right section
 function cardRules() {
@@ -281,4 +361,4 @@ function messageToggle() {
     } else {
         messageWrapper.style.marginBottom = "-150px";
     }
-}
+} */
