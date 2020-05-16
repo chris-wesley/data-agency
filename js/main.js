@@ -16,7 +16,7 @@ const cardTypes = [
 
 // Create source cards
 function createSources() {
-    for (let i = 0; i < 9; i++){
+    for (let i = 0; i < 5; i++){
         const source = document.createElement('div');
         const sourceName = document.createElement('p');
         const sourcePrice = document.createElement('p');
@@ -46,7 +46,7 @@ function createUsers() {
 
 // Create segment cards
 function createSegments() {
-    for (let i = 0; i < 9; i++){
+    for (let i = 0; i < 4; i++){
         const segment = document.createElement('div');
         const segmentName = document.createElement('p');
         const segmentPrice = document.createElement('p');
@@ -61,7 +61,7 @@ function createSegments() {
 
 // Create client cards
 function createClients() {
-    for (let i = 0; i < 9; i++){
+    for (let i = 0; i < 4; i++){
         const client = document.createElement('div');
         const clientName = document.createElement('p');
         const clientPrice = document.createElement('p');
@@ -79,51 +79,79 @@ createUsers();
 createSegments();
 createClients();
 
-// Drag the cards
 
-let typeBeingDragged;
-let typeBeingDropped;
-let cardIdBeingDragged;
-let cardSectionBeingDropped;
+// Nothing being dragged initially
+let draggedCard = null;
 
-cards.forEach(card => card.addEventListener('dragstart', dragStart));
-cards.forEach(card => card.addEventListener('dragend', dragEnd));
-cards.forEach(card => card.addEventListener('dragover', dragOver));
-cards.forEach(card => card.addEventListener('dragenter', dragEnter));
-cards.forEach(card => card.addEventListener('dragleave', dragLeave));
-cards.forEach(card => card.addEventListener('drop', dragDrop));
+// Loop through and find the current card
+for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.draggable = true;
 
-function dragStart() {
-    typeBeingDragged = this.classList[1];
-    cardIdBeingDragged = parseInt(this.id);
-    console.log(typeBeingDragged);
-    console.log(this.id, 'dragStart');
+    // Event listener for the start of drag
+    card.addEventListener('dragstart', function (event) {
+        draggedCard = card;
+        draggedCard.style.cursor = 'grabbing';
+        // Hide card from initial section
+        requestAnimationFrame(function () {
+            card.style.display = 'none';
+        }, 0)
+    });
+
+    // Event listener for the end of drag
+    card.addEventListener('dragend', function (event) {
+        draggedCard.style.cursor = 'default';
+        // Still show the card while being dragged
+        requestAnimationFrame(function () {
+            draggedCard.style.display = 'block';
+            draggedCard = null;
+        }, 0);
+    })
 }
 
-function dragEnd(event) {
-    event.preventDefault();
-    console.log(this.id, 'dragEnd');
+// Loop through and find the current section
+for (let j = 0; j < sections.length; j ++) {
+    const section = sections[j];
+
+    // Stop the card from cancelling while dragging over
+    section.addEventListener('dragover', function (event) {
+        event.preventDefault();
+    });
+
+    section.addEventListener('dragexit', function (event) {
+        event.preventDefault();
+    });
+        
+    // Change the background color when card enters a section   
+    section.addEventListener('dragenter', function (event) {
+        event.preventDefault();
+    });
+
+    // Change the background color when card leaves a section
+    section.addEventListener('dragleave', function (event) {
+        event.preventDefault();
+    });
+
+    // On drop check the combo meets the rules
+    section.addEventListener('drop', function (event) {
+        cardRules('source', 'users');
+        cardRules('user', 'segments');
+        cardRules('segment', 'clients');
+        cardRules('client', '');
+        console.log('Tried to be dropped in the wrong section');
+    });
+
+// Check the card is dropping in the right section
+function cardRules(cardName, sectionName) {
+    if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
+        console.log('Dropped in correct section');
+        // Send the card data to new section
+        section.append(draggedCard);
+        section.style.backgroundColor = '#bafcac';
+    }
+}
 }
 
-function dragOver(event) {
-    event.preventDefault();
-    console.log(this.id, 'dragOver');
-}
-
-function dragEnter(event) {
-    event.preventDefault();
-    console.log(this.id, 'dragEnter');
-}
-
-function dragLeave(event) {
-    event.preventDefault();    
-    console.log(this.id, 'dragLeave');
-}
-
-function dragDrop() {
-    console.log(this.id, 'dragDrop');
-    this.style.backgroundColor = "black";
-}
 /*
 let currentLevel = 'Intern';
 
