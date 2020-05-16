@@ -79,7 +79,7 @@ body {
     width: 100%;
     height: auto;
     margin-bottom: 15px;
-    padding: 20px 15px 20px 15px;
+    padding: 10px 15px 20px 15px;
     cursor: grab;
     vertical-align: top;
     color: black;
@@ -88,40 +88,29 @@ body {
     border-radius: 2px;
 }
 
+.card p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 5px 0 15px;
+
+}
+
 .card span {
-    font-size: 1.1rem;
+    display: inline-block;
+    font-size: 0.9rem;
+    padding: 5px 10px 5px 10px;
+    margin: 0px 10px 10px 0px;
+    border-radius: 2px;
+    color: white;
+    background-color: black;
+}
+
+.card span:last-child {
+        margin: 0;
 }
 
 .card:hover {
     background-color: whitesmoke;
-}
-
-.user.card {
-    margin-bottom: 0;
-}
-
-.userWrapper {}
-
-.collapsible {
-    cursor: pointer;
-}
-
-.content {
-    margin-top: -1px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    margin-bottom: 15px;
-    border-top: none;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-}
-
-.content p {
-    border-bottom: 1px solid black;
-    padding: 10px 20px 10px 20px;
-    margin: 0;
 }
 
 :root {
@@ -156,10 +145,6 @@ h3 {
 .section h2 {
     margin-bottom: 20px;
     text-transform: uppercase;
-}
-
-.sourcePrice {
-    float: right;
 }
 
 .right {
