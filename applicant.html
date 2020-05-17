@@ -25,18 +25,6 @@
             <div id="s1" class="card source" data-dropzone="1">
                 <p></p>​<span></span>
             </div>
-            <div id="s2" class="card source" data-dropzone="1">
-                <p></p>​<span></span>
-            </div>
-            <div id="s3" class="card source" data-dropzone="1">
-                <p></p>​<span></span>
-            </div>
-            <div id="s4" class="card source" data-dropzone="1">
-                <p></p>​<span></span>
-            </div>
-            <div id="s5" class="card source" data-dropzone="1">
-                <p></p>​<span></span>
-            </div>
         </div>
         <div id="users" class="section users" data-dropzone="1">
             <h2>Users</h2>
@@ -47,25 +35,13 @@
         <div id="segments" class="section segments" data-dropzone="2">
             <h2>Segments</h2>
             <div id="se1" class="card segment" data-dropzone="3">
-                <p></p><span></span>
-            </div>
-            <div id="se2" class="card segment" data-dropzone="3">
-                <p></p><span></span>
-            </div>
-            <div id="se3" class="card segment" data-dropzone="3">
-                <p></p><span></span>
+                <p></p>
             </div>
         </div>
         <div id="clients" class="section clients" data-dropzone="3">
             <h2>Clients</h2>
             <div id="c1" class="card client" data-dropzone="4">
-                <p></p><span></span>
-            </div>
-            <div id="c2" class="card client" data-dropzone="4">
-                <p></p><span></span>
-            </div>
-            <div id="c3" class="card client" data-dropzone="4">
-                <p></p><span></span>
+                <p></p>
             </div>
         </div>
         <div id="stats" class="footerLeft">
@@ -82,7 +58,7 @@
                 </div>
                 <div id="messageHeaderText">
                     <h3 id="messageName"></h3>
-                    <h3 id="messageSubject"></h3>
+                    <h3 id="messageTime"></h3>
                 </div>
             </div>
             <div id="messageContent">
@@ -98,6 +74,25 @@
             <div id="effectsWrapper">
                 <audio id="effects" src="/data/cash.mp3" preload="auto"></audio>
                 <a class="right" onClick="togglePlay(effects)">Effects</a>
+            </div>
+        </div>
+        <div class="popupWrapper">
+            <div id="popupHeader">
+                <div id="popupPeep">
+                    <img id="popupHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
+                    <img id="popupFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
+                </div>
+                <div id="popupHeaderText">
+                    <h3 id="popupName"></h3>
+                    <h3 id="popupTime"></h3>
+                </div>
+            </div>
+            <div id="popupContent">
+                <p></p>
+            </div>
+            <div id="buttonWrapper">
+            <button class="popupButton" onclick="togglePopup()">I've got what it takes!</button>
+            <button class="popupButton" onclick="togglePopup()">I'll give it a go</button>
             </div>
         </div>
     </div>

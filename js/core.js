@@ -2,7 +2,7 @@
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
 
-let currentLevel = 'Intern';
+let currentLevel = "Intern";
 
 const levelDisplay = document.querySelector('#levelDisplay');
 levelDisplay.textContent = currentLevel;
@@ -16,20 +16,20 @@ for (let i = 0; i < cards.length; i++) {
     card.draggable = true;
 
     // Event listener for the start of drag
-    card.addEventListener('dragstart', function (event) {
+    card.addEventListener('dragstart', function(event) {
         draggedCard = card;
         draggedCard.style.cursor = 'grabbing';
         // Hide card from initial section
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
             card.style.display = "none";
         }, 0);
     });
 
     // Event listener for the end of drag
-    card.addEventListener('dragend', function (event) {
+    card.addEventListener('dragend', function(event) {
         draggedCard.style.cursor = 'default';
         // Still show the card while being dragged
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
             draggedCard = null;
             card.style.display = "block";
         }, 0);
@@ -54,47 +54,48 @@ for (let i = 0; i < cards.length; i++) {
 }
 
 // Loop through and find the current section
-for (let j = 0; j < sections.length; j ++) {
+for (let j = 0; j < sections.length; j++) {
     const section = sections[j];
 
     // Stop the card from cancelling while dragging over
-    section.addEventListener('dragover', function (event) {
+    section.addEventListener('dragover', function(event) {
         event.preventDefault();
     });
 
-    section.addEventListener('dragexit', function (event) {
+    section.addEventListener('dragexit', function(event) {
         event.preventDefault();
     });
-        
+
     // Change the background color when card enters a section   
-    section.addEventListener('dragenter', function (event) {
-    });
+    section.addEventListener('dragenter', function(event) {});
 
     // Change the background color when card leaves a section
-    section.addEventListener('dragleave', function (event) {
+    section.addEventListener('dragleave', function(event) {
         event.preventDefault();
     });
 
     // On drop check the combo meets the rules
-    section.addEventListener('drop', function (event) {
-        cardRules('source', 'users');
+    section.addEventListener('drop', function(event) {
+        if (cardRules('source', 'users')) {
+            reduceScore(source);
+        }
         cardRules('user', 'segments');
         cardRules('segment', 'clients');
         cardRules('client', '');
         console.log('Tried to be dropped in the wrong section');
     });
 
-// Check the card is dropping in the right section
-function cardRules(cardName, sectionName) {
-    if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
-        console.log('Dropped in correct section');
-        // Switch the tag content with the p content
-        draggedCard.children[1].textContent = draggedCard.children[0].textContent;
-        // Send the card data to new section
-        section.children[1].appendChild(draggedCard.children[1]);
-        draggedCard.remove();
+    // Check the card is dropping in the right section
+    function cardRules(cardName, sectionName) {
+        if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
+            console.log('Dropped in correct section');
+            // Switch the tag content with the p content
+            draggedCard.children[1].textContent = draggedCard.children[0].textContent;
+            // Send the card data to new section
+            section.children[1].appendChild(draggedCard.children[1]);
+            draggedCard.remove();
+        }
     }
-}
 }
 
 // Load the data
@@ -193,12 +194,6 @@ async function getClients() {
     }
 }
 
-function buySource(element) {
-    console.log((element).textContent);
-    (element).style.backgroundColor = "black";
-    (element).style.color = "white";
-}
-
 function reduceScore(element) {
     var price = (element).textContent;
     var scoreElement = document.getElementById("score");
@@ -209,35 +204,19 @@ function reduceScore(element) {
     scoreElement.textContent = ("$" + (scoreString - priceString));
 }
 
-
-// Collapsible user cards
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-}
-
 // 60 second countdown
 function countdown() {
-    var seconds = 60;
+    var seconds = 2;
 
     function tick() {
         var counter = document.getElementById("timer");
         seconds--;
-        counter.innerHTML = "00:" + (seconds < 10 ? "0" : "") + String(seconds);
+        counter.textContent = "00:" + (seconds < 10 ? "0" : "") + String(seconds);
         if (seconds > 0) {
             setTimeout(tick, 1000);
         } else {
             console.log("Game over");
+            togglePopup();
         }
     }
     tick();
@@ -245,6 +224,19 @@ function countdown() {
 
 // Start the countdown
 countdown();
+
+function togglePopup() {    
+    getTime();
+    //Show or hide the popup
+    var popup = document.querySelector(".popupWrapper");
+    var popupName = document.getElementById("popupName");
+    var popupTime = document.getElementById("popupTime");
+    var popupContent = document.getElementById("popupContent");
+    popup.classList.toggle("show-popup");
+    popupName.textContent = "Recruitment";
+    popupTime.textContent = time;
+    popupContent.textContent = "At Data Agency, we connect our clients to users. We buy user data, analyse it and sell the packaged results. As an intern, you’ll be manually sorting through the data. Have you got what it takes?"
+}
 
 
 // Toggle music and sound
@@ -254,6 +246,13 @@ function togglePlay(audio) {
     return (audio).paused ? (audio).play() : (audio).pause();
 };
 
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
 messageDisplay();
 
 // Message
@@ -262,20 +261,29 @@ function messageDisplay() {
     var messageHeader = document.getElementById("messageHeader");
     var messageHead = document.getElementById("messageHead");
     var messageName = document.getElementById("messageName");
-    var messageSubject = document.getElementById("messageSubject");
+    var messageTime = document.getElementById("messageTime");
     var messageContent = document.getElementById("messageContent");
-    var text1 = "Intern Manager";
-    var text2 = "Getting Started";
-    var text3 = "Great, this is the dashboard you’ll be working from. Buy one of the data sources on the left by dragging it into the users column to begin.";
+    var text1 = "Recruitment";
+    var text3 = "This is the dashboard you’ll be working from. I’ll walk you through a scenario to help you get acquainted.";
 
     // Hide message contents
     if (x = 0) {
         messageContent.style.display = "none";
     }
+
+    getTime();
+
     // Change message contents
     messageName.textContent = text1;
-    messageSubject.textContent = text2;
+    messageTime.textContent = time;
     messageContent.textContent = text3;
+}
+
+function getTime() {
+    var date = new Date();
+    var hours = addZero(date.getHours());
+    var minutes = addZero(date.getMinutes());
+    time = hours + ":" + minutes;
 }
 
 function messageToggle() {

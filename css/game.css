@@ -79,7 +79,7 @@ body {
     width: 100%;
     height: auto;
     margin-bottom: 15px;
-    padding: 10px 15px 20px 15px;
+    padding: 10px 15px 15px 15px;
     cursor: grab;
     vertical-align: top;
     color: black;
@@ -91,7 +91,7 @@ body {
 .card p {
     font-size: 1.2rem;
     font-weight: 400;
-    margin: 5px 0 15px;
+    margin: 5px 0 5px;
 
 }
 
@@ -175,7 +175,6 @@ h3 {
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 28px;
-    border-bottom: solid 1.5px black;
 }
 
 #messagePeep {
@@ -206,12 +205,89 @@ h3 {
     padding-left: 50px;
 }
 
-#messageSubject {
+#messageTime {
     padding-left: 10px;
+    color: lightgrey;
 }
 
 #messageContent {
     padding: 20px 30px 20px 30px;
+}
+
+.popupWrapper {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1.5px black;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.show-popup {
+    visibility: visible;
+}
+
+#popupHeader {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 28px;
+}
+
+#popupPeep {
+    display: inline;
+    position: relative;
+    vertical-align: middle;
+}
+
+#popupHead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#popupFace {
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    right: 0;
+}
+
+#popupHeaderText h3 {
+    display: inline;
+}
+
+#popupName {
+    padding-left: 50px;
+}
+
+#popupTime {
+    padding-left: 10px;
+    color: lightgrey;
+}
+
+#popupContent {
+    padding: 20px 30px 20px 30px;
+    font-size: 1.1em;
+}
+
+#buttonWrapper {
+    padding: 20px 30px 20px 30px;
+    text-align: right;
+}
+
+.popupButton {
+    font-size: 1.1em;
+    font-weight: 400;
+    padding: 10px 20px 10px 20px;
+    margin: 0px 0px 0px 10px;
+    border: 1.5px solid black;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: white;
 }
 
 #warning-message {
