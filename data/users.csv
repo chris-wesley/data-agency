@@ -1,9 +1,101 @@
-Id,Name,Gender,Dob,Image,Email,Phone,Postcode,Occupation,Purchases,Interests,Income,Marital,Home,Sexuality,Religon
-Id,
-Id,
-Id,
-Id,
-Id,
-Id,
-Id,
-Id,
+Male names,Female names,Last name,Occupation,Marital status,Home type,Home ownership,Religon,Ethnic
+James,Mary,Smith,Student,Single,Detached house,Owns outright,No religion,White
+John,Patricia,Johnson,Carer,Married,Semi-detached house,Owns with mortgage,Christian,Mixed
+Robert,Jennifer,Williams,Self-employed,Separated,Terraced house,Shared ownership,Buddhist,Asian
+Michael,Linda,Jones,Intern,Divorced,Tenement flat,Renting,Hindu,Black
+William,Elizabeth,Brown,Apprenticeship,Widowed,Shared house,Rent free,Jewish,Arab
+David,Barbara,Davis,Cashier,Civil partnership,Commercial building,Owns outright,Muslim,White
+Richard,Susan,Miller,Retail salesperson,Single,Caravan,Owns with mortgage,Sikh,Mixed
+Joseph,Jessica,Wilson,Cashier,Married,Detached house,Shared ownership,No religion,Asian
+Thomas,Sarah,Moore,Office clerk,Separated,Semi-detached house,Renting,Christian,Black
+Charles,Karen,Taylor,Nurse,Divorced,Terraced house,Rent free,Buddhist,Arab
+Christopher,Nancy,Anderson,Service worker,Widowed,Tenement flat,Owns outright,Hindu,White
+Daniel,Margaret,Thomas,Customer services,Civil partnership,Shared house,Owns with mortgage,Jewish,Mixed
+Matthew,Lisa,Jackson,Cleaner,Single,Commercial building,Shared ownership,Muslim,Asian
+Anthony,Betty,White,Laborer,Married,Caravan,Renting,Sikh,Black
+Donald,Dorothy,Harris,Secretary,Separated,Detached house,Rent free,No religion,Arab
+Mark,Sandra,Martin,Stock clerk,Divorced,Semi-detached house,Owns outright,Christian,White
+Paul,Ashley,Thompson,General manager,Widowed,Terraced house,Owns with mortgage,Buddhist,Mixed
+Steven,Kimberly,Garcia,Accountant,Civil partnership,Tenement flat,Shared ownership,Hindu,Asian
+Andrew,Donna,Martinez,Primary school teacher,Single,Shared house,Renting,Jewish,Black
+Kenneth,Emily,Robinson,Truck driver,Married,Commercial building,Rent free,Muslim,Arab
+Joshua,Michelle,Clark,Nursing attendant,Separated,Caravan,Owns with mortgage,Sikh,White
+George,Carol,Rodriguez,Sales representative,Divorced,Detached house,Shared ownership,No religion,Mixed
+Kevin,Amanda,Lewis,Support worker,Widowed,Semi-detached house,Renting,Christian,Asian
+Brian,Melissa,Lee,Teacher assistant,Civil partnership,Terraced house,Owns with mortgage,Buddhist,Black
+Edward,Deborah,Walker,Vehicle mechanic,Single,Tenement flat,Shared ownership,Hindu,Arab
+Ronald,Stephanie,Hall,Maintenance worker,Married,Shared house,Renting,Jewish,White
+Timothy,Rebecca,Allen,Secondary school teacher,Separated,Commercial building,Owns with mortgage,Muslim,Mixed
+Jason,Laura,Young,Security guard,Divorced,Caravan,Shared ownership,Sikh,Asian
+Jeffrey,Sharon,Hernandez,Receptionist,Widowed,Detached house,Renting,No religion,Black
+Ryan,Cynthia,King,Landscaper,Civil partnership,Semi-detached house,Owns with mortgage,No religion,Arab
+Jacob,Kathleen,Wright,Chef,Single,Terraced house,Shared ownership,No religion,White
+Gary,Helen,Lopez,Housekeeper,Married,Tenement flat,Renting,No religion,Mixed
+Nicholas,Amy,Hill,Groundskeeper,Separated,Shared house,Owns with mortgage,No religion,Asian
+Eric,Shirley,Scott,Food preparation worker,Divorced,Commercial building,Shared ownership,Christian,Black
+Stephen,Angela,Green,Delivery driver,Widowed,Caravan,Renting,Christian,Arab
+Jonathan,Anna,Adams,Construction laborer,Civil partnership,Detached house,Owns with mortgage,Christian,White
+Larry,Brenda,Baker,Food server,Single,Semi-detached house,Shared ownership,Christian,Mixed
+Justin,Pamela,Gonzalez,Police officer,Married,Terraced house,Renting,Christian,Asian
+Scott,Nicole,Nelson,Carpenter,Separated,Tenement flat,Owns with mortgage,Christian,Black
+Brandon,Ruth,Carter,Childcare worker,Divorced,Shared house,Shared ownership,Christian,Arab
+Frank,Katherine,Mitchell,IT specialist,Widowed,Detached house,Owns outright,Christian,White
+Benjamin,Samantha,Perez,Lawyer,Civil partnership,Semi-detached house,Owns with mortgage,Christian,Mixed
+Gregory,Christine,Roberts,Fast food worker,Single,Terraced house,Shared ownership,Christian,Asian
+Samuel,Emma,Turner,Electrician,Married,Tenement flat,Renting,Buddhist,Black
+Raymond,Catherine,Phillips,Dishwasher,Separated,Shared house,Rent free,Buddhist,Arab
+Patrick,Debra,Campbell,Software developer,Divorced,Detached house,Owns outright,Buddhist,White
+Alexander,Virginia,Parker,Bartender,Widowed,Semi-detached house,Owns with mortgage,Buddhist,Mixed
+Jack,Rachel,Evans,Post worker,Civil partnership,Terraced house,Shared ownership,Hindu,Asian
+Dennis,Carolyn,Edwards,Financial manager,Single,Tenement flat,Owns outright,Hindu,Black
+Jerry,Janet,Collins,Prison officer,Married,Shared house,Owns with mortgage,Hindu,Arab
+Tyler,Maria,Stewart,Barista,Separated,Detached house,Shared ownership,Hindu,White
+Aaron,Heather,Sanchez,HR Officer,Divorced,Semi-detached house,Renting,Jewish,White
+Jose,Diane,Morris,Rental clerk,Widowed,Terraced house,Rent free,Jewish,White
+Henry,Julie,Rogers,Production worker,Civil partnership,Tenement flat,Owns outright,Jewish,White
+Douglas,Joyce,Reed,Nursery teacher,Single,Detached house,Owns with mortgage,Jewish,White
+Adam,Victoria,Cook,Plumber,Married,Semi-detached house,Shared ownership,Jewish,White
+Peter,Kelly,Morgan,Machinist,Separated,Terraced house,Renting,Jewish,White
+Nathan,Christina,Bell,Hairdresser,Divorced,Tenement flat,Owns outright,Jewish,White
+Zachary,Joan,Murphy,Pharmacy technician,Widowed,Detached house,Owns with mortgage,Muslim,White
+Walter,Evelyn,Bailey,Network administrator,Civil partnership,Semi-detached house,Shared ownership,Muslim,White
+Kyle,Lauren,Rivera,Postal worker,Single,Terraced house,Renting,Muslim,Mixed
+Harold,Judith,Cooper,Sales manager,Married,Detached house,Rent free,Muslim,Mixed
+Carl,Olivia,Richardson,Welder,Separated,Semi-detached house,Owns outright,Muslim,Mixed
+Jeremy,Frances,Cox,Firefighter,Divorced,Terraced house,Owns with mortgage,Muslim,Mixed
+Keith,Martha,Howard,Dental assistant,Widowed,Detached house,Shared ownership,Muslim,Mixed
+Roger,Cheryl,Ward,Physician,Civil partnership,Semi-detached house,Renting,Sikh,Mixed
+Gerald,Megan,Torres,Paramedic,Single,Terraced house,Owns outright,Sikh,Mixed
+Ethan,Andrea,Peterson,Doctor,Married,Detached house,Owns with mortgage,Sikh,Mixed
+Arthur,Hannah,Gray,Musician,Separated,Semi-detached house,Shared ownership,Sikh,Black
+Terry,Jacqueline,Ramirez,Insurance salesperson,Divorced,Terraced house,Renting,Sikh,Black
+Christian,Ann,James,Statistician,Widowed,Detached house,Rent free,Sikh,Black
+Sean,Jean,Watson,Designer,Civil partnership,Semi-detached house,Owns outright,No religion,Black
+Lawrence,Alice,Brooks,Veterinarian,Single,Terraced house,Owns with mortgage,No religion,Black
+Austin,Kathryn,Kelly,Airline pilot,Married,Detached house,Shared ownership,No religion,Black
+Joe,Gloria,Sanders,Engineer,Separated,Semi-detached house,Renting,No religion,Black
+Noah,Teresa,Price,Estate agent,Divorced,Terraced house,Owns outright,No religion,Black
+Jesse,Doris,Bennett,Journalist,Widowed,Tenement flat,Owns with mortgage,No religion,Black
+Albert,Sara,Wood,Photographer,Civil partnership,Detached house,Shared ownership,No religion,Black
+Bryan,Janice,Barnes,Tax inspector,Single,Semi-detached house,Renting,No religion,Black
+Billy,Julia,Ross,Stock broker,Married,Terraced house,Rent free,No religion,Arab
+Bruce,Marie,Henderson,Tour guide,Separated,Tenement flat,Owns outright,No religion,Arab
+Willie,Madison,Coleman,Travel agent,Divorced,Shared house,Owns with mortgage,No religion,Arab
+Jordan,Grace,Jenkins,Civil servant,Widowed,Detached house,Shared ownership,No religion,Arab
+Dylan,Judy,Perry,Writer,Civil partnership,Semi-detached house,Renting,No religion,Arab
+Alan,Theresa,Powell,Translator,Single,Terraced house,Owns outright,No religion,Arab
+Ralph,Beverly,Long,Warehouse manager,Married,Tenement flat,Owns with mortgage,No religion,Arab
+Gabriel,Denise,Patterson,Youth worker,Separated,Shared house,Shared ownership,No religion,Arab
+Roy,Marilyn,Hughes,Customs officer,Divorced,Commercial building,Renting,No religion,Asian
+Juan,Amber,Flores,Editorial assistant,Widowed,Detached house,Rent free,No religion,Asian
+Wayne,Danielle,Washington,Economist,Civil partnership,Semi-detached house,Owns outright,No religion,Asian
+Eugene,Abigail,Butler,Curator,Single,Terraced house,Owns with mortgage,No religion,Asian
+Logan,Brittany,Simmons,Counsellor,Married,Tenement flat,Owns outright,Christian,Asian
+Randy,Rose,Foster,Debt advisor,Separated,Shared house,Owns with mortgage,Christian,Asian
+Louis,Diana,Gonzales,Community worker,Divorced,Detached house,Shared ownership,Christian,Asian
+Russell,Natalie,Bryant,Personal trainer,Widowed,Semi-detached house,Renting,Christian,Asian
+Vincent,Sophia,Alexander,Researcher,Civil partnership,Terraced house,Rent free,Christian,Asian
+Philip,Alexis,Russell,Physiotherapist,Single,Tenement flat,Owns outright,No religion,Asian
+Bobby,Lori,Griffin,Librarian,Married,Shared house,Owns with mortgage,No religion,Asian
+Johnny,Kayla,Diaz,Restaurant manager,Separated,Commercial building,Shared ownership,No religion,Asian
+Bradley,Jane,Hayes,Recycling officer,Divorced,Caravan,Renting,No religion,Asian

@@ -78,8 +78,7 @@ body {
     box-sizing: border-box;
     width: 100%;
     height: auto;
-    margin-bottom: 15px;
-    padding: 10px 15px 15px 15px;
+    padding: 10px 15px 10px 15px;
     cursor: grab;
     vertical-align: top;
     color: black;
@@ -91,7 +90,7 @@ body {
 .card p {
     font-size: 1.2rem;
     font-weight: 400;
-    margin: 5px 0 5px;
+    margin: 5px 0 5px 0;
 
 }
 
@@ -111,6 +110,10 @@ body {
 
 .card:hover {
     background-color: whitesmoke;
+}
+
+.user p {
+    padding-bottom: 10px;
 }
 
 :root {
@@ -288,6 +291,12 @@ h3 {
     box-sizing: border-box;
     border-radius: 2px;
     background-color: white;
+}
+
+.popupButton:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 #warning-message {

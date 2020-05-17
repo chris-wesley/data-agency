@@ -78,6 +78,7 @@ for (let j = 0; j < sections.length; j++) {
     section.addEventListener('drop', function(event) {
         if (cardRules('source', 'users')) {
             reduceScore(source);
+            addData();
         }
         cardRules('user', 'segments');
         cardRules('segment', 'clients');
@@ -133,6 +134,16 @@ async function getSources() {
     }
 }
 
+function addData() {
+
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Fetch the user data files
 async function getUsers() {
     const response = await fetch('../data/users.csv');
@@ -142,10 +153,82 @@ async function getUsers() {
     let users = document.querySelectorAll('.user');
     // Loop through cards 
     for (i = 0; i < users.length; i++) {
-        let columns = rows[i].split(',');
-        let id = columns[0];
+        let randomise = rows[Math.floor(Math.random() * rows.length)];
+        let randomSplit = randomise.split(',');
+        let maleName = randomSplit[0];
+        let femaleName = randomSplit[1];
+        let lastName = randomSplit[2];
+        let occupation = randomSplit[3];
+        let marital = randomSplit[4];
+        let homeType = randomSplit[5];
+        let homeOwnership = randomSplit[6];
+        let religon = randomSplit[7];
+        let ethnic = randomSplit[8];
 
+
+        //Randomly choose a male or female first name and combine with a last name
+        var randomNumber = getRandomInt(0, 2);
+        var randomFirstName = randomSplit[randomNumber];
+        if (randomNumber === 0) {
+            gender = "Male";
+        }
+        else {
+            gender = "Female";
+        }
+        // Combine names to single span
+        name = randomFirstName + " " + lastName;
+        // Randomise user ID
         users[i].children[0].textContent = "#" + (Math.round(Math.random() * 200000) + 400000);
+        // Randomise name
+        var span = document.createElement("span");
+        span.textContent = name;
+        users[i].append(span);
+        // Randomise gender
+        var span = document.createElement("span");
+        span.textContent = gender;
+        users[i].append(span);
+        // Randomise date of birth
+        var day = getRandomInt(1, 30);
+        var month = getRandomInt(1, 12);
+        var year = getRandomInt(1930, 2001);
+        var dob = day + "/" + month + "/" + year;
+        var span = document.createElement("span");
+        span.textContent = dob;
+        users[i].append(span);
+        // Randomise phone number
+        var phoneNumber = "+447" + getRandomInt(123456789, 999999999)
+        var span = document.createElement("span");
+        span.textContent = phoneNumber;
+        users[i].append(span);
+        // Randomise email
+        var email = 
+        var span = document.createElement("span");
+        span.textContent = email;
+        users[i].append(span);
+        // Randomise occupation
+        var span = document.createElement("span");
+        span.textContent = occupation;
+        users[i].append(span);
+        // Randomise marital
+        var span = document.createElement("span");
+        span.textContent = marital;
+        users[i].append(span);
+        // Randomise homeType
+        var span = document.createElement("span");
+        span.textContent = homeType;
+        users[i].append(span);
+        // Randomise homeOwnership
+        var span = document.createElement("span");
+        span.textContent = homeOwnership;
+        users[i].append(span);
+        // Randomise religon
+        var span = document.createElement("span");
+        span.textContent = religon;
+        users[i].append(span);
+        // Randomise ethnic
+        var span = document.createElement("span");
+        span.textContent = ethnic;
+        users[i].append(span);
     }
 }
 
@@ -163,8 +246,8 @@ async function getSegments() {
         let randomSplit = randomise.split(',');
         let randomName = randomSplit[0];
         let randomEthics = randomSplit[1];
+
         segments[i].children[0].textContent = randomName;
-        segments[i].children[1].textContent = randomEthics;
         rows = rows.filter(function(str) {
             return str.indexOf(randomName) === -1;
         });
@@ -187,13 +270,13 @@ async function getClients() {
         let randomEthics = randomSplit[2];
 
         clients[i].children[0].textContent = randomName;
-        clients[i].children[1].textContent = randomType;
         rows = rows.filter(function(str) {
             return str.indexOf(randomName) === -1;
         });
     }
 }
 
+// Reducing score when buying source
 function reduceScore(element) {
     var price = (element).textContent;
     var scoreElement = document.getElementById("score");
@@ -206,7 +289,7 @@ function reduceScore(element) {
 
 // 60 second countdown
 function countdown() {
-    var seconds = 2;
+    var seconds = 60;
 
     function tick() {
         var counter = document.getElementById("timer");
@@ -246,6 +329,7 @@ function togglePlay(audio) {
     return (audio).paused ? (audio).play() : (audio).pause();
 };
 
+// Format time
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
