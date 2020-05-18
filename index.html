@@ -14,21 +14,25 @@
             <h1>Data<br>Agency</h1>
         </div>
         <div class="play">
-            <a href="game.html"><button id="play">PLAY</button></a>
+            <a href="applicant.html"><button id="play">PLAY</button></a>
         </div>
         <div class="graphic">
             <img src="images/analyst-peep.svg" alt="Driven looking person holding a laptop">
         </div>
         <div class="footer">
+            <div class="footerLeft">
             <a href="#">Designed by Chris Wesley</a><br>
             <a href="#">Illustrations by Pablo Stanley</a><br>
-            <audio id="effects" src="/data/cash.mp3" preload="auto"></audio>
-            <button onClick="togglePlay(effects)">Effects</button>
-            <audio id="music" src="/data/8bit-surf.mp3" preload="auto"></audio>
-            <button onClick="togglePlay(music)">Music</button>
+            </div>
+            <div id="sound" class="footerRight">
+                <audio id="sound" src="/data/8bit-surf.mp3" preload="auto" autoplay="autoplay">
+                Your browser does not support the audio element.</audio>
+                <a class="right" onclick="toggleMute()">
+                    <img id ="icon" src="images/sound-on.svg" alt="Audio icon">
+                </a>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>

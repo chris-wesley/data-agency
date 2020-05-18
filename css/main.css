@@ -53,6 +53,9 @@ body {
 }
 
 .footer {
+    display: grid;
+    grid-template-areas: 
+    "footerLeft" "footerRight";
     line-height: 2em;
     font-weight: 500;
 }
@@ -80,6 +83,27 @@ h3 {
 img {
     width: 300px;
     margin: 20px 0 20px 20px;
+}
+
+.popupButton {
+    font-size: 1.1em;
+    font-weight: 400;
+    padding: 10px 20px 10px 20px;
+    margin: 0px 0px 0px 10px;
+    border: 1.5px solid black;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.popupButton:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+.popupButton:active {
+    background-color: black;
+    color: white;
 }
 
 button {

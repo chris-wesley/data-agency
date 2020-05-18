@@ -66,15 +66,11 @@
             </div>
         </div>
         <div id="sound" class="footerRight">
-            <div id="musicWrapper">
-                <audio id="music" src="/data/8bit-surf.mp3" preload="auto"></audio>
-                <a class="right" onClick="togglePlay(music)">Music</a>
-            </div>
-            <br>
-            <div id="effectsWrapper">
-                <audio id="effects" src="/data/cash.mp3" preload="auto"></audio>
-                <a class="right" onClick="togglePlay(effects)">Effects</a>
-            </div>
+                <audio id="sound" src="/data/8bit-surf.mp3" preload="auto" autoplay="autoplay">
+                Your browser does not support the audio element.</audio>
+                <a class="right" onclick="toggleMute()">
+                    <img id ="icon" src="images/sound-on.svg" alt="Audio icon">
+                </a>
         </div>
         <div class="popupWrapper">
             <div id="popupHeader">
@@ -91,8 +87,8 @@
                 <p></p>
             </div>
             <div id="buttonWrapper">
-            <button class="popupButton" onclick="togglePopup()">I've got what it takes!</button>
-            <button class="popupButton" onclick="togglePopup()">I'll give it a go</button>
+            <button class="popupButton" onclick="togglePopup()" id="popupButtonLeft"></button>
+            <button class="popupButton" onclick="togglePopup()" id="popupButtonRight"></button>
             </div>
         </div>
     </div>

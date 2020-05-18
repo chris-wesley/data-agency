@@ -144,6 +144,11 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getRandomChar() {
+    randomChar = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    return randomChar;
+    }
+
 // Fetch the user data files
 async function getUsers() {
     const response = await fetch('../data/users.csv');
@@ -164,21 +169,21 @@ async function getUsers() {
         let homeOwnership = randomSplit[6];
         let religon = randomSplit[7];
         let ethnic = randomSplit[8];
-
+        let street = randomSplit[9];
+        let email = randomSplit[10];
 
         //Randomly choose a male or female first name and combine with a last name
-        var randomNumber = getRandomInt(0, 2);
+        var randomNumber = getRandomInt(0, 1);
         var randomFirstName = randomSplit[randomNumber];
         if (randomNumber === 0) {
             gender = "Male";
-        }
-        else {
+        } else {
             gender = "Female";
         }
         // Combine names to single span
         name = randomFirstName + " " + lastName;
         // Randomise user ID
-        users[i].children[0].textContent = "#" + (Math.round(Math.random() * 200000) + 400000);
+        users[i].children[0].textContent = "#" + getRandomInt(200000, 400000);
         // Randomise name
         var span = document.createElement("span");
         span.textContent = name;
@@ -191,19 +196,36 @@ async function getUsers() {
         var day = getRandomInt(1, 30);
         var month = getRandomInt(1, 12);
         var year = getRandomInt(1930, 2001);
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
         var dob = day + "/" + month + "/" + year;
         var span = document.createElement("span");
         span.textContent = dob;
         users[i].append(span);
         // Randomise phone number
-        var phoneNumber = "+447" + getRandomInt(123456789, 999999999)
+        var phoneNumber = "+447" + getRandomInt(123456789, 999999999);
         var span = document.createElement("span");
         span.textContent = phoneNumber;
         users[i].append(span);
         // Randomise email
-        var email = 
+        var emailAddress = (randomFirstName.slice(0, 1) + "." + lastName + "@" + email + ".com").toLowerCase();
         var span = document.createElement("span");
-        span.textContent = email;
+        span.textContent = emailAddress;
+        users[i].append(span);
+        // Randomise address
+        var streetNumber = getRandomInt(0, 99);
+        var address = streetNumber + " " + street;
+        var span = document.createElement("span");
+        span.textContent = address;
+        users[i].append(span);
+        //Randomise postcode
+        var postcode = getRandomChar() + getRandomChar() + getRandomInt(0, 99) + " " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
+        var span = document.createElement("span");
+        span.textContent = postcode;
         users[i].append(span);
         // Randomise occupation
         var span = document.createElement("span");
@@ -228,6 +250,13 @@ async function getUsers() {
         // Randomise ethnic
         var span = document.createElement("span");
         span.textContent = ethnic;
+        users[i].append(span);
+        // Randomise salary
+        var salary = getRandomInt(12000, 70000);
+        var salaryStart = String(salary).substring(0, 2);
+        var salaryEnd = String(salary).substring(2);
+        var span = document.createElement("span");
+        span.textContent = "$" + salaryStart + "," + salaryEnd;
         users[i].append(span);
     }
 }
@@ -308,25 +337,33 @@ function countdown() {
 // Start the countdown
 countdown();
 
-function togglePopup() {    
+function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popupButtonRightText) {
     getTime();
     //Show or hide the popup
     var popup = document.querySelector(".popupWrapper");
     var popupName = document.getElementById("popupName");
     var popupTime = document.getElementById("popupTime");
     var popupContent = document.getElementById("popupContent");
+    var popupButtonLeft = document.getElementById("popupButtonLeft");
+    var popupButtonRight = document.getElementById("popupButtonRight");
     popup.classList.toggle("show-popup");
-    popupName.textContent = "Recruitment";
+    popupName.textContent = (popupNameText);
     popupTime.textContent = time;
-    popupContent.textContent = "At Data Agency, we connect our clients to users. We buy user data, analyse it and sell the packaged results. As an intern, you’ll be manually sorting through the data. Have you got what it takes?"
+    popupContent.textContent = (popupContentText);
+    popupButtonLeft.textContent = (popupButtonLeftText);
+    popupButtonRight.textContent = (popupButtonRightText);
 }
 
 
 // Toggle music and sound
-function togglePlay(audio) {
-    var music = document.getElementById("music");
-    var effects = document.getElementById("effects")
-    return (audio).paused ? (audio).play() : (audio).pause();
+function toggleMute() {
+    var sound = document.getElementById("sound");
+    var icon = document.getElementById("icon");
+    icon.src = "../images/sound-off.svg";
+    sound.muted = !sound.muted;
+    if (!sound.muted) {
+        icon.src = "../images/sound-on.svg";
+    }
 };
 
 // Format time
