@@ -317,29 +317,26 @@ function reduceScore(element) {
 }
 
 // 60 second countdown
-function countdown() {
-    var seconds = 60;
+function countdown(seconds) {
 
     function tick() {
         var counter = document.getElementById("timer");
-        seconds--;
-        counter.textContent = "00:" + (seconds < 10 ? "0" : "") + String(seconds);
-        if (seconds > 0) {
+        (seconds)--;
+        counter.textContent = "00:" + ((seconds) < 10 ? "0" : "") + String((seconds));
+        if ((seconds) > 0) {
             setTimeout(tick, 1000);
-        } else {
+        } else if ((seconds) <= 0) {
             console.log("Game over");
-            togglePopup();
         }
     }
     tick();
 }
+countdown(1);
 
-// Start the countdown
-countdown();
-
-function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popupButtonRightText) {
+function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popupButtonRightText, countdown) {
     getTime();
     //Show or hide the popup
+    var grid = document.querySelector(".grid");
     var popup = document.querySelector(".popupWrapper");
     var popupName = document.getElementById("popupName");
     var popupTime = document.getElementById("popupTime");
@@ -352,6 +349,14 @@ function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popup
     popupContent.textContent = (popupContentText);
     popupButtonLeft.textContent = (popupButtonLeftText);
     popupButtonRight.textContent = (popupButtonRightText);
+    if (popup.classList.contains("show-popup")) {
+        grid.style.pointerEvents = "none";
+        popup.style.pointerEvents = "auto";
+    }
+    else {
+        grid.style.pointerEvents = "auto";
+        popup.style.pointerEvents = "auto";
+    }
 }
 
 
