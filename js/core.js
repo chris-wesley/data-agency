@@ -1,11 +1,13 @@
 // Grab all the interactive items
+const grid = document.querySelector(".grid");
 const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
 
-let currentLevel = "Intern";
 
-const levelDisplay = document.querySelector('#levelDisplay');
-levelDisplay.textContent = currentLevel;
+function currentLevel(position) {
+    const levelDisplay = document.getElementById("levelDisplay");
+    levelDisplay.textContent = (position);
+}
 
 // Nothing being dragged initially
 let draggedCard = null;
@@ -67,7 +69,9 @@ for (let j = 0; j < sections.length; j++) {
     });
 
     // Change the background color when card enters a section   
-    section.addEventListener('dragenter', function(event) {});
+    section.addEventListener('dragenter', function(event) {
+        event.preventDefault();
+    });
 
     // Change the background color when card leaves a section
     section.addEventListener('dragleave', function(event) {
@@ -76,10 +80,7 @@ for (let j = 0; j < sections.length; j++) {
 
     // On drop check the combo meets the rules
     section.addEventListener('drop', function(event) {
-        if (cardRules('source', 'users')) {
-            reduceScore(source);
-            addData();
-        }
+        cardRules('source', 'users');
         cardRules('user', 'segments');
         cardRules('segment', 'clients');
         cardRules('client', '');
@@ -88,26 +89,53 @@ for (let j = 0; j < sections.length; j++) {
 
     // Check the card is dropping in the right section
     function cardRules(cardName, sectionName) {
-        if (draggedCard.classList.contains(cardName) && (section.classList.contains(sectionName))) {
+        if (draggedCard.classList.contains((cardName)) && (section.classList.contains((sectionName)))) {
             console.log('Dropped in correct section');
+            if (draggedCard.classList.contains("source") && (section.classList.contains("users"))) {
+                showData("name", ".name");
+                showData("gender", ".gender");
+                showData("dob", ".dob");
+                showData("phoneNumber", ".phoneNumber");
+                showData("emailAddress", ".emailAddress");
+                showData("address", ".address");
+                showData("postcode", ".postcode");
+                showData("occupation", ".occupation");
+                showData("marital", ".marital");
+                showData("homeType", ".homeType");
+                showData("homeOwnership", ".homeOwnership");
+                showData("religon", ".religon");
+                showData("ethnic", ".ethnic");
+                showData("salary", ".salary");
+            }
             // Switch the tag content with the p content
             draggedCard.children[1].textContent = draggedCard.children[0].textContent;
             // Send the card data to new section
-            section.children[1].appendChild(draggedCard.children[1]);
+            section.children[1].insertBefore(draggedCard.children[1], section.children[1].children[1]);
             draggedCard.remove();
+        }
+    }
+
+    function showData(dataString, dataClass) {
+        for (i = 0; i < section.children[1].children.length; i++) {
+            if (draggedCard.dataset.field1 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+            if (draggedCard.dataset.field2 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+            if (draggedCard.dataset.field3 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+            if (draggedCard.dataset.field4 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
         }
     }
 }
 
-// Load the data
-getSources();
-getUsers();
-getSegments();
-getClients();
-
 // Fetch the source data files
 async function getSources() {
-    const response = await fetch('../data/sources.csv');
+    const response = await fetch('data/sources.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -120,6 +148,12 @@ async function getSources() {
         let randomName = randomSplit[0];
         let randomPrice = randomSplit[1];
         let randomType = randomSplit[2];
+        let randomEthics = randomSplit[3];
+        let randomDataField1 = randomSplit[4];
+        let randomDataField2 = randomSplit[5];
+        let randomDataField3 = randomSplit[6];
+        let randomDataField4 = randomSplit[7];
+
         if (randomPrice == 0) {
             randomPrice = "FREE";
         } else {
@@ -127,15 +161,15 @@ async function getSources() {
         }
         sources[i].children[0].textContent = randomName;
         sources[i].children[1].textContent = randomPrice;
+        sources[i].dataset.field1 = randomDataField1;
+        sources[i].dataset.field2 = randomDataField2;
+        sources[i].dataset.field3 = randomDataField3;
+        sources[i].dataset.field4 = randomDataField4;
 
         rows = rows.filter(function(str) {
             return str.indexOf(randomName) === -1;
         });
     }
-}
-
-function addData() {
-
 }
 
 function getRandomInt(min, max) {
@@ -151,7 +185,7 @@ function getRandomChar() {
 
 // Fetch the user data files
 async function getUsers() {
-    const response = await fetch('../data/users.csv');
+    const response = await fetch('data/users.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -186,10 +220,14 @@ async function getUsers() {
         users[i].children[0].textContent = "#" + getRandomInt(200000, 400000);
         // Randomise name
         var span = document.createElement("span");
+        span.classList.add("name");
+        span.style.display = "none";
         span.textContent = name;
         users[i].append(span);
         // Randomise gender
         var span = document.createElement("span");
+        span.classList.add("gender");
+        span.style.display = "none";
         span.textContent = gender;
         users[i].append(span);
         // Randomise date of birth
@@ -202,68 +240,93 @@ async function getUsers() {
         if (month < 10) {
             month = "0" + month;
         }
-        var dob = day + "/" + month + "/" + year;
+        dob = day + "/" + month + "/" + year;
         var span = document.createElement("span");
+        span.classList.add("dob");
+        span.style.display = "none";
         span.textContent = dob;
         users[i].append(span);
         // Randomise phone number
-        var phoneNumber = "+447" + getRandomInt(123456789, 999999999);
+        phoneNumber = "+447" + getRandomInt(123456789, 999999999);
         var span = document.createElement("span");
+        span.classList.add("phoneNumber");
+        span.style.display = "none";
         span.textContent = phoneNumber;
         users[i].append(span);
         // Randomise email
-        var emailAddress = (randomFirstName.slice(0, 1) + "." + lastName + "@" + email + ".com").toLowerCase();
+        emailAddress = (randomFirstName.slice(0, 1) + "." + lastName + "@" + email + ".com").toLowerCase();
         var span = document.createElement("span");
+        span.classList.add("emailAddress");
+        span.style.display = "none";
         span.textContent = emailAddress;
         users[i].append(span);
         // Randomise address
         var streetNumber = getRandomInt(0, 99);
-        var address = streetNumber + " " + street;
+        address = streetNumber + " " + street;
         var span = document.createElement("span");
+        span.classList.add("address");
+        span.style.display = "none";
         span.textContent = address;
         users[i].append(span);
         //Randomise postcode
-        var postcode = getRandomChar() + getRandomChar() + getRandomInt(0, 99) + " " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
+        postcode = getRandomChar() + getRandomChar() + getRandomInt(0, 99) + " " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
         var span = document.createElement("span");
+        span.classList.add("postcode");
+        span.style.display = "none";
         span.textContent = postcode;
         users[i].append(span);
         // Randomise occupation
         var span = document.createElement("span");
+        span.classList.add("occupation");
+        span.style.display = "none";
         span.textContent = occupation;
         users[i].append(span);
         // Randomise marital
         var span = document.createElement("span");
+        span.classList.add("marital");
+        span.style.display = "none";
         span.textContent = marital;
         users[i].append(span);
         // Randomise homeType
         var span = document.createElement("span");
+        span.classList.add("homeType");
+        span.style.display = "none";
         span.textContent = homeType;
         users[i].append(span);
         // Randomise homeOwnership
         var span = document.createElement("span");
+        span.classList.add("homeOwnership");
+        span.style.display = "none";
         span.textContent = homeOwnership;
         users[i].append(span);
         // Randomise religon
         var span = document.createElement("span");
+        span.classList.add("religon");
+        span.style.display = "none";
         span.textContent = religon;
         users[i].append(span);
         // Randomise ethnic
         var span = document.createElement("span");
+        span.classList.add("ethnic");
+        span.style.display = "none";
         span.textContent = ethnic;
         users[i].append(span);
         // Randomise salary
-        var salary = getRandomInt(12000, 70000);
+        salary = getRandomInt(12000, 70000);
         var salaryStart = String(salary).substring(0, 2);
         var salaryEnd = String(salary).substring(2);
         var span = document.createElement("span");
+        span.classList.add("salary");
+        span.style.display = "none";
         span.textContent = "$" + salaryStart + "," + salaryEnd;
         users[i].append(span);
     }
+
 }
 
 // Fetch the segment data files
 async function getSegments() {
-    const response = await fetch('../data/segments.csv');
+    const response = await fetch('data/segments.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -285,7 +348,7 @@ async function getSegments() {
 
 // Fetch client the data files
 async function getClients() {
-    const response = await fetch('../data/clients.csv');
+    const response = await fetch('data/clients.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -326,17 +389,24 @@ function countdown(seconds) {
         if ((seconds) > 0) {
             setTimeout(tick, 1000);
         } else if ((seconds) <= 0) {
-            console.log("Game over");
+            togglePopup();
         }
     }
     tick();
 }
-countdown(1);
+
+function toggleDashboard() {
+    if (!grid.classList.contains("hide")) {
+        grid.classList.add("hide");
+    }
+    else {
+        grid.classList.remove("hide");
+    }
+}
 
 function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popupButtonRightText, countdown) {
     getTime();
     //Show or hide the popup
-    var grid = document.querySelector(".grid");
     var popup = document.querySelector(".popupWrapper");
     var popupName = document.getElementById("popupName");
     var popupTime = document.getElementById("popupTime");
@@ -351,11 +421,9 @@ function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popup
     popupButtonRight.textContent = (popupButtonRightText);
     if (popup.classList.contains("show-popup")) {
         grid.style.pointerEvents = "none";
-        popup.style.pointerEvents = "auto";
     }
     else {
         grid.style.pointerEvents = "auto";
-        popup.style.pointerEvents = "auto";
     }
 }
 
@@ -413,10 +481,10 @@ function getTime() {
 }
 
 function messageToggle() {
-    if (messageWrapper.style.marginBottom === "-150px") {
-        messageWrapper.style.marginBottom = "0px";
+    if (messageWrapper.style.marginBottom === "0px") {
+        messageWrapper.style.marginBottom = "-150px";
         messageWrapper.style.transition = "all 0.5s"
     } else {
-        messageWrapper.style.marginBottom = "-150px";
+        messageWrapper.style.marginBottom = "0px";
     }
 }

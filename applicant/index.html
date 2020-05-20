@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Data Agency</title>
-    <link rel="stylesheet" type="text/css" href="css/game.css">
+    <link rel="stylesheet" type="text/css" href="../css/game.css">
 </head>
 
 <body>
@@ -46,11 +45,11 @@
         </div>
         <div id="stats" class="footerLeft">
             <div id="score">
-                $2580
+                $0
             </div>
             <div id="timer"></div>
         </div>
-        <div id="messageWrapper" class="footerMiddle" onClick="messageToggle()" style="margin-bottom: -150px;">
+        <div id="messageWrapper" class="footerMiddle" onclick="messageToggle()">
             <div id="messageHeader">
                 <div id="messagePeep">
                     <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
@@ -69,9 +68,10 @@
                 <audio id="sound" src="/data/8bit-surf.mp3" preload="auto" autoplay="autoplay">
                 Your browser does not support the audio element.</audio>
                 <a class="right" onclick="toggleMute()">
-                    <img id ="icon" src="images/sound-on.svg" alt="Audio icon">
+                    <img id ="icon" src="../images/sound-on.svg" alt="Audio icon">
                 </a>
         </div>
+    </div>
         <div class="popupWrapper">
             <div id="popupHeader">
                 <div id="popupPeep">
@@ -87,17 +87,16 @@
                 <p></p>
             </div>
             <div id="buttonWrapper">
-            <button class="popupButton" onclick="togglePopup(); countdown(60);" id="popupButtonLeft"></button>
-            <button class="popupButton" onclick="togglePopup(); countdown(60);" id="popupButtonRight"></button>
+            <button class="popupButton" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonLeft"></button>
+            <button class="popupButton" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonRight"></button>
             </div>
         </div>
-    </div>
     <div id="warning-message">
         <h1>Please tilt<br>your device</h1>
         <p>This experience only works<br>in landscape mode</p>
-        <img src="images/device-peep.svg" alt="Person holding a smartphone">
+        <img src="../images/device-peep.svg" alt="Person holding a smartphone">
     </div>
-    <script src="js/core.js"></script>
+    <script src="../js/core.js"></script>
     <script src="js/applicant.js"></script>
 </body>
 
