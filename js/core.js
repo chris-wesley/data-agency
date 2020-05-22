@@ -92,6 +92,7 @@ for (let j = 0; j < sections.length; j++) {
         if (draggedCard.classList.contains((cardName)) && (section.classList.contains((sectionName)))) {
             console.log('Dropped in correct section');
             if (draggedCard.classList.contains("source") && (section.classList.contains("users"))) {
+                reduceScore(draggedCard);
                 showData("name", ".name");
                 showData("gender", ".gender");
                 showData("dob", ".dob");
@@ -106,6 +107,10 @@ for (let j = 0; j < sections.length; j++) {
                 showData("religon", ".religon");
                 showData("ethnic", ".ethnic");
                 showData("salary", ".salary");
+            }
+            if (draggedCard.classList.contains("segment") && (section.classList.contains("clients"))) {
+                section.children[1].children[1].style.display = "none";
+                increaseScore();
             }
             // Switch the tag content with the p content
             draggedCard.children[1].textContent = draggedCard.children[0].textContent;
@@ -269,7 +274,7 @@ async function getUsers() {
         span.textContent = address;
         users[i].append(span);
         //Randomise postcode
-        postcode = getRandomChar() + getRandomChar() + getRandomInt(0, 99) + " " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
+        postcode = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
         var span = document.createElement("span");
         span.classList.add("postcode");
         span.style.display = "none";
@@ -362,6 +367,7 @@ async function getClients() {
         let randomEthics = randomSplit[2];
 
         clients[i].children[0].textContent = randomName;
+        clients[i].children[1].textContent = "$100";
         rows = rows.filter(function(str) {
             return str.indexOf(randomName) === -1;
         });
@@ -379,6 +385,19 @@ function reduceScore(element) {
     scoreElement.textContent = ("$" + (scoreString - priceString));
 }
 
+// Increasing score when selling segment
+function increaseScore() {
+    var priceString = 100;
+    var scoreElement = document.getElementById("score");
+    var scoreString = scoreElement.textContent.replace("$", "");
+    scoreElement.textContent = ("$" + (priceString));
+    var popupNameText = "Recruitment";
+    var popupContentText = "Good job! You’ve been given the internship, obviously you’ll need to pick up the pace - time is money!";
+    var popupButtonLeftText = "Great, I'm on it!";
+    var popupButtonRightText = "Okay, I'll try";
+    togglePopup(popupNameText, popupContentText, popupButtonLeftText, popupButtonRightText, 55);
+}
+
 // 60 second countdown
 function countdown(seconds) {
 
@@ -389,7 +408,6 @@ function countdown(seconds) {
         if ((seconds) > 0) {
             setTimeout(tick, 1000);
         } else if ((seconds) <= 0) {
-            togglePopup();
         }
     }
     tick();
@@ -416,6 +434,30 @@ function togglePopup(popupNameText, popupContentText, popupButtonLeftText, popup
     popup.classList.toggle("show-popup");
     popupName.textContent = (popupNameText);
     popupTime.textContent = time;
+    popupContent.textContent = (popupContentText);
+    popupButtonLeft.textContent = (popupButtonLeftText);
+    popupButtonRight.textContent = (popupButtonRightText);
+    if (popup.classList.contains("show-popup")) {
+        grid.style.pointerEvents = "none";
+    }
+    else {
+        grid.style.pointerEvents = "auto";
+    }
+}
+
+function toggleContext(contextHeaderText, contextContentText, popupButtonLeftText, popupButtonRightText) {
+    getTime();
+    //Show or hide the popup
+    var popup = document.querySelector(".contextWrapper");
+    var popupTime = document.getElementById("contextTime");
+    var contextHeader = document.getElementById("contextHeader");
+    var contextContent = document.getElementById("contextContent");
+    var popupButtonLeft = document.getElementById("popupButtonLeft");
+    var popupButtonRight = document.getElementById("popupButtonRight");
+    popup.classList.toggle("show-popup");
+    popupName.textContent = (popupNameText);
+    popupTime.textContent = time;
+    contextHeader.textContent = (contextHeaderText);
     popupContent.textContent = (popupContentText);
     popupButtonLeft.textContent = (popupButtonLeftText);
     popupButtonRight.textContent = (popupButtonRightText);
@@ -458,7 +500,7 @@ function messageDisplay() {
     var messageTime = document.getElementById("messageTime");
     var messageContent = document.getElementById("messageContent");
     var text1 = "Recruitment";
-    var text3 = "This is the dashboard you’ll be working from. I’ll walk you through a scenario to help you get acquainted.";
+    var text3 = "You’ve been tasked with finding potential donors for a charity. They want to target users in their local area to increase their fundraising efforts.";
 
     // Hide message contents
     if (x = 0) {

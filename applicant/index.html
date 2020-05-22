@@ -40,12 +40,12 @@
         <div id="clients" class="section clients" data-dropzone="3">
             <h2>Clients</h2>
             <div id="c1" class="card client" data-dropzone="4">
-                <p></p>
+                <p></p><span></span>
             </div>
         </div>
         <div id="stats" class="footerLeft">
             <div id="score">
-                $0
+                $50
             </div>
             <div id="timer"></div>
         </div>
@@ -89,6 +89,18 @@
             <div id="buttonWrapper">
             <button class="popupButton" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonLeft"></button>
             <button class="popupButton" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonRight"></button>
+            </div>
+        </div>
+        <div class="contextWrapper">
+            <div id="popupHeader">
+                <h3></h3>
+            </div>
+            <div id="contextContent">
+                <p></p>
+            </div>
+            <div id="buttonWrapper">
+            <button class="popupButton" onclick="toggleContext(); countdown(60); toggleDashboard();" id="contextButtonLeft"></button>
+            <button class="popupButton" onclick="toggleContext(); countdown(60); toggleDashboard();" id="contextButtonRight"></button>
             </div>
         </div>
     <div id="warning-message">
