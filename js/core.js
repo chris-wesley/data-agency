@@ -1,18 +1,40 @@
+/* Initalisation */
+
 // Grab all the interactive items
 const grid = document.querySelector(".grid");
 const sections = document.querySelectorAll('.section');
-const cards = document.querySelectorAll('.card');
+const cards = [];
+const scoreDisplay = document.getElementById('score');
+const levelDisplay = document.getElementById('level');
+
+// Initial game variables
+let score = 0;
+let level = "Applicant";
+
+// Create dashboard
+function populateDashboard(sources) {
+    for (let i = 0; i < (sources); i++) {
+    const card = document.createElement('div');
+    card.setAttribute('draggable', true);
+    card.setAttribute('id', i);
+    grid.appendChild(card);
+    cards.push(card);
+    }
+}
+
+populateDashboard(6);
 
 
 function currentLevel(position) {
-    const levelDisplay = document.getElementById("levelDisplay");
     levelDisplay.textContent = (position);
 }
+
+/* Drag and drop */
 
 // Nothing being dragged initially
 let draggedCard = null;
 
-// Loop through and find the current card
+// Loop through and make each card draggable
 for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
     card.draggable = true;
