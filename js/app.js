@@ -38,7 +38,7 @@ function populateDashboard(sourcesNumber, usersNumber, segementsNumber, clientsN
         const cardName = document.createElement('p');
         card.setAttribute('draggable', true);
         card.setAttribute('id', i);
-        card.classList.add("card", "user");
+        card.classList.add("card", "user", "empty");
         card.appendChild(cardName);
         userSection.appendChild(card);
         cards.push(card);
@@ -50,7 +50,7 @@ function populateDashboard(sourcesNumber, usersNumber, segementsNumber, clientsN
         const cardName = document.createElement('p');
         card.setAttribute('draggable', true);
         card.setAttribute('id', i);
-        card.classList.add("card", "segment");
+        card.classList.add("card", "segment", "empty");
         card.appendChild(cardName);
         segmentSection.appendChild(card);
         cards.push(card);
@@ -74,8 +74,8 @@ function populateDashboard(sourcesNumber, usersNumber, segementsNumber, clientsN
 populateDashboard(2, 3, 4, 5);
 
 // Fetch the source data files
-async function getSources() {
-    const response = await fetch('../data/sources.csv');
+async function getSources(level) {
+    const response = await fetch('../data/' + (level) + '/sources.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -94,7 +94,7 @@ async function getSources() {
         let field3 = split[6];
         let field4 = split[7];
 
-        if (price === 0) {
+        if (price === "0") {
             price = "FREE";
         } else {
             price = "$" + price;
@@ -113,8 +113,8 @@ async function getSources() {
 }
 
 // Fetch the user data files
-async function getUsers() {
-    const response = await fetch('../data/users.csv');
+async function getUsers(level) {
+    const response = await fetch('../data/' + (level) + '/users.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -254,8 +254,8 @@ async function getUsers() {
 }
 
 // Fetch the segment data files
-async function getSegments() {
-    const response = await fetch('../data/segments.csv');
+async function getSegments(level) {
+    const response = await fetch('../data/' + (level) + '/segments.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -276,8 +276,8 @@ async function getSegments() {
 }
 
 // Fetch client the data files
-async function getClients() {
-    const response = await fetch('../data/clients.csv');
+async function getClients(level) {
+    const response = await fetch('../data/' + (level) + '/clients.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -291,7 +291,7 @@ async function getClients() {
         let type = split[2];
         let ethics = split[3];
 
-        if (price === 0) {
+        if (price === "0") {
             price = "FREE";
         } else {
             price = "$" + price;
@@ -303,19 +303,20 @@ async function getClients() {
         });
     }
 }
+// Fetch the data for applicant level
+getSources('applicant');
+getUsers('applicant');
+getSegments('applicant');
+getClients('applicant');
 
-getSources();
-getUsers();
-getSegments();
-getClients();
-
-// Randomise functions
+// Randomise whole number function
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Randomise characters function
 function getRandomChar() {
     randomChar = String.fromCharCode(65 + Math.floor(Math.random() * 26));
     return randomChar;
@@ -323,44 +324,104 @@ function getRandomChar() {
 
 /* Drag and drop */
 
-let typeBeingDragged;
-let typeBeingDropped;
-let tagBeingDragged;
-let tagBeingDropped;
+// Declare the variables for drag and drop
+let draggedCard;
+let draggedCardType;
+let draggedCardName;
+let dropSection;
+let dropSectionType;
+let cardDraggedOver;
 
-// Add event listeners to all cards
+// Add event listeners to all cards and sections
 cards.forEach(card => card.addEventListener('dragstart', dragStart));
+cards.forEach(card => card.addEventListener('drag', drag));
+sections.forEach(section => section.addEventListener('dragenter', dragEnter));
 cards.forEach(card => card.addEventListener('dragover', dragOver));
-cards.forEach(card => card.addEventListener('dragenter', dragEnter));
-cards.forEach(card => card.addEventListener('dragleave', dragLeave));
-cards.forEach(card => card.addEventListener('drop', dragDrop));
+sections.forEach(section => section.addEventListener('dragleave', dragLeave));
+sections.forEach(section => section.addEventListener('drop', dragDrop));
 cards.forEach(card => card.addEventListener('dragend', dragEnd));
 
-function dragStart() {
-    typeBeingDragged = this.classList.item(1);
-    tagBeingDragged = this.children[1].textContent;
-    console.log(tagBeingDragged);
-    console.log(this.id, 'dragstart');
+// Card begins dragging
+function dragStart(event) {
+    draggedCard = event.currentTarget;
+    draggedCardType = event.currentTarget.classList.item(1);
+    draggedCardName = event.currentTarget.children[0].textContent;
+    //console.log(this.id, 'dragstart');
 }
 
-
-function dragOver() {
-    console.log(this.id, 'dragover');
+function drag(event) {
+    event.preventDefault();
+    //console.log(this.id, 'drag');
 }
 
-function dragEnter() {
-    console.log(this.id, 'dragenter');
+// Dragging card is over another card
+function dragOver(event) {
+    event.preventDefault();
+    cardDraggedOver = this;
+    //console.log(this, 'dragover');
 }
 
-function dragLeave() {
-    console.log(this.id, 'dragleave');
+// Dragging card enters a section
+function dragEnter(event) {
+    this.style.backgroundColor = "whitesmoke";
+    //console.log(this.id, 'dragenter');
 }
 
-function dragDrop() {
-    tagBeingDropped = this.children[1].textContent;
-    console.log(this.id, 'dragdrop');
+// Dragging card leaves a section
+function dragLeave(event) {
+    this.style.backgroundColor = "white";
+    //console.log(this.id, 'dragleave');
 }
 
-function dragEnd() {
-    console.log(this.id, 'dragend');
+// Dragging card drops on a section or card 
+function dragDrop(event) {
+    event.preventDefault();
+    dropSection = this;
+    dropSectionType = this.id;
+    // Source to users transfer
+    if ((draggedCardType === "source") && (dropSectionType == "users")) {
+        for (i = 1; i < this.children.length; i++) {
+            let span = document.createElement("span");
+            dropSection.children[i].insertBefore(span, this.children[i].children[1]);
+            dropSection.children[i].children[1].textContent = draggedCardName;
+            dropSection.children[i].classList.remove("empty");
+            draggedCard.style.display = "none";
+        }
+    }
+    // User to segments transfer
+    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments")) {
+        let span = document.createElement("span");
+        cardDraggedOver.appendChild(span).textContent = draggedCardName;
+        cardDraggedOver.classList.remove("empty");
+        draggedCard.style.display = "none";
+    }
+    // Segment to clients transfer
+    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients")) {
+        cardDraggedOver.children[1].textContent = draggedCardName;
+        draggedCard.style.display = "none";
+    }
+    //console.log(this.id, 'dragdrop');
 }
+
+// Dragging card is released
+function dragEnd(event) {
+    event.preventDefault();
+    //console.log(this.id, 'dragend');
+}
+
+function showData(dataString, dataClass) {
+        for (i = 0; i < section.children[1].children.length; i++) {
+            if (draggedCard.dataset.field1 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+            if (draggedCard.dataset.field2 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+            if (draggedCard.dataset.field3 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+            if (draggedCard.dataset.field4 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
+                document.querySelector((dataClass)).style.display = "inline-block";
+            }
+        }
+    }
