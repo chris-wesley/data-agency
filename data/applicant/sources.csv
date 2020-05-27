@@ -1,11 +1,11 @@
 Name,Price,Type,Ethical,Link,Data fields,,,
-Voter records,50,Public,Ethical,Location,Name,Address,Phone number,Email
-Property records,120,Public,Ethical,Location,,,,
-Vehicle registeration,65,Public,Ethical,,,,,
-Court records,45,Public,Unethical,,,,,
-Census,0,Public,Ethical,,,,,
-Online retailer,75,Private,Unethical,,,,,
-Credit card company,150,Private,Unethical,,,,,
-Magazine publisher,35,Private,Ethical,,,,,
-Insurance broker,175,Private,Ethical,,,,,
-Social Media,0,Private,Unethical,,,,,
+Voter records,50,Public,Ethical,Location,name,address,phoneNumber,email
+Property records,120,Public,Ethical,Location,name,address,phoneNumber,email
+Vehicle registeration,65,Public,Ethical,Location,name,address,phoneNumber,email
+Court records,45,Public,Unethical,Location,name,address,phoneNumber,email
+Census,0,Public,Ethical,Location,name,address,phoneNumber,email
+Online retailer,75,Private,Unethical,Location,name,address,phoneNumber,email
+Credit card company,150,Private,Unethical,Location,name,address,phoneNumber,email
+Magazine publisher,35,Private,Ethical,Location,name,address,phoneNumber,email
+Insurance broker,175,Private,Ethical,Location,name,address,phoneNumber,email
+Social Media,0,Private,Unethical,Location,name,address,phoneNumber,email

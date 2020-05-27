@@ -89,10 +89,11 @@ async function getSources(level) {
         let price = split[1];
         let type = split[2];
         let ethics = split[3];
-        let field1 = split[4];
-        let field2 = split[5];
-        let field3 = split[6];
-        let field4 = split[7];
+        let link = split[4];
+        let field1 = split[5];
+        let field2 = split[6];
+        let field3 = split[7];
+        let field4 = split[8];
 
         if (price === "0") {
             price = "FREE";
@@ -101,6 +102,7 @@ async function getSources(level) {
         }
         sources[i].children[0].textContent = name;
         sources[i].children[1].textContent = price;
+        sources[i].dataset.link = link;
         sources[i].dataset.field1 = field1;
         sources[i].dataset.field2 = field2;
         sources[i].dataset.field3 = field3;
@@ -387,6 +389,42 @@ function dragDrop(event) {
             dropSection.children[i].classList.remove("empty");
             draggedCard.style.display = "none";
         }
+        for (i = 0; i < this.children.length - 1; i++) {
+            // Array of possible datafields
+            let fieldCheck = [
+                "name",
+                "gender",
+                "dob",
+                "phoneNumber",
+                "emailAddress",
+                "address",
+                "postcode",
+                "occupation",
+                "marital",
+                "homeType",
+                "homeOwnership",
+                "religon",
+                "ethnic",
+                "salary"
+            ];
+            let dataSpan1 = document.querySelectorAll("." + draggedCard.dataset.field1);
+            let dataSpan2 = document.querySelectorAll("." + draggedCard.dataset.field2);            
+            let dataSpan3 = document.querySelectorAll("." + draggedCard.dataset.field3);            
+            let dataSpan4 = document.querySelectorAll("." + draggedCard.dataset.field4);
+            // Check if dragged card contains any valid datafields
+            if (fieldCheck.includes(draggedCard.dataset.field1)) {
+                dataSpan1[i].style.display = "inline-block";
+            }
+            if (fieldCheck.includes(draggedCard.dataset.field2)) {
+                dataSpan2[i].style.display = "inline-block";
+            }
+            if (fieldCheck.includes(draggedCard.dataset.field3)) {
+                dataSpan3[i].style.display = "inline-block";
+            }
+            if (fieldCheck.includes(draggedCard.dataset.field4)) {
+                dataSpan4[i].style.display = "inline-block";
+            }
+        }
     }
     // User to segments transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments")) {
@@ -408,20 +446,3 @@ function dragEnd(event) {
     event.preventDefault();
     //console.log(this.id, 'dragend');
 }
-
-function showData(dataString, dataClass) {
-        for (i = 0; i < section.children[1].children.length; i++) {
-            if (draggedCard.dataset.field1 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
-                document.querySelector((dataClass)).style.display = "inline-block";
-            }
-            if (draggedCard.dataset.field2 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
-                document.querySelector((dataClass)).style.display = "inline-block";
-            }
-            if (draggedCard.dataset.field3 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
-                document.querySelector((dataClass)).style.display = "inline-block";
-            }
-            if (draggedCard.dataset.field4 === (dataString) && section.children[1].children[i].classList.contains((dataString))) {
-                document.querySelector((dataClass)).style.display = "inline-block";
-            }
-        }
-    }
