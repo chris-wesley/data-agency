@@ -13,10 +13,10 @@
             <h1>Data Agency</h1>
         </div>
         <div id="level" class="headerRight">
-            <h2 id="level" class="right"></h2>
+            <h2 id="levelText" class="right"></h2>
             <div id="levelPeep" class="right">
-                <img id="messageHead" src="/data/open-peeps/head/hat-beanie.svg" width="40px">
-                <img id="messageFace" src="/data/open-peeps/face/Cute.svg" width="24px">
+                <img id="levelHead" src="/data/open-peeps/head/intern.svg" width="40px">
+                <img id="levelFace" src="/data/open-peeps/face/cute.svg" width="24px">
             </div>
         </div>
         <div id="sources" class="section sources" >
@@ -33,15 +33,15 @@
         </div>
         <div id="stats" class="footerLeft">
             <div id="score">
-                $50
+                $0
             </div>
             <div id="timer"></div>
         </div>
-        <div id="messageWrapper" class="footerMiddle" onclick="messageToggle()">
+        <div id="messageWrapper" class="footerMiddle" onclick="toggleMessage()">
             <div id="messageHeader">
                 <div id="messagePeep">
-                    <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
-                    <img id="messageFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
+                    <img id="messageHead" src="/data/open-peeps/head/ceo.svg" width="40px">
+                    <img id="messageFace" src="/data/open-peeps/face/driven.svg" width="24px">
                 </div>
                 <div id="messageHeaderText">
                     <h3 id="messageName"></h3>
@@ -51,9 +51,12 @@
             <div id="messageContent">
                 <p id="messageContents"></p>
             </div>
+            <div id="buttonWrapper">
+                <button class="button" onclick="nextMessage();" id="messageButtonLeft"></button>
+            </div>
         </div>
         <div id="sound" class="footerRight">
-                <audio id="sound" src="/data/8bit-surf.mp3" preload="auto" autoplay="autoplay">
+                <audio id="music" src="/data/8bit-surf.mp3" preload="auto" autoplay="autoplay">
                 Your browser does not support the audio element.</audio>
                 <a class="right" onclick="toggleMute()">
                     <img id ="icon" src="../images/sound-on.svg" alt="Audio icon">
@@ -63,8 +66,8 @@
         <div class="popupWrapper">
             <div id="popupHeader">
                 <div id="popupPeep">
-                    <img id="popupHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
-                    <img id="popupFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
+                    <img id="popupHead" src="/data/open-peeps/head/analyst.svg" width="40px">
+                    <img id="popupFace" src="/data/open-peeps/face/explaining.svg" width="24px">
                 </div>
                 <div id="popupHeaderText">
                     <h3 id="popupName"></h3>
@@ -75,20 +78,19 @@
                 <p></p>
             </div>
             <div id="buttonWrapper">
-            <button class="popupButton" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonLeft"></button>
-            <button class="popupButton" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonRight"></button>
+            <button class="button" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonLeft"></button>
+            <button class="button" onclick="togglePopup(); countdown(60); toggleDashboard();" id="popupButtonRight"></button>
             </div>
         </div>
         <div class="contextWrapper">
-            <div id="popupHeader">
-                <h3></h3>
+            <div>
+                <h3 id="contextHeader"></h3>
             </div>
-            <div id="contextContent">
-                <p></p>
+            <div>
+                <p id="contextContent"></p>
             </div>
             <div id="buttonWrapper">
-            <button class="popupButton" onclick="toggleContext(); countdown(60); toggleDashboard();" id="contextButtonLeft"></button>
-            <button class="popupButton" onclick="toggleContext(); countdown(60); toggleDashboard();" id="contextButtonRight"></button>
+            <button class="button" onclick="toggleContext(); togglePopup();" id="contextButton"></button>
             </div>
         </div>
     <div id="warning-message">
@@ -96,7 +98,10 @@
         <p>This experience only works<br>in landscape mode</p>
         <img src="../images/device-peep.svg" alt="Person holding a smartphone">
     </div>
-    <script src="../js/app.js"></script>
+    <script src="/js/core.js"></script>    <script src="/js/parse.js"></script>
+
+    <script src="/js/applicant.js"></script>
+    <script src="/js/drag.js"></script>
 </body>
 
 </html>

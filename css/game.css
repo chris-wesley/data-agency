@@ -89,7 +89,7 @@ body {
 }
 
 .card p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 400;
     margin: 5px 0 5px 0;
 
@@ -145,6 +145,20 @@ h3 {
     margin-top: 5px;
 }
 
+#levelHead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#levelFace {
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    right: 0;
+}
+
 #headerRight h2 {}
 
 .section h2 {
@@ -177,6 +191,11 @@ h3 {
     border-radius: 2px;
     background-color: white;
     cursor: pointer;
+    transition: all 0.5s;
+}
+
+.hide-message {
+    margin-bottom: -150px;
 }
 
 #messageHeader {
@@ -220,7 +239,8 @@ h3 {
 }
 
 #messageContent {
-    padding: 20px 30px 20px 30px;
+    padding: 2px 30px 20px 30px;
+    font-size: 1.1em;
 }
 
 .popupWrapper {
@@ -288,7 +308,7 @@ h3 {
     text-align: right;
 }
 
-.popupButton {
+.button {
     font-size: 1.1em;
     font-weight: 400;
     padding: 10px 20px 10px 20px;
@@ -299,12 +319,12 @@ h3 {
     background-color: white;
 }
 
-.popupButton:hover {
+.button:hover {
     background-color: whitesmoke;
     cursor: pointer;
 }
 
-.popupButton:active {
+.button:active {
     background-color: black;
     color: white;
 }
@@ -318,23 +338,39 @@ h3 {
     border: solid 1.5px black;
     border-radius: 2px;
     background-color: white;
+    padding: 15px;
+    border-spacing: 0px;
+    border-collapse: separate;
 }
 
 .show-context {
     visibility: visible;
 }
 
-#contextHeader h3 {
-    display: inline;
+#contextHeader {
+    padding: 20px 30px 20px 30px;
+}
+
+h3#contextHeader {
+    margin: 0;
+    font-size: 1.2em;
 }
 
 #contextContent {
     padding: 20px 30px 20px 30px;
+}
+
+p#contextContent {
+    margin: 0;
     font-size: 1.1em;
 }
 
+.show {
+    display: block !important;
+}
+
 .hide {
-    visibility: hidden;
+    display: none;
 }
 
 #warning-message {
@@ -362,6 +398,10 @@ h3 {
     }
 
     .popupWrapper {
+        display: none;
+    }
+
+    .contextWrapper {
         display: none;
     }
 

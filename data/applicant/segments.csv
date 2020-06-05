@@ -1,7 +1,2 @@
-Name,Ethics
-Buying a home,Ethical
-Fantasy novels,Ethical
-Donates to charity,Ethical
-Gamblers,Unethical
-Alcoholics,Unethical
-Struggling single mums,Unethical
+Name,Ethics,Link
+Households in SK49,2,charityinPostcode

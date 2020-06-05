@@ -1,81 +1,8 @@
-/* Initalisation */
-
-// Grab all the interactive items
-const grid = document.querySelector('.grid');
-const sections = document.querySelectorAll('.section');
-const sourceSection = document.querySelector('#sources');
-const userSection = document.querySelector('#users');
-const segmentSection = document.querySelector('#segments');
-const clientSection = document.querySelector('#clients');
-const cards = [];
-const scoreDisplay = document.getElementById('score');
-const levelDisplay = document.getElementById('level');
-
-// Initial game variables
-let score = 0;
-let level = "Applicant";
-
-// Fill the dashboard with cards
-function populateDashboard(sourcesNumber, usersNumber, segementsNumber, clientsNumber) {
-
-    // Fill sources section with source cards
-    for (let i = 0; i < (sourcesNumber); i++) {
-        const card = document.createElement('div');
-        const cardName = document.createElement('p');
-        const cardTag = document.createElement('span');
-        card.setAttribute('draggable', true);
-        card.setAttribute('id', i);
-        card.classList.add("card", "source");
-        card.appendChild(cardName);
-        card.appendChild(cardTag);
-        sourceSection.appendChild(card);
-        cards.push(card);
-    }
-
-    // Fill users section with user cards
-    for (let i = 0; i < (usersNumber); i++) {
-        const card = document.createElement('div');
-        const cardName = document.createElement('p');
-        card.setAttribute('draggable', true);
-        card.setAttribute('id', i);
-        card.classList.add("card", "user", "empty");
-        card.appendChild(cardName);
-        userSection.appendChild(card);
-        cards.push(card);
-    }
-
-    // Fill segments section with segment cards
-    for (let i = 0; i < (segementsNumber); i++) {
-        const card = document.createElement('div');
-        const cardName = document.createElement('p');
-        card.setAttribute('draggable', true);
-        card.setAttribute('id', i);
-        card.classList.add("card", "segment", "empty");
-        card.appendChild(cardName);
-        segmentSection.appendChild(card);
-        cards.push(card);
-    }
-
-    // Fill clients section with client cards
-    for (let i = 0; i < (clientsNumber); i++) {
-        const card = document.createElement('div');
-        const cardName = document.createElement('p');
-        const cardTag = document.createElement('span');
-        card.setAttribute('draggable', true);
-        card.setAttribute('id', i);
-        card.classList.add("card", "client");
-        card.appendChild(cardName);
-        card.appendChild(cardTag);
-        clientSection.appendChild(card);
-        cards.push(card);
-    }
-}
-
-populateDashboard(2, 3, 4, 5);
+/* Parsing CSV data */
 
 // Fetch the source data files
 async function getSources(level) {
-    const response = await fetch('../data/' + (level) + '/sources.csv');
+    const response = await fetch('/data/' + (level) + '/sources.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -94,7 +21,7 @@ async function getSources(level) {
         let field2 = split[6];
         let field3 = split[7];
         let field4 = split[8];
-
+        // Swap out any price that is 0 with FREE
         if (price === "0") {
             price = "FREE";
         } else {
@@ -116,7 +43,7 @@ async function getSources(level) {
 
 // Fetch the user data files
 async function getUsers(level) {
-    const response = await fetch('../data/' + (level) + '/users.csv');
+    const response = await fetch('/data/' + (level) + '/users.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -257,7 +184,7 @@ async function getUsers(level) {
 
 // Fetch the segment data files
 async function getSegments(level) {
-    const response = await fetch('../data/' + (level) + '/segments.csv');
+    const response = await fetch('/data/' + (level) + '/segments.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -269,6 +196,7 @@ async function getSegments(level) {
         let split = randomise.split(',');
         let name = split[0];
         let ethics = split[1];
+        let link = split[2];
 
         segments[i].children[0].textContent = name;
         rows = rows.filter(function(str) {
@@ -279,7 +207,7 @@ async function getSegments(level) {
 
 // Fetch client the data files
 async function getClients(level) {
-    const response = await fetch('../data/' + (level) + '/clients.csv');
+    const response = await fetch('/data/' + (level) + '/clients.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -292,7 +220,8 @@ async function getClients(level) {
         let price = split[1];
         let type = split[2];
         let ethics = split[3];
-
+        let link = split[4];
+        // Swap out any price that is 0 with FREE
         if (price === "0") {
             price = "FREE";
         } else {
@@ -305,11 +234,6 @@ async function getClients(level) {
         });
     }
 }
-// Fetch the data for applicant level
-getSources('applicant');
-getUsers('applicant');
-getSegments('applicant');
-getClients('applicant');
 
 // Randomise whole number function
 function getRandomInt(min, max) {
@@ -323,126 +247,3 @@ function getRandomChar() {
     randomChar = String.fromCharCode(65 + Math.floor(Math.random() * 26));
     return randomChar;
     }
-
-/* Drag and drop */
-
-// Declare the variables for drag and drop
-let draggedCard;
-let draggedCardType;
-let draggedCardName;
-let dropSection;
-let dropSectionType;
-let cardDraggedOver;
-
-// Add event listeners to all cards and sections
-cards.forEach(card => card.addEventListener('dragstart', dragStart));
-cards.forEach(card => card.addEventListener('drag', drag));
-sections.forEach(section => section.addEventListener('dragenter', dragEnter));
-cards.forEach(card => card.addEventListener('dragover', dragOver));
-sections.forEach(section => section.addEventListener('dragleave', dragLeave));
-sections.forEach(section => section.addEventListener('drop', dragDrop));
-cards.forEach(card => card.addEventListener('dragend', dragEnd));
-
-// Card begins dragging
-function dragStart(event) {
-    draggedCard = event.currentTarget;
-    draggedCardType = event.currentTarget.classList.item(1);
-    draggedCardName = event.currentTarget.children[0].textContent;
-    //console.log(this.id, 'dragstart');
-}
-
-function drag(event) {
-    event.preventDefault();
-    //console.log(this.id, 'drag');
-}
-
-// Dragging card is over another card
-function dragOver(event) {
-    event.preventDefault();
-    cardDraggedOver = this;
-    //console.log(this, 'dragover');
-}
-
-// Dragging card enters a section
-function dragEnter(event) {
-    this.style.backgroundColor = "whitesmoke";
-    //console.log(this.id, 'dragenter');
-}
-
-// Dragging card leaves a section
-function dragLeave(event) {
-    this.style.backgroundColor = "white";
-    //console.log(this.id, 'dragleave');
-}
-
-// Dragging card drops on a section or card 
-function dragDrop(event) {
-    event.preventDefault();
-    dropSection = this;
-    dropSectionType = this.id;
-    // Source to users transfer
-    if ((draggedCardType === "source") && (dropSectionType == "users")) {
-        for (i = 1; i < this.children.length; i++) {
-            let span = document.createElement("span");
-            dropSection.children[i].insertBefore(span, this.children[i].children[1]);
-            dropSection.children[i].children[1].textContent = draggedCardName;
-            dropSection.children[i].classList.remove("empty");
-            draggedCard.style.display = "none";
-        }
-        for (i = 0; i < this.children.length - 1; i++) {
-            // Array of possible datafields
-            let fieldCheck = [
-                "name",
-                "gender",
-                "dob",
-                "phoneNumber",
-                "emailAddress",
-                "address",
-                "postcode",
-                "occupation",
-                "marital",
-                "homeType",
-                "homeOwnership",
-                "religon",
-                "ethnic",
-                "salary"
-            ];
-            let dataSpan1 = document.querySelectorAll("." + draggedCard.dataset.field1);
-            let dataSpan2 = document.querySelectorAll("." + draggedCard.dataset.field2);            
-            let dataSpan3 = document.querySelectorAll("." + draggedCard.dataset.field3);            
-            let dataSpan4 = document.querySelectorAll("." + draggedCard.dataset.field4);
-            // Check if dragged card contains any valid datafields
-            if (fieldCheck.includes(draggedCard.dataset.field1)) {
-                dataSpan1[i].style.display = "inline-block";
-            }
-            if (fieldCheck.includes(draggedCard.dataset.field2)) {
-                dataSpan2[i].style.display = "inline-block";
-            }
-            if (fieldCheck.includes(draggedCard.dataset.field3)) {
-                dataSpan3[i].style.display = "inline-block";
-            }
-            if (fieldCheck.includes(draggedCard.dataset.field4)) {
-                dataSpan4[i].style.display = "inline-block";
-            }
-        }
-    }
-    // User to segments transfer
-    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments")) {
-        let span = document.createElement("span");
-        cardDraggedOver.appendChild(span).textContent = draggedCardName;
-        cardDraggedOver.classList.remove("empty");
-        draggedCard.style.display = "none";
-    }
-    // Segment to clients transfer
-    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients")) {
-        cardDraggedOver.children[1].textContent = draggedCardName;
-        draggedCard.style.display = "none";
-    }
-    //console.log(this.id, 'dragdrop');
-}
-
-// Dragging card is released
-function dragEnd(event) {
-    event.preventDefault();
-    //console.log(this.id, 'dragend');
-}

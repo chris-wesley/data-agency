@@ -1,18 +1,2 @@
-Name,Price,Type,Ethics
-Banks,2343,Private,Ethical
-Retailers,3444,Private,Ethical
-Supermarkets,773,Private,Ethical
-Payday loans,555,Private,Unethical
-Casinos,2345,Private,Unethical
-Fortune 100 companies,689,Private,Ethical
-Credit card issuers,4256,Private,Ethical
-Automative manufacturers,54684,Private,Ethical
-Brokerage firms,45346,Private,Unethical
-Pharmaceutical manufacturers,3244,Private,Unethical
-Life insurance providers,123,Private,Unethical
-Health insurance providers,657,Private,Unethical
-Property insurers,45,Private,Unethical
-Gaming companies,532,Private,Ethical
-Airlines,756,Private,Ethical
-Government departments,543,Public,Unethical
-Political parties,233,Public,Unethical
+Name,Price,Type,Ethics,Link
+Charity in SK49,100,Private,1,charityinPostcode
