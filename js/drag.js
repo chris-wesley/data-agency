@@ -112,7 +112,22 @@ function dragDrop(event) {
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients")) {
         increaseScore(cardDraggedOver);
         cardDraggedOver.children[1].textContent = draggedCardName;
+        cardDraggedOver.classList.remove("empty");
         draggedCard.style.display = "none";
+        let clients = document.querySelectorAll('.client');
+        for (i = 0; i < clients.length; i++) {
+            if (!clients[i].classList.contains("empty")) {
+                createPopup(
+                    "analyst",
+                    "explaining",
+                    "Recruitment",
+                    "Good job! You’ve been given the internship, obviously you’ll need to pick up the pace - time is money!",
+                    "Great, I'm on it!",
+                    "Okay, I'll try"
+                );
+            }
+        }
+        
     }
     //console.log(this.id, 'dragdrop');
 }

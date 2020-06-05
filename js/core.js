@@ -61,7 +61,7 @@ function populateDashboard(sourcesNumber, usersNumber, segementsNumber, clientsN
         const cardTag = document.createElement('span');
         card.setAttribute('draggable', true);
         card.setAttribute('id', i);
-        card.classList.add("card", "client");
+        card.classList.add("card", "client", "empty");
         card.appendChild(cardName);
         card.appendChild(cardTag);
         clientSection.appendChild(card);
@@ -211,6 +211,52 @@ function changePopup(popupNameText, popupContentText, popupButtonLeftText, popup
     popupContent.textContent = (popupContentText);
     popupButtonLeft.textContent = (popupButtonLeftText);
     popupButtonRight.textContent = (popupButtonRightText);
+}
+
+// Create and parse popup data
+function createPopup(head, face, name, content, buttonLeft, buttonRight) {
+    // Create popup data
+    let popup = document.createElement('div');
+    let popupHeader = document.createElement('div');
+    let popupPeep = document.createElement('div');
+    let popupHead = document.createElement('img');
+    let popupFace = document.createElement('img');
+    let popupName = document.createElement('h3');
+    let popupTime = document.createElement('h3');
+    let popupContent = document.createElement('p');
+    let popupButton = document.createElement('div');
+    let popupButtonLeft = document.createElement('button');
+    let popupButtonRight = document.createElement('button');
+    // Set element attributes
+    popup.classList.add("popup");
+    popupHeader.setAttribute("id", "header");
+    popupPeep.setAttribute("id", "peep");
+    popupHead.setAttribute("id", "head");
+    popupFace.setAttribute("id", "face");
+    popupName.setAttribute("id", "name");
+    popupTime.setAttribute("id", "time");
+    popupContent.setAttribute("id", "content");
+    popupButton.setAttribute("id", "buttonWrapper");
+    // Append elements to DOM
+    popup.appendChild(popupHeader);
+    popup.appendChild(popupContent);
+    popup.appendChild(popupButton);
+    popupHeader.appendChild(popupPeep);
+    popupHeader.appendChild(popupName);
+    popupHeader.appendChild(popupTime);
+    popupPeep.appendChild(popupHead);
+    popupPeep.appendChild(popupFace);
+    popupButton.appendChild(popupButtonLeft);
+    popupButton.appendChild(popupButtonRight);
+    document.body.appendChild(popup);
+    // Parse the unique text content
+    popupHead.setAttribute("src", "/data/open-peeps/head/" + (head) + ".svg")
+    popupFace.setAttribute("src", "/data/open-peeps/face/" + (face) + ".svg")
+    popupName.textContent = (name);
+    popupTime.textContent = time;
+    popupContent.textContent = (content);
+    popupButtonLeft.textContent = (buttonLeft);
+    popupButtonRight.textContent = (buttonRight);
 }
 
 function togglePopup() {
