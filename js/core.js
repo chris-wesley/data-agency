@@ -222,6 +222,7 @@ function startLevel() {
     removePopup2();
     showDashboard();
     countdown(60);
+    window.setTimeout(hideMessage, 1000);
 }
 
 function nextLevel() {
@@ -277,8 +278,6 @@ function createMessage(head, face, name, content) {
     messageName.textContent = (name);
     messageTime.textContent = time;
     messageContent.textContent = (content);
-    // Animation
-    window.setTimeout(hideMessage, 2000);
 }
 
 // Create and parse popup data

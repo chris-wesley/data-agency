@@ -108,6 +108,7 @@ function dragDrop(event) {
             "Recruitment",
             "Now you can see the individual datafields underneath the user ID, find a datafield that matches to the segment"
         );
+        hideMessage();
     }
     // User to segments transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments")) {
@@ -122,6 +123,7 @@ function dragDrop(event) {
             "Recruitment",
             "When all your users are sorted, make sure each segment is delivered to the corresponding client."
         );
+        hideMessage();
     }
     // Segment to clients transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients")) {
@@ -133,7 +135,7 @@ function dragDrop(event) {
         for (i = 0; i < clients.length; i++) {
             if (!clients[i].classList.contains("empty")) {
                 pauseCountdown();
-                removeMessage();
+                hideMessage();
                 createPopup(
                     "analyst",
                     "explaining",
