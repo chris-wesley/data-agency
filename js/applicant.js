@@ -9,21 +9,24 @@ startingScore(50);
 
 populateDashboard(1, 1, 1, 1);
 
-toggleDashboard();
-toggleContext();
+hideDashboard();
 
-
-changeContext(
+createContext(
 	"Data brokers buy, analyse and sell our personal data for profit - but most of us aren’t aware of the unethical practices that take place until it is too late.",
 	"Data Agency is an interactive experience in which you are a data broker, forced to choose between ethics and profits. Will your decisions have consequences?",
-	"Continue"
+	"Continue",
+	removeContext
 );
 
-changePopup(
+createPopup(
+	"analyst",
+	"explaining",
 	"Recruitment",
 	"At Data Agency, we connect our clients to users. We buy user data, analyse it and sell the packaged results. As an intern, you’ll be manually sorting through the data. Have you got what it takes?",
+	"I'll give it a go",
+	startLevel,
 	"I've got what it takes!",
-	"I've got what it takes!"
+	startLevel
 );
 
 changeMessage(

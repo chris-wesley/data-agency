@@ -265,6 +265,18 @@ h3 {
     padding: 30px 30px 30px 30px;
 }
 
+.context {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1.5px black;
+    border-radius: 2px;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+}
+
 #header {
 }
 
@@ -333,89 +345,12 @@ button:active {
     color: white;
 }
 
-.show-popup {
-    visibility: visible;
-}
-
-#popupHeader {
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 28px;
-}
-
-#popupPeep {
-    display: inline;
-    position: relative;
-    vertical-align: middle;
-}
-
-#popupHead {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-#popupFace {
-    position: absolute;
-    top: 16px;
-    left: 13px;
-    right: 0;
-}
-
-#popupHeaderText h3 {
-    display: inline;
-}
-
-#popupName {
-    padding-left: 50px;
-}
-
-#popupTime {
-    padding-left: 10px;
-    color: lightgrey;
-}
-
-#popupContent {
-    padding: 20px 30px 20px 30px;
-    font-size: 1.2em;
-}
-
-.contextWrapper {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: solid 1.5px black;
-    border-radius: 2px;
-    background-color: white;
-    padding: 15px;
-    border-spacing: 0px;
-    border-collapse: separate;
-}
-
-.show-context {
-    visibility: visible;
-}
-
-#contextHeader {
-    padding: 20px 30px 20px 30px;
-}
-
-h3#contextHeader {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-#contextContent {
-    padding: 20px 30px 20px 30px;
-}
-
-p#contextContent {
-    margin: 0;
+p#body {
     font-size: 1.1em;
+}
+
+h3#heading {
+    margin: 0;
 }
 
 .show {
@@ -450,11 +385,11 @@ p#contextContent {
         display: none;
     }
 
-    .popupWrapper {
+    .popup {
         display: none;
     }
 
-    .contextWrapper {
+    .context {
         display: none;
     }
 

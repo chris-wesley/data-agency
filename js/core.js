@@ -128,24 +128,31 @@ function increaseScore(element) {
 
 // 60 second countdown
 function countdown(seconds) {
-
     function tick() {
         let counter = document.getElementById("timer");
         (seconds)--;
         counter.textContent = "00:" + ((seconds) < 10 ? "0" : "") + String((seconds));
-        if ((seconds) > 0) {
-            setTimeout(tick, 1000);
-        } else if ((seconds) <= 0) {
-            changePopup(
+        if ((seconds) == 0) {
+            createPopup(
+                "analyst",
+                "explaining",
                 "Recruitment",
-                "You didn't complete the task in time",
-                "I can't do this",
-                "I'll try again"
+                "You've got to be quicker than that - time is money.",
+                "I can't do it",
+                goHome,
+                "I'll try again",
+                restartLevel
             );
-            togglePopup();
+        }
+        else {
+            pause = setTimeout(tick, 1000);
         }
     }
     tick();
+}
+let pause;
+function pauseCountdown() {
+    clearTimeout(pause);
 }
 
 // Fetch the current time
@@ -175,6 +182,48 @@ function toggleMute() {
     }
 };
 
+function removeContext() {
+    let context = document.querySelector(".context");
+    context.remove();
+}
+
+function removePopup() {
+    let popup = document.querySelector(".popup");
+    popup.remove();
+}
+
+function goHome() {
+    window.location.href = "http://data-agency:4000/";
+}
+
+function restartLevel() {
+    window.location.reload();
+    removeContext();
+    removePopup();
+}
+
+function startLevel() {
+    removePopup();
+    showDashboard();
+    countdown(60);
+}
+
+function nextLevel() {
+    window.location.reload();
+}
+
+function showDashboard() {
+    grid.classList.remove('hide');
+    grid.style.pointerEvents = "auto";
+}
+
+function hideDashboard() {
+    grid.classList.add('hide');
+    sound.classList.add('show');
+}
+
+
+
 // Change and display the current dashboard message
 function changeMessage(messageNameText, messageHeadPeep, messageFacePeep, messageContentText) {
     let message = document.getElementById("messageWrapper");
@@ -192,29 +241,40 @@ function changeMessage(messageNameText, messageHeadPeep, messageFacePeep, messag
     messageContent.textContent = (messageContentText);
 }
 
-function toggleMessage() {
-    let message = document.getElementById("messageWrapper");
-    message.classList.toggle("hide-message");
-}
-
-function changePopup(popupNameText, popupContentText, popupButtonLeftText, popupButtonRightText) {
-    getTime();
-    //Show or hide the popup
-    let popup = document.querySelector(".popupWrapper");
-    let popupName = document.getElementById("popupName");
-    let popupTime = document.getElementById("popupTime");
-    let popupContent = document.getElementById("popupContent");
-    let popupButtonLeft = document.getElementById("popupButtonLeft");
-    let popupButtonRight = document.getElementById("popupButtonRight");
-    popupName.textContent = (popupNameText);
-    popupTime.textContent = time;
-    popupContent.textContent = (popupContentText);
-    popupButtonLeft.textContent = (popupButtonLeftText);
-    popupButtonRight.textContent = (popupButtonRightText);
+// Create and parse popup data
+function createContext(heading, body, buttonRight, buttonRightFunction) {
+    // Create popup data
+    let popup = document.createElement('div');
+    let popupHeader = document.createElement('div');
+    let popupHeading = document.createElement('h3');
+    let popupBody = document.createElement('p');
+    let popupButton = document.createElement('div');
+    let popupButtonRight = document.createElement('button');
+    // Set element attributes
+    popup.classList.add("context");
+    popupHeader.setAttribute("id", "header");
+    popupHeading.setAttribute("id", "heading");
+    popupBody.setAttribute("id", "body");
+    popupButton.setAttribute("id", "buttonWrapper");
+    // Append elements to DOM
+    popup.appendChild(popupHeader);
+    popup.appendChild(popupBody);
+    popup.appendChild(popupButton);
+    popupHeader.appendChild(popupHeading);
+    popupButton.appendChild(popupButtonRight);
+    document.body.appendChild(popup);
+    // Parse the unique text content
+    popupHeading.textContent = (heading);
+    popupBody.textContent = (body);
+    popupButtonRight.textContent = (buttonRight);
+    popupButtonRight.onclick = (buttonRightFunction);
+    // Prevent dashboard being clicked
+    grid.style.pointerEvents = "none";
+    sound.style.pointerEvents = "auto";
 }
 
 // Create and parse popup data
-function createPopup(head, face, name, content, buttonLeft, buttonRight) {
+function createPopup(head, face, name, content, buttonLeft, buttonLeftFunction, buttonRight, buttonRightFunction) {
     // Create popup data
     let popup = document.createElement('div');
     let popupHeader = document.createElement('div');
@@ -257,44 +317,9 @@ function createPopup(head, face, name, content, buttonLeft, buttonRight) {
     popupContent.textContent = (content);
     popupButtonLeft.textContent = (buttonLeft);
     popupButtonRight.textContent = (buttonRight);
-}
-
-function togglePopup() {
-    let popup = document.querySelector(".popupWrapper");
-    popup.classList.toggle("show-popup");
-    if (popup.classList.contains("show-popup")) {
-        grid.style.pointerEvents = "none";
-    }
-    else {
-        grid.style.pointerEvents = "auto";
-    }
-
-}
-
-function changeContext(contextHeaderText, contextContentText, contextButtonText) {
-    //Show or hide the popup
-    let context = document.querySelector(".contextWrapper");
-    let contextHeader = document.getElementById("contextHeader");
-    let contextContent = document.getElementById("contextContent");
-    let contextButton = document.getElementById("contextButton");
-    contextHeader.textContent = (contextHeaderText);
-    contextContent.textContent = (contextContentText);
-    contextButton.textContent = (contextButtonText);
-}
-
-function toggleContext() {
-    let context = document.querySelector(".contextWrapper");
-    context.classList.toggle("show-context");
-    if (context.classList.contains("show-context")) {
-        grid.style.pointerEvents = "none";
-    }
-    else {
-        grid.style.pointerEvents = "auto";
-    }
-}
-
-// Hide the dashboard on toggle
-function toggleDashboard() {
-    grid.classList.toggle('hide');
-    sound.classList.add('show');
+    popupButtonLeft.addEventListener("click", (buttonLeftFunction));
+    popupButtonRight.addEventListener("click", (buttonRightFunction));
+    // Prevent dashboard being clicked
+    grid.style.pointerEvents = "none";
+    sound.style.pointerEvents = "auto";
 }

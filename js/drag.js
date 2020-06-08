@@ -117,14 +117,18 @@ function dragDrop(event) {
         let clients = document.querySelectorAll('.client');
         for (i = 0; i < clients.length; i++) {
             if (!clients[i].classList.contains("empty")) {
+                pauseCountdown();
                 createPopup(
                     "analyst",
                     "explaining",
                     "Recruitment",
                     "Good job! You’ve been given the internship, obviously you’ll need to pick up the pace - time is money!",
                     "Great, I'm on it!",
-                    "Okay, I'll try"
+                    nextLevel,
+                    "Okay, I'll try",
+                    nextLevel
                 );
+
             }
         }
         
