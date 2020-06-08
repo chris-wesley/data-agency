@@ -188,8 +188,24 @@ function removeContext() {
 }
 
 function removePopup() {
-    let popup = document.querySelector(".popup");
+    let popup = document.querySelectorAll(".popup")[1];
     popup.remove();
+}
+
+function removePopup2() {
+    let popup = document.querySelectorAll(".popup")[0];
+    popup.remove();
+}
+
+function hideMessage() {
+    let message = document.getElementById("message");
+    message.classList.toggle("hide-message");
+    message.classList.remove("unread-message");
+}
+
+function removeMessage() {
+    let message = document.getElementById("message");
+    message.remove();
 }
 
 function goHome() {
@@ -203,7 +219,7 @@ function restartLevel() {
 }
 
 function startLevel() {
-    removePopup();
+    removePopup2();
     showDashboard();
     countdown(60);
 }
@@ -222,23 +238,47 @@ function hideDashboard() {
     sound.classList.add('show');
 }
 
-
-
-// Change and display the current dashboard message
-function changeMessage(messageNameText, messageHeadPeep, messageFacePeep, messageContentText) {
-    let message = document.getElementById("messageWrapper");
-    let messageHeader = document.getElementById("messageHeader");
-    let messageHead = document.getElementById("messageHead");
-    let messageFace = document.getElementById("messageFace");
-    let messageName = document.getElementById("messageName");
-    let messageTime = document.getElementById("messageTime");
-    let messageContent = document.getElementById("messageContent");
-    // Change message contents
-    messageHead.src = "/data/open-peeps/head/" + (messageHeadPeep) + ".svg";
-    messageFace.src = "/data/open-peeps/face/" + (messageFacePeep) + ".svg";
-    messageName.textContent = (messageNameText);
+// Create and parse message data
+function createMessage(head, face, name, content) {
+    // Create message data
+    let message = document.createElement('div');
+    let messageHeader = document.createElement('div');
+    let messagePeep = document.createElement('div');
+    let messageHead = document.createElement('img');
+    let messageFace = document.createElement('img');
+    let messageName = document.createElement('h3');
+    let messageTime = document.createElement('h3');
+    let messageContent = document.createElement('p');
+    // Set element attributes
+    message.classList.add("footerMiddle");
+    message.classList.add("hide-message");
+    message.classList.add("unread-message");
+    message.setAttribute("id", "message");
+    messageHeader.setAttribute("id", "header");
+    messagePeep.setAttribute("id", "peep");
+    messageHead.setAttribute("id", "head");
+    messageFace.setAttribute("id", "face");
+    messageName.setAttribute("id", "name");
+    messageTime.setAttribute("id", "time");
+    messageContent.setAttribute("id", "content");
+    // Append elements to DOM
+    message.appendChild(messageHeader);
+    message.appendChild(messageContent);
+    messageHeader.appendChild(messagePeep);
+    messageHeader.appendChild(messageName);
+    messageHeader.appendChild(messageTime);
+    messagePeep.appendChild(messageHead);
+    messagePeep.appendChild(messageFace);
+    grid.insertBefore(message, grid.childNodes[14]);
+    // Parse the unique text content
+    message.addEventListener("click", hideMessage);
+    messageHead.setAttribute("src", "/data/open-peeps/head/" + (head) + ".svg")
+    messageFace.setAttribute("src", "/data/open-peeps/face/" + (face) + ".svg")
+    messageName.textContent = (name);
     messageTime.textContent = time;
-    messageContent.textContent = (messageContentText);
+    messageContent.textContent = (content);
+    // Animation
+    window.setTimeout(hideMessage, 2000);
 }
 
 // Create and parse popup data
@@ -275,6 +315,57 @@ function createContext(heading, body, buttonRight, buttonRightFunction) {
 
 // Create and parse popup data
 function createPopup(head, face, name, content, buttonLeft, buttonLeftFunction, buttonRight, buttonRightFunction) {
+    // Create popup data
+    let popup = document.createElement('div');
+    let popupHeader = document.createElement('div');
+    let popupPeep = document.createElement('div');
+    let popupHead = document.createElement('img');
+    let popupFace = document.createElement('img');
+    let popupName = document.createElement('h3');
+    let popupTime = document.createElement('h3');
+    let popupContent = document.createElement('p');
+    let popupButton = document.createElement('div');
+    let popupButtonLeft = document.createElement('button');
+    let popupButtonRight = document.createElement('button');
+    // Set element attributes
+    popup.classList.add("popup");
+    popupHeader.setAttribute("id", "header");
+    popupPeep.setAttribute("id", "peep");
+    popupHead.setAttribute("id", "head");
+    popupFace.setAttribute("id", "face");
+    popupName.setAttribute("id", "name");
+    popupTime.setAttribute("id", "time");
+    popupContent.setAttribute("id", "content");
+    popupButton.setAttribute("id", "buttonWrapper");
+    // Append elements to DOM
+    popup.appendChild(popupHeader);
+    popup.appendChild(popupContent);
+    popup.appendChild(popupButton);
+    popupHeader.appendChild(popupPeep);
+    popupHeader.appendChild(popupName);
+    popupHeader.appendChild(popupTime);
+    popupPeep.appendChild(popupHead);
+    popupPeep.appendChild(popupFace);
+    popupButton.appendChild(popupButtonLeft);
+    popupButton.appendChild(popupButtonRight);
+    document.body.appendChild(popup);
+    // Parse the unique text content
+    popupHead.setAttribute("src", "/data/open-peeps/head/" + (head) + ".svg")
+    popupFace.setAttribute("src", "/data/open-peeps/face/" + (face) + ".svg")
+    popupName.textContent = (name);
+    popupTime.textContent = time;
+    popupContent.textContent = (content);
+    popupButtonLeft.textContent = (buttonLeft);
+    popupButtonRight.textContent = (buttonRight);
+    popupButtonLeft.addEventListener("click", (buttonLeftFunction));
+    popupButtonRight.addEventListener("click", (buttonRightFunction));
+    // Prevent dashboard being clicked
+    grid.style.pointerEvents = "none";
+    sound.style.pointerEvents = "auto";
+}
+
+// Create and parse popup data
+function createPopup2(head, face, name, content, buttonLeft, buttonLeftFunction, buttonRight, buttonRightFunction) {
     // Create popup data
     let popup = document.createElement('div');
     let popupHeader = document.createElement('div');

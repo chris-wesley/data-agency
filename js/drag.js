@@ -54,6 +54,7 @@ function dragDrop(event) {
     event.preventDefault();
     dropSection = this;
     dropSectionType = this.id;
+
     // Source to users transfer
     if ((draggedCardType === "source") && (dropSectionType == "users")) {
         for (i = 1; i < this.children.length; i++) {
@@ -100,6 +101,13 @@ function dragDrop(event) {
         }
         reduceScore(draggedCard);
         draggedCard.style.display = "none";
+        removeMessage();
+        createMessage(
+            "analyst",
+            "explaining",
+            "Recruitment",
+            "Now you can see the individual datafields underneath the user ID, find a datafield that matches to the segment"
+        );
     }
     // User to segments transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments")) {
@@ -107,6 +115,13 @@ function dragDrop(event) {
         cardDraggedOver.appendChild(span).textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
         draggedCard.style.display = "none";
+        removeMessage();
+        createMessage(
+            "analyst",
+            "explaining",
+            "Recruitment",
+            "When all your users are sorted, make sure each segment is delivered to the corresponding client."
+        );
     }
     // Segment to clients transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients")) {
@@ -118,6 +133,7 @@ function dragDrop(event) {
         for (i = 0; i < clients.length; i++) {
             if (!clients[i].classList.contains("empty")) {
                 pauseCountdown();
+                removeMessage();
                 createPopup(
                     "analyst",
                     "explaining",
@@ -131,7 +147,6 @@ function dragDrop(event) {
 
             }
         }
-        
     }
     //console.log(this.id, 'dragdrop');
 }

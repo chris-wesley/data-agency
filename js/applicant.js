@@ -18,20 +18,31 @@ createContext(
 	removeContext
 );
 
+createPopup2(
+	"analyst",
+	"explaining",
+	"Recruitment",
+	"You’ve been tasked with finding potential donors for a charity. They want to target users in their local area to increase their fundraising efforts.",
+	"Okay, I'm ready",
+	startLevel,
+	"Let's get started!",
+	startLevel
+);
+
 createPopup(
 	"analyst",
 	"explaining",
 	"Recruitment",
 	"At Data Agency, we connect our clients to users. We buy user data, analyse it and sell the packaged results. As an intern, you’ll be manually sorting through the data. Have you got what it takes?",
 	"I'll give it a go",
-	startLevel,
+	removePopup,
 	"I've got what it takes!",
-	startLevel
+	removePopup
 );
 
-changeMessage(
-	"Recruitment",
+createMessage(
 	"analyst",
 	"explaining",
-	"You’ve been tasked with finding potential donors for a charity. They want to target users in their local area to increase their fundraising efforts."
+	"Recruitment",
+	"This is the dashboard you’ll be working from. To begin, buy the data source on the left by dragging it into the users column."
 );

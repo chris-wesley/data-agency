@@ -185,73 +185,23 @@ h3 {
     font-weight: 500;
 }
 
-#messageWrapper {
-    height: 190px;
+#message {
+    padding: 30px 30px 30px 30px;
+    height: 250px;
     border: solid 1.5px black;
     border-radius: 2px;
     background-color: white;
     cursor: pointer;
     transition: all 0.5s;
+    margin-bottom: -90px;
 }
 
 .hide-message {
-    margin-bottom: -150px;
+    margin-bottom: -205px !important;
 }
 
-#messageHeader {
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 28px;
-}
-
-#messagePeep {
-    display: inline;
-    position: relative;
-    vertical-align: middle;
-}
-
-#messageHead {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-#messageFace {
-    position: absolute;
-    top: 16px;
-    left: 13px;
-    right: 0;
-}
-
-#messageHeaderText h3 {
-    display: inline;
-}
-
-#messageName {
-    padding-left: 50px;
-}
-
-#messageTime {
-    padding-left: 10px;
-    color: lightgrey;
-}
-
-#messageContent {
-    padding: 2px 30px 20px 30px;
-    font-size: 1.1em;
-}
-
-.popupWrapper {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: solid 1.5px black;
-    border-radius: 2px;
-    background-color: white;
+#message.unread-message {
+    background-color: whitesmoke;
 }
 
 .popup {
