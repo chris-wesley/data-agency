@@ -127,7 +127,7 @@ async function getUsers(level) {
         span.textContent = address;
         users[i].append(span);
         //Randomise postcode
-        postcode = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
+        postcode = getRandomChar() + getRandomChar() + getRandomInt(0, 9) + getRandomInt(0, 9) + " " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
         var span = document.createElement("span");
         span.classList.add("postcode");
         span.style.display = "none";
@@ -199,6 +199,7 @@ async function getSegments(level) {
         let link = split[2];
 
         segments[i].children[0].textContent = name;
+        segments[i].dataset.link = link;
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
@@ -229,9 +230,26 @@ async function getClients(level) {
         }
         clients[i].children[0].textContent = name;
         clients[i].children[1].textContent = price;
+        clients[i].dataset.link = link;
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
+    }
+    link = clients[Math.floor(Math.random() * clients.length)].dataset.link;
+    checkLinks(link);
+}
+
+function checkLinks(link) {
+    let clients = document.querySelectorAll('.client');
+    //console.log((link));
+    //console.log(clients.length);
+    for (i = 0; i < clients.length; i++) {
+        if ((link) == "charityinPostcode") {
+            let users = document.querySelectorAll('.user');
+            let postcode = users[Math.floor(Math.random() * users.length)].children[7];
+            postcode.parentElement.setAttribute("data-link", "charityinPostcode");
+            postcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
+        }
     }
 }
 
@@ -246,4 +264,4 @@ function getRandomInt(min, max) {
 function getRandomChar() {
     randomChar = String.fromCharCode(65 + Math.floor(Math.random() * 26));
     return randomChar;
-    }
+}

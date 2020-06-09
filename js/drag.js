@@ -4,9 +4,11 @@
 let draggedCard;
 let draggedCardType;
 let draggedCardName;
+let draggedCardLink;
 let dropSection;
 let dropSectionType;
 let cardDraggedOver;
+let cardDraggedOverLink;
 
 // Add event listeners to all cards and sections
 cards.forEach(card => card.addEventListener('dragstart', dragStart));
@@ -22,6 +24,7 @@ function dragStart(event) {
     draggedCard = event.currentTarget;
     draggedCardType = event.currentTarget.classList.item(1);
     draggedCardName = event.currentTarget.children[0].textContent;
+    draggedCardLink = event.currentTarget.dataset.link;
     //console.log(this.id, 'dragstart');
 }
 
@@ -34,6 +37,7 @@ function drag(event) {
 function dragOver(event) {
     event.preventDefault();
     cardDraggedOver = this;
+    cardDraggedOverLink = this.dataset.link;
     //console.log(this, 'dragover');
 }
 
@@ -54,6 +58,7 @@ function dragDrop(event) {
     event.preventDefault();
     dropSection = this;
     dropSectionType = this.id;
+
 
     // Source to users transfer
     if ((draggedCardType === "source") && (dropSectionType == "users")) {
@@ -111,7 +116,7 @@ function dragDrop(event) {
         hideMessage();
     }
     // User to segments transfer
-    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments")) {
+    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments") && (draggedCardLink == cardDraggedOverLink)) {
         let span = document.createElement("span");
         cardDraggedOver.appendChild(span).textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
@@ -126,7 +131,7 @@ function dragDrop(event) {
         hideMessage();
     }
     // Segment to clients transfer
-    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients")) {
+    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients") && (draggedCardLink == cardDraggedOverLink)) {
         increaseScore(cardDraggedOver);
         cardDraggedOver.children[1].textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
