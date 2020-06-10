@@ -1,9 +1,10 @@
 /* Applicant level */
 
 // Initial game variables
-let ethicalCounter = 0;
+let level = "Applicant";
+let upcomingLevel = "Intern";
 let scoreCounter = 0;
-currentLevel("Applicant");
+currentLevel(level);
 
 startingScore(50);
 
@@ -35,9 +36,9 @@ createPopup(
 	"Recruitment",
 	"At Data Agency, we connect our clients to users. We buy user data, analyse it and sell the packaged results. As an intern, you’ll be manually sorting through the data. Have you got what it takes?",
 	"I'll give it a go",
-	removePopup,
+	removePopup2,
 	"I've got what it takes!",
-	removePopup
+	removePopup2
 );
 
 createMessage(

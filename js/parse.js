@@ -29,6 +29,7 @@ async function getSources(level) {
         }
         sources[i].children[0].textContent = name;
         sources[i].children[1].textContent = price;
+        sources[i].dataset.ethics = ethics;
         sources[i].dataset.link = link;
         sources[i].dataset.field1 = field1;
         sources[i].dataset.field2 = field2;
@@ -39,6 +40,7 @@ async function getSources(level) {
             return str.indexOf(name) === -1;
         });
     }
+    getUsers((level));
 }
 
 // Fetch the user data files
@@ -179,7 +181,7 @@ async function getUsers(level) {
         span.textContent = "$" + salaryStart + "," + salaryEnd;
         users[i].append(span);
     }
-
+    getSegments((level));
 }
 
 // Fetch the segment data files
@@ -195,15 +197,19 @@ async function getSegments(level) {
         let randomise = rows[Math.floor(Math.random() * rows.length)];
         let split = randomise.split(',');
         let name = split[0];
-        let ethics = split[1];
+        let description = split[1];
         let link = split[2];
+        let ethics = split[3];
 
         segments[i].children[0].textContent = name;
+        segments[i].title = description;
+        segments[i].dataset.ethics = ethics;
         segments[i].dataset.link = link;
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
     }
+    getClients((level));
 }
 
 // Fetch client the data files
@@ -228,29 +234,51 @@ async function getClients(level) {
         } else {
             price = "$" + price;
         }
+
+        checkLinks(link);
         clients[i].children[0].textContent = name;
         clients[i].children[1].textContent = price;
+        clients[i].dataset.ethics = ethics;
         clients[i].dataset.link = link;
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
     }
-    link = clients[Math.floor(Math.random() * clients.length)].dataset.link;
-    checkLinks(link);
 }
 
 function checkLinks(link) {
     let clients = document.querySelectorAll('.client');
-    //console.log((link));
-    //console.log(clients.length);
-    for (i = 0; i < clients.length; i++) {
-        if ((link) == "charityinPostcode") {
-            let users = document.querySelectorAll('.user');
-            let postcode = users[Math.floor(Math.random() * users.length)].children[7];
-            postcode.parentElement.setAttribute("data-link", "charityinPostcode");
-            postcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
-        }
+    let users = document.querySelectorAll('.user');
+    console.log((link));
+    // Charity in postcode
+    if ((link) == "charityinPostcode") {
+        let postcode = users[Math.floor(Math.random() * users.length)].children[7];
+        postcode.parentElement.setAttribute("data-link", "charityinPostcode");
+        postcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
     }
+    // Automotive manufactuer
+    if ((link) == "automotiveManufactuer") {
+        console.log("got here");
+        let salary = users[Math.floor(Math.random() * users.length)];
+        let salaryText = salary.children[14].textContent;
+        salary.setAttribute("data-link", "automotiveManufactuer");
+        salaryText = getRandomInt(50001, 15000);
+    }
+
+    // Online retailer
+    if ((link) == "onlineRetailer") {
+        console.log("got here");
+        let salary = users[Math.floor(Math.random() * users.length)];
+        let salaryText = salary.children[14].textContent;
+        salary.setAttribute("data-link", "automotiveManufactuer");
+        salaryText = getRandomInt(50001, 15000);
+    }
+}
+
+let totalEthics = 0;
+function ethicsCounter(number) {
+    totalEthics = (parseInt(totalEthics) + parseInt((number)));
+    console.log(totalEthics);
 }
 
 // Randomise whole number function

@@ -71,9 +71,6 @@ function populateDashboard(sourcesNumber, usersNumber, segementsNumber, clientsN
 
 function currentLevel(position) {
     getSources((position));
-    getUsers((position));
-    getSegments((position));
-    getClients((position));
     document.getElementById('levelText');
     levelText.textContent = (position);
 }
@@ -136,13 +133,14 @@ function countdown(seconds) {
             createPopup(
                 "analyst",
                 "explaining",
-                "Recruitment",
+                "Human Resources",
                 "You've got to be quicker than that - time is money.",
                 "I can't do it",
                 goHome,
                 "I'll try again",
                 restartLevel
             );
+            showPopup1();
         }
         else {
             pause = setTimeout(tick, 1000);
@@ -184,18 +182,35 @@ function toggleMute() {
 
 function removeContext() {
     let context = document.querySelector(".context");
-    context.remove();
+    if (document.contains(context)) {
+        context.remove();
+    }
+    showPopup1();
+    showPopup2();
 }
 
-function removePopup() {
-    let popup = document.querySelectorAll(".popup")[1];
-    popup.remove();
+function removePopup1() {
+    let popup1 = document.querySelectorAll(".popup")[0];
+    if (document.contains(popup1)) {
+        popup1.remove();
+    }
 }
 
 function removePopup2() {
-    let popup = document.querySelectorAll(".popup")[0];
-    popup.remove();
+    let popup2 = document.querySelectorAll(".popup")[1];
+    popup2.remove();
 }
+
+function showPopup1() {
+    let popup1 = document.querySelectorAll(".popup")[0];
+    popup1.style.display = "block";
+}
+
+function showPopup2() {
+    let popup2 = document.querySelectorAll(".popup")[1];
+    popup2.style.display = "block";
+}
+
 
 function hideMessage() {
     let message = document.getElementById("message");
@@ -214,19 +229,19 @@ function goHome() {
 
 function restartLevel() {
     window.location.reload();
-    removeContext();
-    removePopup();
+    removePopup1();
 }
 
 function startLevel() {
-    removePopup2();
+    removePopup1();
     showDashboard();
     countdown(60);
     window.setTimeout(hideMessage, 1000);
 }
 
 function nextLevel() {
-    window.location.reload();
+    let level = upcomingLevel.toLowerCase();
+    window.location.assign("/" + level + "/");
 }
 
 function showDashboard() {
@@ -281,38 +296,6 @@ function createMessage(head, face, name, content) {
 }
 
 // Create and parse popup data
-function createContext(heading, body, buttonRight, buttonRightFunction) {
-    // Create popup data
-    let popup = document.createElement('div');
-    let popupHeader = document.createElement('div');
-    let popupHeading = document.createElement('h3');
-    let popupBody = document.createElement('p');
-    let popupButton = document.createElement('div');
-    let popupButtonRight = document.createElement('button');
-    // Set element attributes
-    popup.classList.add("context");
-    popupHeader.setAttribute("id", "header");
-    popupHeading.setAttribute("id", "heading");
-    popupBody.setAttribute("id", "body");
-    popupButton.setAttribute("id", "buttonWrapper");
-    // Append elements to DOM
-    popup.appendChild(popupHeader);
-    popup.appendChild(popupBody);
-    popup.appendChild(popupButton);
-    popupHeader.appendChild(popupHeading);
-    popupButton.appendChild(popupButtonRight);
-    document.body.appendChild(popup);
-    // Parse the unique text content
-    popupHeading.textContent = (heading);
-    popupBody.textContent = (body);
-    popupButtonRight.textContent = (buttonRight);
-    popupButtonRight.onclick = (buttonRightFunction);
-    // Prevent dashboard being clicked
-    grid.style.pointerEvents = "none";
-    sound.style.pointerEvents = "auto";
-}
-
-// Create and parse popup data
 function createPopup(head, face, name, content, buttonLeft, buttonLeftFunction, buttonRight, buttonRightFunction) {
     // Create popup data
     let popup = document.createElement('div');
@@ -361,6 +344,7 @@ function createPopup(head, face, name, content, buttonLeft, buttonLeftFunction, 
     // Prevent dashboard being clicked
     grid.style.pointerEvents = "none";
     sound.style.pointerEvents = "auto";
+    popup.style.display = "none";
 }
 
 // Create and parse popup data
@@ -409,6 +393,39 @@ function createPopup2(head, face, name, content, buttonLeft, buttonLeftFunction,
     popupButtonRight.textContent = (buttonRight);
     popupButtonLeft.addEventListener("click", (buttonLeftFunction));
     popupButtonRight.addEventListener("click", (buttonRightFunction));
+    // Prevent dashboard being clicked
+    grid.style.pointerEvents = "none";
+    sound.style.pointerEvents = "auto";
+    popup.style.display = "none";
+}
+
+// Create and parse popup data
+function createContext(heading, body, buttonRight, buttonRightFunction) {
+    // Create context data
+    let context = document.createElement('div');
+    let contextHeader = document.createElement('div');
+    let contextHeading = document.createElement('h3');
+    let contextBody = document.createElement('p');
+    let contextButton = document.createElement('div');
+    let contextButtonRight = document.createElement('button');
+    // Set element attributes
+    context.classList.add("context");
+    contextHeader.setAttribute("id", "header");
+    contextHeading.setAttribute("id", "heading");
+    contextBody.setAttribute("id", "body");
+    contextButton.setAttribute("id", "buttonWrapper");
+    // Append elements to DOM
+    context.appendChild(contextHeader);
+    context.appendChild(contextBody);
+    context.appendChild(contextButton);
+    contextHeader.appendChild(contextHeading);
+    contextButton.appendChild(contextButtonRight);
+    document.body.appendChild(context);
+    // Parse the unique text content
+    contextHeading.textContent = (heading);
+    contextBody.textContent = (body);
+    contextButtonRight.textContent = (buttonRight);
+    contextButtonRight.onclick = (buttonRightFunction);
     // Prevent dashboard being clicked
     grid.style.pointerEvents = "none";
     sound.style.pointerEvents = "auto";

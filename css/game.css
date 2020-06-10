@@ -110,12 +110,37 @@ body {
 }
 
 .card:hover {
+    cursor: grab;
     background-color: whitesmoke;
 }
 
 .card.user {
-    cursor: grab;
     margin-bottom: 15px;
+}
+
+.title {
+    position: relative;
+}
+
+h2.title {
+    position: inline;
+}
+
+/* Tooltip text */
+button.tooltip {
+    display: inline;
+    color: white;
+    background-color: black;
+    display: inline;
+    position: absolute;
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+    padding: 0px;
+}
+
+button.tooltip:hover {
+    visibility: visible;
 }
 
 :root {
@@ -164,6 +189,16 @@ h3 {
 .section h2 {
     margin-bottom: 20px;
     text-transform: uppercase;
+}
+
+.background-pattern {
+    background: repeating-linear-gradient(
+        45deg,
+        whitesmoke,
+        whitesmoke 10px,
+        #FFFFFF 10px,
+        #FFFFFF 20px
+    );
 }
 
 .right {

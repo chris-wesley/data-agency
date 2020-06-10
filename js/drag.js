@@ -4,10 +4,12 @@
 let draggedCard;
 let draggedCardType;
 let draggedCardName;
+let draggedCardEthics;
 let draggedCardLink;
 let dropSection;
 let dropSectionType;
 let cardDraggedOver;
+let cardDraggedOverEthics;
 let cardDraggedOverLink;
 
 // Add event listeners to all cards and sections
@@ -21,9 +23,11 @@ cards.forEach(card => card.addEventListener('dragend', dragEnd));
 
 // Card begins dragging
 function dragStart(event) {
+    this.style.cursor = "grabbing";
     draggedCard = event.currentTarget;
     draggedCardType = event.currentTarget.classList.item(1);
     draggedCardName = event.currentTarget.children[0].textContent;
+    draggedCardEthics = event.currentTarget.dataset.ethics;
     draggedCardLink = event.currentTarget.dataset.link;
     //console.log(this.id, 'dragstart');
 }
@@ -37,19 +41,18 @@ function drag(event) {
 function dragOver(event) {
     event.preventDefault();
     cardDraggedOver = this;
+    cardDraggedOverEthics = this.dataset.ethics;
     cardDraggedOverLink = this.dataset.link;
     //console.log(this, 'dragover');
 }
 
 // Dragging card enters a section
 function dragEnter(event) {
-    this.style.backgroundColor = "whitesmoke";
     //console.log(this.id, 'dragenter');
 }
 
 // Dragging card leaves a section
 function dragLeave(event) {
-    this.style.backgroundColor = "white";
     //console.log(this.id, 'dragleave');
 }
 
@@ -58,7 +61,6 @@ function dragDrop(event) {
     event.preventDefault();
     dropSection = this;
     dropSectionType = this.id;
-
 
     // Source to users transfer
     if ((draggedCardType === "source") && (dropSectionType == "users")) {
@@ -105,6 +107,7 @@ function dragDrop(event) {
             }
         }
         reduceScore(draggedCard);
+        ethicsCounter(draggedCardEthics);
         draggedCard.style.display = "none";
         removeMessage();
         createMessage(
@@ -121,6 +124,7 @@ function dragDrop(event) {
         cardDraggedOver.appendChild(span).textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
         draggedCard.style.display = "none";
+        ethicsCounter(cardDraggedOverEthics);
         removeMessage();
         createMessage(
             "analyst",
@@ -136,6 +140,7 @@ function dragDrop(event) {
         cardDraggedOver.children[1].textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
         draggedCard.style.display = "none";
+        ethicsCounter(cardDraggedOverEthics);
         let clients = document.querySelectorAll('.client');
         for (i = 0; i < clients.length; i++) {
             if (!clients[i].classList.contains("empty")) {
@@ -151,7 +156,7 @@ function dragDrop(event) {
                     "Okay, I'll try",
                     nextLevel
                 );
-
+                showPopup1();
             }
         }
     }
@@ -160,6 +165,7 @@ function dragDrop(event) {
 
 // Dragging card is released
 function dragEnd(event) {
+    this.style.cursor = "grab";
     event.preventDefault();
     //console.log(this.id, 'dragend');
 }

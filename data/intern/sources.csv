@@ -1,0 +1,3 @@
+Name,Price,Type,Ethics,Link,Data fields,,,,
+Census,0,Public,2,charityinPostcode,name,gender,postcode,address,end
+Credit card history,300,Private,5,automotiveManufactuer,purchase,purchase,dob,salary,end
