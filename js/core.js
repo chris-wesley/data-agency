@@ -178,7 +178,29 @@ function toggleMute() {
     if (!music.muted) {
         icon.src = "../images/sound-on.svg";
     }
-};
+}
+
+let notification = new effect("notification");
+let bleep = new effect("bleep");
+let beep = new effect("beep");
+let tone = new effect("tone");
+let levelUp = new effect("levelUp");
+let pop = new effect("pop");
+
+function effect(source) {
+    this.effect = document.createElement("audio");
+    this.effect.src = "/data/audio/" + (source) + ".mp3";
+    this.effect.setAttribute("preload", "auto");
+    this.effect.setAttribute("controls", "none");
+    this.effect.style.display = "none";
+    document.body.appendChild(this.effect);
+    this.play = function() {
+        this.effect.play();
+    };
+    this.stop = function() {
+        this.effect.pause();
+    };
+}
 
 function removeContext() {
     let context = document.querySelector(".context");
@@ -204,11 +226,13 @@ function removePopup2() {
 function showPopup1() {
     let popup1 = document.querySelectorAll(".popup")[0];
     popup1.style.display = "block";
+    pop.play();
 }
 
 function showPopup2() {
     let popup2 = document.querySelectorAll(".popup")[1];
     popup2.style.display = "block";
+    pop.play();
 }
 
 
@@ -216,6 +240,7 @@ function hideMessage() {
     let message = document.getElementById("message");
     message.classList.toggle("hide-message");
     message.classList.remove("unread-message");
+    pop.play();
 }
 
 function removeMessage() {
@@ -242,6 +267,7 @@ function startLevel() {
 function nextLevel() {
     let level = upcomingLevel.toLowerCase();
     window.location.assign("/" + level + "/");
+
 }
 
 function showDashboard() {

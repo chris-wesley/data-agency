@@ -65,16 +65,13 @@ function dragDrop(event) {
     // Source to users transfer
     if ((draggedCardType === "source") && (dropSectionType == "users")) {
         for (i = 1; i < this.children.length; i++) {
-            let span = document.createElement("span");
-            dropSection.children[i].insertBefore(span, this.children[i].children[1]);
-            dropSection.children[i].children[1].textContent = draggedCardName;
             dropSection.children[i].classList.remove("empty");
         }
         for (i = 0; i < this.children.length - 1; i++) {
             // Array of possible datafields
             let fieldCheck = [
                 "name",
-                "gender",
+                "sex",
                 "dob",
                 "phoneNumber",
                 "emailAddress",
@@ -107,14 +104,17 @@ function dragDrop(event) {
         reduceScore(draggedCard);
         ethicsCounter(draggedCardEthics);
         draggedCard.style.display = "none";
-        removeMessage();
-        createMessage(
-            "analyst",
-            "explaining",
-            "Recruitment",
-            "Now you can see the individual datafields underneath the user ID, find a datafield that matches to the segment"
-        );
-        hideMessage();
+        if (level == "Applicant") {
+            removeMessage();
+            createMessage(
+                "analyst",
+                "explaining",
+                "Recruitment",
+                "Now you can see the individual datafields underneath the user ID, find a datafield that matches to the segment"
+            );
+            hideMessage();
+        }
+        tone.play();
     }
     // User to segments transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments") && (draggedCardLink == cardDraggedOverLink)) {
@@ -123,14 +123,17 @@ function dragDrop(event) {
         cardDraggedOver.classList.remove("empty");
         draggedCard.style.display = "none";
         ethicsCounter(cardDraggedOverEthics);
-        removeMessage();
-        createMessage(
-            "analyst",
-            "explaining",
-            "Recruitment",
-            "When all your users are sorted, make sure each segment is delivered to the corresponding client."
-        );
-        hideMessage();
+        if (level == "Applicant") {
+            removeMessage();
+            createMessage(
+                "analyst",
+                "explaining",
+                "Recruitment",
+                "When all your users are sorted, make sure each segment is delivered to the corresponding client."
+            );
+            hideMessage();
+        }
+        tone.play();
     }
     // Segment to clients transfer
     else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients") && (draggedCardLink == cardDraggedOverLink)) {
@@ -143,18 +146,21 @@ function dragDrop(event) {
         for (i = 0; i < clients.length; i++) {
             if (!clients[i].classList.contains("empty")) {
                 pauseCountdown();
-                hideMessage();
-                createPopup(
-                    "analyst",
-                    "explaining",
-                    "Recruitment",
-                    "Good job! You’ve been given the internship, obviously you’ll need to pick up the pace - time is money!",
-                    "Great, I'm on it!",
-                    nextLevel,
-                    "Okay, I'll try",
-                    nextLevel
-                );
+                if (level == "Applicant") {
+                    hideMessage();
+                    createPopup(
+                        "analyst",
+                        "explaining",
+                        "Recruitment",
+                        "Good job! You’ve been given the internship, obviously you’ll need to pick up the pace - time is money!",
+                        "Great, I'm on it!",
+                        nextLevel,
+                        "Okay, I'll try",
+                        nextLevel
+                    );
                 showPopup1();
+                }
+                levelUp.play();
             }
         }
     }

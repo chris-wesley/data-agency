@@ -91,7 +91,7 @@ body {
 .card p {
     font-size: 1.1rem;
     font-weight: 400;
-    margin: 5px 0 5px 0;
+    margin: 5px 0px 5px 0px;
 
 }
 
@@ -116,6 +116,10 @@ body {
 
 .card.user {
     margin-bottom: 15px;
+}
+
+.card.user p {
+    margin: 5px 0px 10px 0px;
 }
 
 .title {

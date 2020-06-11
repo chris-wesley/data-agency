@@ -68,9 +68,9 @@ async function getUsers(level) {
         var randomNumber = getRandomInt(0, 1);
         var randomFirstName = split[randomNumber];
         if (randomNumber === 0) {
-            gender = "Male";
+            sex = "Male";
         } else {
-            gender = "Female";
+            sex = "Female";
         }
         // Combine names to single span
         name = randomFirstName + " " + lastName;
@@ -79,14 +79,16 @@ async function getUsers(level) {
         // Randomise name
         var span = document.createElement("span");
         span.classList.add("name");
+        span.title = "Name";
         span.style.display = "none";
         span.textContent = name;
         users[i].append(span);
-        // Randomise gender
+        // Randomise sex
         var span = document.createElement("span");
-        span.classList.add("gender");
+        span.classList.add("sex");
+        span.title = "Sex";
         span.style.display = "none";
-        span.textContent = gender;
+        span.textContent = sex;
         users[i].append(span);
         // Randomise date of birth
         var day = getRandomInt(1, 30);
@@ -101,6 +103,7 @@ async function getUsers(level) {
         dob = day + "/" + month + "/" + year;
         var span = document.createElement("span");
         span.classList.add("dob");
+        span.title = "Date of birth";
         span.style.display = "none";
         span.textContent = dob;
         users[i].append(span);
@@ -108,6 +111,7 @@ async function getUsers(level) {
         phoneNumber = "+447" + getRandomInt(123456789, 999999999);
         var span = document.createElement("span");
         span.classList.add("phoneNumber");
+        span.title = "Mobile number";
         span.style.display = "none";
         span.textContent = phoneNumber;
         users[i].append(span);
@@ -115,6 +119,7 @@ async function getUsers(level) {
         emailAddress = (randomFirstName.slice(0, 1) + "." + lastName + "@" + email + ".com").toLowerCase();
         var span = document.createElement("span");
         span.classList.add("emailAddress");
+        span.title = "Email address";
         span.style.display = "none";
         span.textContent = emailAddress;
         users[i].append(span);
@@ -123,6 +128,7 @@ async function getUsers(level) {
         address = streetNumber + " " + street;
         var span = document.createElement("span");
         span.classList.add("address");
+        span.title = "Address";
         span.style.display = "none";
         span.textContent = address;
         users[i].append(span);
@@ -130,18 +136,21 @@ async function getUsers(level) {
         postcode = getRandomChar() + getRandomChar() + getRandomInt(0, 9) + getRandomInt(0, 9) + " " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
         var span = document.createElement("span");
         span.classList.add("postcode");
+        span.title = "Postcode";
         span.style.display = "none";
         span.textContent = postcode;
         users[i].append(span);
         // Randomise occupation
         var span = document.createElement("span");
         span.classList.add("occupation");
+        span.title = "Occupation";
         span.style.display = "none";
         span.textContent = occupation;
         users[i].append(span);
         // Randomise marital
         var span = document.createElement("span");
         span.classList.add("marital");
+        span.title = "Marital status";
         span.style.display = "none";
         span.textContent = marital;
         users[i].append(span);
@@ -154,6 +163,7 @@ async function getUsers(level) {
         // Randomise homeOwnership
         var span = document.createElement("span");
         span.classList.add("homeOwnership");
+        span.title = "Home ownership";
         span.style.display = "none";
         span.textContent = homeOwnership;
         users[i].append(span);
@@ -163,6 +173,7 @@ async function getUsers(level) {
         var salaryEnd = String(salary).substring(2);
         var span = document.createElement("span");
         span.classList.add("salary");
+        span.title = "Estimated income";
         span.style.display = "none";
         span.textContent = "$" + salaryStart + "," + salaryEnd;
         users[i].append(span);
@@ -225,8 +236,9 @@ async function getClients(level) {
         clients[i].children[1].textContent = price;
         clients[i].dataset.ethics = ethics;
         clients[i].dataset.link = link;
-
+        
         checkLinks(link);
+
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
@@ -240,34 +252,36 @@ function checkLinks(link) {
     let divideUsers = (users.length / clients.length);
     let linkedUsers = users[Math.floor(Math.random() * users.length)];
     // Charity in postcode
-    if ((link) == "charityinPostcode") {
+    if ((link) === "charityinPostcode") {
         let linkedUsers = users[Math.floor(Math.random() * users.length)];
         let linkedUsersPostcode = linkedUsers.children[7];
         linkedUsers.setAttribute("data-link", "charityinPostcode");
         linkedUsersPostcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
     }
+        if ((link) === "onlineRetailer") {
+            console.log("fds");
+            let linkedUsers =  users[i];
+            linkedUsers.setAttribute("data-link", "onlineRetailer");
+        }
     // Automotive manufactuer
-    else if ((link) == "luxuryCarManufacturer") {
-            let linkedUsers =  users[Math.floor(Math.random() * users.length)];
-            linkedUsers.setAttribute("data-link", "luxuryCarManufacturer");
-            let linkedUsersDob = linkedUsers.children[3]
-            let linkedUsersSalary = linkedUsers.children[12];
-            // Randomise date of birth
-            var day = getRandomInt(1, 30);
-            var month = getRandomInt(1, 12);
-            var year = getRandomInt(1946, 1964);
-            if (day < 10) {
-                day = "0" + day;
-            }
-            if (month < 10) {
-                month = "0" + month;
-            }         
-            linkedUsersDob.textContent = day + "/" + month + "/" + year;
-            linkedUsersSalary.textContent = ("$" + getRandomInt(50, 150) + "," + getRandomInt(100, 999));
-    }
-    else if ((link) == "onlineRetailer") {
-        let linkedUsers =  users[Math.floor(Math.random() * users.length)];
-        linkedUsers.setAttribute("data-link", "onlineRetailer");
+    if ((link) === "luxuryCarManufacturer")  {
+        console.log("car");
+        let linkedUsers = users[i];
+        linkedUsers.setAttribute("data-link", "luxuryCarManufacturer");
+        let linkedUsersDob = linkedUsers.children[3]
+        let linkedUsersSalary = linkedUsers.children[12];
+        // Randomise date of birth            
+        var day = getRandomInt(1, 30);
+        var month = getRandomInt(1, 12);
+        var year = getRandomInt(1946, 1964);
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }         
+        linkedUsersDob.textContent = day + "/" + month + "/" + year;
+        linkedUsersSalary.textContent = ("$" + getRandomInt(50, 150) + "," + getRandomInt(100, 999));
     }
 }
 

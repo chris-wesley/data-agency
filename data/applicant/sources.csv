@@ -1,2 +1,2 @@
 Name,Price,Type,Ethics,Link,Data fields,,,,
-Voter records,50,Public,2,charityinPostcode,name,gender,postcode,address,end
+Voter records,50,Public,2,charityinPostcode,name,sex,postcode,address,end
