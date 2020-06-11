@@ -84,8 +84,6 @@ function dragDrop(event) {
                 "marital",
                 "homeType",
                 "homeOwnership",
-                "religon",
-                "ethnic",
                 "salary"
             ];
             let dataSpan1 = document.querySelectorAll("." + draggedCard.dataset.field1);

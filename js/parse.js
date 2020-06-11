@@ -61,10 +61,8 @@ async function getUsers(level) {
         let marital = split[4];
         let homeType = split[5];
         let homeOwnership = split[6];
-        let religon = split[7];
-        let ethnic = split[8];
-        let street = split[9];
-        let email = split[10];
+        let street = split[7];
+        let email = split[8];
 
         //Randomly choose a male or female first name and combine with a last name
         var randomNumber = getRandomInt(0, 1);
@@ -159,18 +157,6 @@ async function getUsers(level) {
         span.style.display = "none";
         span.textContent = homeOwnership;
         users[i].append(span);
-        // Randomise religon
-        var span = document.createElement("span");
-        span.classList.add("religon");
-        span.style.display = "none";
-        span.textContent = religon;
-        users[i].append(span);
-        // Randomise ethnic
-        var span = document.createElement("span");
-        span.classList.add("ethnic");
-        span.style.display = "none";
-        span.textContent = ethnic;
-        users[i].append(span);
         // Randomise salary
         salary = getRandomInt(12000, 70000);
         var salaryStart = String(salary).substring(0, 2);
@@ -198,8 +184,8 @@ async function getSegments(level) {
         let split = randomise.split(',');
         let name = split[0];
         let description = split[1];
-        let link = split[2];
-        let ethics = split[3];
+        let ethics = split[2];
+        let link = split[3];
 
         segments[i].children[0].textContent = name;
         segments[i].title = description;
@@ -235,11 +221,12 @@ async function getClients(level) {
             price = "$" + price;
         }
 
-        checkLinks(link);
         clients[i].children[0].textContent = name;
         clients[i].children[1].textContent = price;
         clients[i].dataset.ethics = ethics;
         clients[i].dataset.link = link;
+
+        checkLinks(link);
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
@@ -250,28 +237,37 @@ function checkLinks(link) {
     let clients = document.querySelectorAll('.client');
     let users = document.querySelectorAll('.user');
     console.log((link));
+    let divideUsers = (users.length / clients.length);
+    let linkedUsers = users[Math.floor(Math.random() * users.length)];
     // Charity in postcode
     if ((link) == "charityinPostcode") {
-        let postcode = users[Math.floor(Math.random() * users.length)].children[7];
-        postcode.parentElement.setAttribute("data-link", "charityinPostcode");
-        postcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
+        let linkedUsers = users[Math.floor(Math.random() * users.length)];
+        let linkedUsersPostcode = linkedUsers.children[7];
+        linkedUsers.setAttribute("data-link", "charityinPostcode");
+        linkedUsersPostcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
     }
     // Automotive manufactuer
-    if ((link) == "automotiveManufactuer") {
-        console.log("got here");
-        let salary = users[Math.floor(Math.random() * users.length)];
-        let salaryText = salary.children[14].textContent;
-        salary.setAttribute("data-link", "automotiveManufactuer");
-        salaryText = getRandomInt(50001, 15000);
+    else if ((link) == "luxuryCarManufacturer") {
+            let linkedUsers =  users[Math.floor(Math.random() * users.length)];
+            linkedUsers.setAttribute("data-link", "luxuryCarManufacturer");
+            let linkedUsersDob = linkedUsers.children[3]
+            let linkedUsersSalary = linkedUsers.children[12];
+            // Randomise date of birth
+            var day = getRandomInt(1, 30);
+            var month = getRandomInt(1, 12);
+            var year = getRandomInt(1946, 1964);
+            if (day < 10) {
+                day = "0" + day;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }         
+            linkedUsersDob.textContent = day + "/" + month + "/" + year;
+            linkedUsersSalary.textContent = ("$" + getRandomInt(50, 150) + "," + getRandomInt(100, 999));
     }
-
-    // Online retailer
-    if ((link) == "onlineRetailer") {
-        console.log("got here");
-        let salary = users[Math.floor(Math.random() * users.length)];
-        let salaryText = salary.children[14].textContent;
-        salary.setAttribute("data-link", "automotiveManufactuer");
-        salaryText = getRandomInt(50001, 15000);
+    else if ((link) == "onlineRetailer") {
+        let linkedUsers =  users[Math.floor(Math.random() * users.length)];
+        linkedUsers.setAttribute("data-link", "onlineRetailer");
     }
 }
 
