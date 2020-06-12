@@ -1,0 +1,7 @@
+dob,salary,loanHistory,homeOwnership,link,end
+12/01/1959,14861,7,Owns with mortgage,creditCardIssuer,end
+05/07/1987,16549,2,Renting,mortgageLender,end
+17/12/1989,22547,3,Renting,mortgageLender,end
+13/03/1970,19546,4,Renting,creditCardIssuer,end
+28/10/1953,53747,5,Shared ownership,creditCardIssuer,end
+09/05/1985,15981,4,Renting,mortgageLender,end

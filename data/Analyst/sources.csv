@@ -1,0 +1,4 @@
+Name,Price,Type,Ethics,Link,Data fields,,,,end
+Property records,0,Public,2,mortgageLender,homeType,address,homeOwnership,homeOwnership,end
+Loan history,769,Private,5,creditCardIssuer,loanHistory,salary,salary,salary,end
+Social Media,258,Public,7,creditCardIssuer,name,marital,dob,dob,end
