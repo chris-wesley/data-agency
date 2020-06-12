@@ -45,7 +45,7 @@ async function getSources(level) {
 
 // Fetch the user data files
 async function getUsers(level) {
-    const response = await fetch('/data/' + (level) + '/users.csv');
+    const response = await fetch('/data/users.csv');
     const data = await response.text();
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
@@ -63,6 +63,7 @@ async function getUsers(level) {
         let homeOwnership = split[6];
         let street = split[7];
         let email = split[8];
+        let buyingChannel = split[9];
 
         //Randomly choose a male or female first name and combine with a last name
         var randomNumber = getRandomInt(0, 1);
@@ -157,6 +158,7 @@ async function getUsers(level) {
         // Randomise homeType
         var span = document.createElement("span");
         span.classList.add("homeType");
+        span.title = "Home type";
         span.style.display = "none";
         span.textContent = homeType;
         users[i].append(span);
@@ -177,7 +179,33 @@ async function getUsers(level) {
         span.style.display = "none";
         span.textContent = "$" + salaryStart + "," + salaryEnd;
         users[i].append(span);
+        // Randomise buyingChannel
+        var span = document.createElement("span");
+        span.classList.add("buyingChannel");
+        span.title = "Preferred buying channel";
+        span.style.display = "none";
+        span.textContent = buyingChannel;
+        users[i].append(span);
+        // Randomise monthly orders
+        var monthlyOrders = getRandomInt(0, 45);
+        var span = document.createElement("span");
+        span.classList.add("monthlyOrders");
+        span.title = "Average monthly orders";
+        span.style.display = "none";
+        span.textContent = monthlyOrders;
+        users[i].append(span);
+        // Randomise loan history
+        var loanHistory = getRandomInt(0, 10);
+        var span = document.createElement("span");
+        span.classList.add("loanHistory");
+        span.title = "Loan history";
+        span.style.display = "none";
+        span.textContent = loanHistory;
+        users[i].append(span);
+
+
     }
+    getLevelUsers((level));
     getSegments((level));
 }
 
@@ -237,18 +265,64 @@ async function getClients(level) {
         clients[i].dataset.ethics = ethics;
         clients[i].dataset.link = link;
         
-        checkLinks(link);
-
         rows = rows.filter(function(str) {
             return str.indexOf(name) === -1;
         });
     }
 }
 
+let uniqueSpan1;
+let uniqueSpan2;
+let uniqueSpan3;
+let uniqueSpan4;
+let uniqueLink;
+// Fetch the user data files
+async function getLevelUsers(level) {
+    const response = await fetch('/data/' + (level) + '/users.csv');
+    const data = await response.text();
+    // Sort the data into arrays
+    let rows = data.split('\n').slice();
+    let users = document.querySelectorAll('.user');
+    for (i = 0; i < users.length + 1; i++) {
+    // Loop through cards 
+        let order = rows[i];
+        let split = order.split(',');
+        let uniqueData1 = split[0]
+        let uniqueData2 = split[1];
+        let uniqueData3 = split[2];
+        let uniqueData4 = split[3];
+        let link = split[4];
+        if (i < 1) {
+            if ((level) == "Applicant") {
+                uniqueSpan1 = document.querySelectorAll('.' + uniqueData1);
+            }
+            else {
+            uniqueSpan1 = document.querySelectorAll('.' + uniqueData1);
+            uniqueSpan2 = document.querySelectorAll('.' + uniqueData2);
+            uniqueSpan3 = document.querySelectorAll('.' + uniqueData3);
+            uniqueSpan4 = document.querySelectorAll('.' + uniqueData4);
+            }
+        }        
+
+        if (i >= 1) {
+            if ((level) == "Applicant") {
+                uniqueSpan1[i-1].textContent = uniqueData1;
+                users[i-1].dataset.link = link;
+            }
+            else {        
+            uniqueData2 = "$" + uniqueData2.slice(0, 2) + "," + uniqueData2.slice(2);
+            uniqueSpan2[i-1].textContent = uniqueData2;
+            uniqueSpan3[i-1].textContent = uniqueData3;
+            uniqueSpan4[i-1].textContent = uniqueData4;
+            users[i-1].dataset.link = link;            
+            }
+        }
+        }
+    }
+/*
 function checkLinks(link) {
     let clients = document.querySelectorAll('.client');
     let users = document.querySelectorAll('.user');
-    console.log((link));
     let divideUsers = (users.length / clients.length);
     let linkedUsers = users[Math.floor(Math.random() * users.length)];
     // Charity in postcode
@@ -258,14 +332,12 @@ function checkLinks(link) {
         linkedUsers.setAttribute("data-link", "charityinPostcode");
         linkedUsersPostcode.textContent = "SK49 " + getRandomInt(0, 9) + getRandomChar() + getRandomChar();
     }
-        if ((link) === "onlineRetailer") {
-            console.log("fds");
-            let linkedUsers =  users[i];
-            linkedUsers.setAttribute("data-link", "onlineRetailer");
-        }
+    if ((link) === "onlineRetailer") {
+        let linkedUsers =  users[i];
+        linkedUsers.setAttribute("data-link", "onlineRetailer");
+    }
     // Automotive manufactuer
     if ((link) === "luxuryCarManufacturer")  {
-        console.log("car");
         let linkedUsers = users[i];
         linkedUsers.setAttribute("data-link", "luxuryCarManufacturer");
         let linkedUsersDob = linkedUsers.children[3]
@@ -284,7 +356,7 @@ function checkLinks(link) {
         linkedUsersSalary.textContent = ("$" + getRandomInt(50, 150) + "," + getRandomInt(100, 999));
     }
 }
-
+*/
 let totalEthics = 0;
 function ethicsCounter(number) {
     totalEthics = (parseInt(totalEthics) + parseInt((number)));

@@ -81,7 +81,10 @@ function dragDrop(event) {
                 "marital",
                 "homeType",
                 "homeOwnership",
-                "salary"
+                "salary",
+                "buyingChannel",
+                "monthlyOrders",
+                "loanHistory"
             ];
             let dataSpan1 = document.querySelectorAll("." + draggedCard.dataset.field1);
             let dataSpan2 = document.querySelectorAll("." + draggedCard.dataset.field2);            
@@ -117,7 +120,7 @@ function dragDrop(event) {
         tone.play();
     }
     // User to segments transfer
-    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments") && (draggedCardLink == cardDraggedOverLink)) {
+    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "user") && (dropSectionType == "segments") && (draggedCardLink.match(cardDraggedOverLink))) {
         let span = document.createElement("span");
         cardDraggedOver.appendChild(span).textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
@@ -136,15 +139,13 @@ function dragDrop(event) {
         tone.play();
     }
     // Segment to clients transfer
-    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients") && (draggedCardLink == cardDraggedOverLink)) {
+    else if ((!draggedCard.classList.contains("empty")) && (draggedCardType === "segment") && (dropSectionType == "clients") && (cardDraggedOverLink.match(draggedCardLink))) {
         increaseScore(cardDraggedOver);
         cardDraggedOver.children[1].textContent = draggedCardName;
         cardDraggedOver.classList.remove("empty");
         draggedCard.style.display = "none";
         ethicsCounter(cardDraggedOverEthics);
         let clients = document.querySelectorAll('.client');
-        for (i = 0; i < clients.length; i++) {
-            if (!clients[i].classList.contains("empty")) {
                 pauseCountdown();
                 if (level == "Applicant") {
                     hideMessage();
@@ -159,11 +160,43 @@ function dragDrop(event) {
                         nextLevel
                     );
                 showPopup1();
-                }
                 levelUp.play();
-            }
-        }
-    }
+                }
+                if (level == "Intern") {
+                    if ((!clients[0].classList.contains("empty")) && (!clients[1].classList.contains("empty"))) {
+                    hideMessage();
+                    createPopup(
+                        "analyst",
+                        "explaining",
+                        "Analyst",
+                        "Excellent work, You’ve been promoted to Analyst! We’ve found more lucrative segments to target - get to work.",
+                        "Great, I'm on it!",
+                        nextLevel,
+                        "Okay, I'll try",
+                        nextLevel
+                    );
+                showPopup1();
+                levelUp.play();
+                }
+                }
+                if (level == "Analyst") {
+                    if ((!clients[0].classList.contains("empty")) && (!clients[1].classList.contains("empty"))) {
+                    hideMessage();
+                    createPopup(
+                        "manager",
+                        "explaining",
+                        "Manager",
+                        "Good work, you’ve been promoted to Manager! There's a lot of money to be made",
+                        "Great, I'm on it!",
+                        nextLevel,
+                        "Okay, I'll try",
+                        nextLevel
+                    );
+                showPopup1();
+                levelUp.play();
+                }
+                }
+                } 
     //console.log(this.id, 'dragdrop');
 }
 
