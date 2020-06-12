@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Agency | Manager</title>
+    <link rel="stylesheet" type="text/css" href="../css/game.css">
+</head>
+
+<body>
+    <div class="grid">
+        <div id="corporation" class="headerLeft">
+            <h1>Data Agency</h1>
+        </div>
+        <div id="level" class="headerRight">
+            <h2 id="levelText" class="right"></h2>
+            <div id="levelPeep" class="right">
+                <img id="levelHead" src="/data/open-peeps/head/manager.svg" width="40px">
+                <img id="levelFace" src="/data/open-peeps/face/blank.svg" width="24px">
+            </div>
+        </div>
+        <div id="sources" class="section">
+            <h2 title="Sources are bought to provide user data for us to analyse">Sources</h2>
+        </div>
+        <div id="users" class="section">
+            <h2 title="Users are individuals found in the sources">Users</h2>
+        </div>
+        <div id="segments" class="section">
+            <h2 title="Segments catagorise users into groups of like-minded people">Segments</h2>
+        </div>
+        <div id="clients" class="section">
+            <h2 title="Clients pay us to find groups of people relevant to their business">Clients</h2>
+        </div>
+        <div id="stats" class="footerLeft">
+            <div id="score">
+                $0
+            </div>
+            <div id="timer"></div>
+        </div>
+        <div id="sound" class="footerRight">
+                <audio id="music" src="/data/audio/8bit-surf-faster.mp3" preload="auto" autoplay="autoplay">
+                Your browser does not support the audio element.</audio>
+                <a class="right" onclick="toggleMute()">
+                    <img id ="icon" src="../images/sound-on.svg" alt="Audio icon">
+                </a>
+        </div>
+    </div>
+    <div id="warning-message">
+        <h1>Please tilt<br>your device</h1>
+        <p>This experience only works<br>in landscape mode</p>
+        <img src="../images/device-peep.svg" alt="Person holding a smartphone">
+    </div>
+    <script src="/js/core.js"></script>
+    <script src="/js/parse.js"></script>
+    <script src="/js/manager.js"></script>
+    <script src="/js/drag.js"></script>
+</body>
+
+</html>

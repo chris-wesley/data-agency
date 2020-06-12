@@ -1,0 +1,401 @@
+@import url("https://rsms.me/inter/inter.css");
+
+html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body {
+    margin: 0;
+    user-select: none;
+    scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 22vw 22vw 22vw 22vw;
+    grid-template-rows: 8vh 68vh 18vh;
+    grid-column-gap: 2vw;
+    grid-row-gap: 0;
+    padding: 3vh 3vw 3vh 3vw;
+    grid-template-areas:
+        "headerLeft headerLeft headerRight headerRight"
+        "sources users segments clients"
+        "footerLeft footerMiddle footerMiddle footerRight";
+}
+
+.headerLeft {
+    grid-area: headerLeft;
+}
+
+.headerRight {
+    grid-area: headerRight;
+}
+
+#sources {
+    grid-area: sources;
+}
+
+#users {
+    grid-area: users;
+}
+
+#segments {
+    grid-area: segments;
+}
+
+#clients {
+    grid-area: clients;
+}
+
+.footerLeft {
+    grid-area: footerLeft;
+    align-self: flex-end;
+}
+
+.footerMiddle {
+    grid-area: footerMiddle;
+    align-self: flex-end;
+}
+
+.footerRight {
+    grid-area: footerRight;
+    align-self: flex-end;
+}
+
+.card {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 10px 15px 10px 15px;
+    cursor: grab;
+    vertical-align: top;
+    color: black;
+    border: 1.5px solid black;
+    background: #fff;
+    border-radius: 2px;
+    margin: 0px 0px 10px 0px;
+}
+
+.card p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 5px 0px 5px 0px;
+
+}
+
+.card span {
+    display: inline-block;
+    font-size: 0.9rem;
+    padding: 5px 10px 5px 10px;
+    margin: 0px 10px 10px 0px;
+    border-radius: 2px;
+    color: white;
+    background-color: black;
+}
+
+.card span:last-child {
+        margin: 0;
+}
+
+.card:hover {
+    cursor: grab;
+    background-color: whitesmoke;
+}
+
+.card.user {
+    margin-bottom: 15px;
+}
+
+.card.user p {
+    margin: 5px 0px 10px 0px;
+}
+
+.title {
+    position: relative;
+}
+
+h2.title {
+    position: inline;
+}
+
+/* Tooltip text */
+button.tooltip {
+    display: inline;
+    color: white;
+    background-color: black;
+    display: inline;
+    position: absolute;
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+    padding: 0px;
+}
+
+button.tooltip:hover {
+    visibility: visible;
+}
+
+:root {
+    font-family: 'Inter', sans-serif;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+#levelPeep {
+    display: inline;
+    position: relative;
+    vertical-align: middle;
+    padding-right: 50px;
+    margin-top: 5px;
+}
+
+#levelHead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#levelFace {
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    right: 0;
+}
+
+#headerRight h2 {}
+
+.section h2 {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.background-pattern {
+    background: repeating-linear-gradient(
+        45deg,
+        whitesmoke,
+        whitesmoke 10px,
+        #FFFFFF 10px,
+        #FFFFFF 20px
+    );
+}
+
+.right {
+    float: right;
+}
+
+#sound {
+    font-size: 1.3em;
+    font-weight: 500;
+    text-align: right;
+}
+
+#sound a {
+    cursor: pointer;
+}
+
+#stats {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+#message {
+    padding: 30px 30px 30px 30px;
+    height: 250px;
+    border: solid 1.5px black;
+    border-radius: 2px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+    margin-bottom: -90px;
+}
+
+.hide-message {
+    margin-bottom: -205px !important;
+}
+
+#message.unread-message {
+    background-color: whitesmoke;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1.5px black;
+    border-radius: 2px;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+}
+
+.context {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1.5px black;
+    border-radius: 2px;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+}
+
+#header {
+}
+
+#peep {
+    display: inline;
+    position: relative;
+    vertical-align: top;
+    padding: 0;
+}
+
+#head {
+    width: 40px;
+    position: absolute;
+    top: -13px;
+    left: -2px;
+    right: 0;
+}
+
+#face {
+    width: 24px;
+    position: absolute;
+    top: 3px;
+    left: 11px;
+    right: 0;
+}
+
+#name {
+    display: inline;
+    padding: 0px 0px 0px 50px;
+}
+
+#time {
+    display: inline;
+    padding: 0px 0px 0px 10px;
+    color: lightgrey;
+}
+
+p#content {
+    font-size: 1.2em;
+    margin: 0px;
+    padding: 35px 0px 35px 0px;
+}
+
+#buttonWrapper {
+    text-align: right;
+}
+
+button {
+    font-size: 1.1em;
+    font-weight: 400;
+    padding: 10px 20px 10px 20px;
+    margin: 0px 0px 0px 10px;
+    border: 1.5px solid black;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: white;
+}
+
+button:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: black;
+    color: white;
+}
+
+p#body {
+    font-size: 1.1em;
+}
+
+h3#heading {
+    margin: 0;
+}
+
+.show {
+    display: block !important;
+}
+
+.hide {
+    display: none;
+}
+
+#warning-message {
+    display: none;
+}
+
+#warning-message h1 {
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1em;
+}
+
+#warning-message p {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+#warning-message img {
+    width: 300px;
+}
+
+@media only screen and (max-width:1100px) and (orientation:portrait) {
+    .grid {
+        display: none;
+    }
+
+    .popup {
+        display: none;
+    }
+
+    .context {
+        display: none;
+    }
+
+    #warning-message {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media only screen and (orientation:landscape) {
+    #warning-message {
+        display: none;
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Agency</title>
+    <link rel="stylesheet" type="text/css" href="css/game.css">
+</head>
+
+<body>
+    <div class="grid">
+        <div class="headerLeft" id="corporation">
+            <h1>Data Agency</h1>
+        </div>
+        <div class="headerRight" id="level">
+            <h2 class="right" id="levelDisplay"></h2>
+            <div id="levelPeep" class="right">
+                <img id="messageHead" src="/data/open-peeps/head/hat-beanie.svg" width="40px">
+                <img id="messageFace" src="/data/open-peeps/face/Cute.svg" width="24px">
+            </div>
+        </div>
+        <div class="section" id="sources">
+            <h2>Sources</h2>
+        </div>
+        <div class="section" id="users">
+            <h2>Users</h2>
+        </div>
+        <div class="section" id="segments">
+            <h2>Segments</h2>
+        </div>
+        <div class="section" id="clients">
+            <h2>Clients</h2>
+        </div>
+        <div id="stats" class="footerLeft">
+            <div id="score">
+                $2580
+            </div>
+            <div id="timer"></div>
+        </div>
+        <div id="messageWrapper" class="footerMiddle" onClick="messageToggle()" style="margin-bottom: -150px;">
+            <div id="messageHeader">
+                <div id="messagePeep">
+                    <img id="messageHead" src="/data/open-peeps/head/Short 4.svg" width="40px">
+                    <img id="messageFace" src="/data/open-peeps/face/Explaining.svg" width="24px">
+                </div>
+                <div id="messageHeaderText">
+                    <h3 id="messageName"></h3>
+                    <h3 id="messageSubject"></h3>
+                </div>
+            </div>
+            <div id="messageContent">
+                <p id="messageContents"></p>
+            </div>
+        </div>
+        <div id="sound" class="footerRight">
+            <audio id="music" src="/data/8bit-surf.mp3" preload="auto"></audio>
+                <a class="right" onClick="togglePlay(music)">
+                    <img src="images/audio-on.svg" alt="Audio on icon">
+                </a>
+        </div>
+    </div>
+    <div id="warning-message">
+        <h1>Please tilt<br>your device</h1>
+        <p>This experience only works<br>in landscape mode</p>
+        <img src="images/device-peep.svg" alt="Person holding a smartphone">
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
