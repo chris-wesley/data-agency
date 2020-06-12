@@ -64,6 +64,8 @@ async function getUsers(level) {
         let street = split[7];
         let email = split[8];
         let buyingChannel = split[9];
+        let interest = split[10];
+        let purchase = split[11];
 
         //Randomly choose a male or female first name and combine with a last name
         var randomNumber = getRandomInt(0, 1);
@@ -202,6 +204,20 @@ async function getUsers(level) {
         span.style.display = "none";
         span.textContent = loanHistory;
         users[i].append(span);
+        // Randomise interests
+        var span = document.createElement("span");
+        span.classList.add("interest");
+        span.title = "Interest";
+        span.style.display = "none";
+        span.textContent = interest;
+        users[i].append(span);
+        // Randomise last purchase
+        var span = document.createElement("span");
+        span.classList.add("purchase");
+        span.title = "Last purchase";
+        span.style.display = "none";
+        span.textContent = purchase;
+        users[i].append(span);
 
 
     }
@@ -241,6 +257,7 @@ async function getSegments(level) {
 async function getClients(level) {
     const response = await fetch('/data/' + (level) + '/clients.csv');
     const data = await response.text();
+    console.log((level));
     // Sort the data into arrays
     let rows = data.split('\n').slice(1);
     let clients = document.querySelectorAll('.client');
@@ -291,6 +308,8 @@ async function getLevelUsers(level) {
         let uniqueData2 = split[1];
         let uniqueData3 = split[2];
         let uniqueData4 = split[3];
+        let uniqueData5;
+        let uniqueData6;
         let link = split[4];
         if (i < 1) {
             if ((level) == "Applicant") {
@@ -301,24 +320,31 @@ async function getLevelUsers(level) {
             uniqueSpan2 = document.querySelectorAll('.' + uniqueData2);
             uniqueSpan3 = document.querySelectorAll('.' + uniqueData3);
             uniqueSpan4 = document.querySelectorAll('.' + uniqueData4);
+            uniqueSpan5 = document.querySelectorAll('.sex');
+            uniqueSpan6 = document.querySelectorAll('.marital');
             }
         }        
-
+        
         if (i >= 1) {
-            if ((level) == "Applicant") {
                 uniqueSpan1[i-1].textContent = uniqueData1;
                 users[i-1].dataset.link = link;
+            if ((level) == "Manager") {
+                uniqueSpan5[i-1].textContent = "Female";
+                uniqueSpan6[i-1].textContent = "Single";
             }
-            else {        
-            uniqueData2 = "$" + uniqueData2.slice(0, 2) + "," + uniqueData2.slice(2);
-            uniqueSpan2[i-1].textContent = uniqueData2;
+            if (uniqueData2.isInteger) {     
+                uniqueData2 = "$" + uniqueData2.slice(0, 2) + "," + uniqueData2.slice(2);
+            }
+            else {
+                uniqueSpan2[i-1].textContent = uniqueData2;
+            }
             uniqueSpan3[i-1].textContent = uniqueData3;
             uniqueSpan4[i-1].textContent = uniqueData4;
-            users[i-1].dataset.link = link;            
-            }
-        }
+            users[i-1].dataset.link = link;
+    
         }
     }
+}
 /*
 function checkLinks(link) {
     let clients = document.querySelectorAll('.client');

@@ -84,7 +84,9 @@ function dragDrop(event) {
                 "salary",
                 "buyingChannel",
                 "monthlyOrders",
-                "loanHistory"
+                "loanHistory",
+                "interest",
+                "purchase"
             ];
             let dataSpan1 = document.querySelectorAll("." + draggedCard.dataset.field1);
             let dataSpan2 = document.querySelectorAll("." + draggedCard.dataset.field2);            
@@ -170,9 +172,9 @@ function dragDrop(event) {
                         "explaining",
                         "Analyst",
                         "Excellent work, You’ve been promoted to Analyst! We’ve found more lucrative segments to target - get to work.",
-                        "Great, I'm on it!",
+                        "Okay, I will do!",
                         nextLevel,
-                        "Okay, I'll try",
+                        "Sure, I'll be right on it",
                         nextLevel
                     );
                 showPopup1();
@@ -187,9 +189,43 @@ function dragDrop(event) {
                         "explaining",
                         "Manager",
                         "Good work, you’ve been promoted to Manager! There's a lot of money to be made",
-                        "Great, I'm on it!",
+                        "Thanks, I'll get going!",
                         nextLevel,
-                        "Okay, I'll try",
+                        "Okay, I'll try my best",
+                        nextLevel
+                    );
+                showPopup1();
+                levelUp.play();
+                }
+                }
+                if (level == "Manager") {
+                    if ((!clients[0].classList.contains("empty")) && (!clients[1].classList.contains("empty"))) {
+                    hideMessage();
+                    createPopup(
+                        "ceo",
+                        "explaining",
+                        "CEO",
+                        "Congratulations, you're replacing me as CEO. Just remember, you're now responsible for any scandals...",
+                        "Okay",
+                        nextLevel,
+                        "I'll be careful",
+                        nextLevel
+                    );
+                showPopup1();
+                levelUp.play();
+                }
+                }
+                if (level == "CEO") {
+                    if ((!clients[0].classList.contains("empty")) && (!clients[1].classList.contains("empty"))) {
+                    hideMessage();
+                    createPopup(
+                        "board",
+                        "old",
+                        "Board of Directors",
+                        "A government equiry has been launched to find the person responsible for the breaches in privacy. This happened under your watch so you’re to blame!",
+                        "Your targets were unrealistic!",
+                        nextLevel,
+                        "I tried my best...",
                         nextLevel
                     );
                 showPopup1();

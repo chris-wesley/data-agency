@@ -180,9 +180,6 @@ function toggleMute() {
     }
 }
 
-let notification = new effect("notification");
-let bleep = new effect("bleep");
-let beep = new effect("beep");
 let tone = new effect("tone");
 let levelUp = new effect("levelUp");
 let pop = new effect("pop");
@@ -209,6 +206,10 @@ function removeContext() {
     }
     showPopup1();
     showPopup2();
+}
+
+function takeAction() {
+    window.location.href = "https://www.datadetoxkit.org/";
 }
 
 function removePopup1() {
