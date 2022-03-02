@@ -222,7 +222,7 @@ function dragDrop(event) {
                         "board",
                         "old",
                         "Board of Directors",
-                        "A government equiry has been launched to find the person responsible for the breaches in privacy. This happened under your watch so you’re to blame!",
+                        "A government enquiry has been launched to find the person responsible for the breaches in privacy. This happened under your watch so you’re to blame!",
                         "Your targets were unrealistic!",
                         nextLevel,
                         "I tried my best...",
